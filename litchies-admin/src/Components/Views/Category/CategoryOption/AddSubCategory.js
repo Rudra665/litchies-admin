@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Box, TableContainer } from "@mui/material";
-import { Paper } from "@mui/material";
+import { Box } from "@mui/material";
+
 import { TextField, Button } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Select from "@mui/material/Select"
-import InputLabel from "@mui/material/InputLabel"
+import MenuItem from "@mui/material/MenuItem"
 const AddSubCategory = (props) => {
     const [Cat, setCat] = useState([]);
     const [state, setState] = useState({
@@ -62,17 +62,20 @@ const AddSubCategory = (props) => {
                         fullWidth
                     />
 
-                    <Select
+                    <TextField
+                        select
+                        name="categoryId"
                         fullWidth
-                        lable="Category"
+                        label='Category '
                         value={state.categoryId}
                         onChange={handleChange}
+                        sx={{ my: 2 }}
                     >
-                        
                         {Cat.map((cat) => (
-                            <option value={cat._id}>{cat.name}</option>
+                            <MenuItem value={cat._id}>{cat.name}</MenuItem>
                         ))}
-                    </Select>
+                    </TextField>
+
                     <div
                         style={{
                             marginTop: "10px",
@@ -80,13 +83,6 @@ const AddSubCategory = (props) => {
                             justifyContent: "space-around",
                         }}
                     >
-                        <Button
-                            variant="contained"
-                            className="buttonCss"
-                            onClick={props.handleClose}
-                        >
-                            Cancel
-                        </Button>
                         <Button variant="contained" className="buttonCss" type="submit">
                             Save
                         </Button>

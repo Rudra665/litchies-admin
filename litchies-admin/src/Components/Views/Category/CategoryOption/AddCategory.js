@@ -11,6 +11,7 @@ import axios from "axios";
 const AddCategory = props => {
     const [state, setState] = useState({
         name: "",
+        image: "",
     });
     const handleChange = (e) => {
         const value = e.target.value;
@@ -24,6 +25,8 @@ const AddCategory = props => {
         e.preventDefault();
         const cat = {
             name: state.name,
+            image: state.image,
+            srno: 7
         };
 
         axios
@@ -37,30 +40,38 @@ const AddCategory = props => {
         <>
             <form onSubmit={handleSubmit}>
                 <React.Fragment>
-                    <TableContainer component={Paper}>
-                        <h3 style={{ alignItems: "center" }}>Add a Category</h3>
-                        <TextField
-                            name="name"
-                            label="Enter Category Name"
-                            value={state.name}
-                            onChange={handleChange}
-                            style={{ width: "500px", margin: "70px" }}
-                        />
-                        <div
-                            style={{
-                                marginTop: "10px",
-                                display: "flex",
-                                justifyContent: "space-around",
-                            }}
-                        >
-                            <Button variant="contained" className="buttonCss" onClick={props.handleClose}>
-                                Cancel
-                            </Button>
-                            <Button variant="contained" className="buttonCss" type="submit">
-                                Save
-                            </Button>
-                        </div>
-                    </TableContainer>
+
+                    <h2 align="center" >Add a Category</h2>
+                    <TextField
+                        fullWidth
+                        name="name"
+                        label="Enter Category Name"
+                        value={state.name}
+                        onChange={handleChange}
+                        sx={{ marginY: 2 }}
+                    />
+                    <TextField
+                        fullWidth
+                        name="image"
+                        label="Enter Category Image"
+                        value={state.image}
+                        onChange={handleChange}
+                        sx={{ marginY: 2 }}
+                    />
+
+                    <div
+                        style={{
+                            marginTop: "10px",
+                            display: "flex",
+                            justifyContent: "space-around",
+                        }}
+                    >
+
+                        <Button variant="contained" type="submit">
+                            Save
+                        </Button>
+                    </div>
+
                 </React.Fragment>
             </form>
         </>
