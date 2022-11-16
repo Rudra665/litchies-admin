@@ -143,86 +143,89 @@ export default function AddProduct() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-
-
-        <Box display="grid" justifyContent="center">
-
-          <TextField
-            name="name"
-            label="Product Name"
-            value={state.name}
-            onChange={handleChange}
-          />
-
-          <TextField
-            name="desc"
-            label="Description"
-            value={state.desc}
-            onChange={handleChange}
-          />
-
-          <TextField
-            name="price"
-            label="Price"
-            value={state.price}
-            onChange={handleChange}
-          />
-
-          <TextField
-            name="discount"
-            label="Discount"
-            value={state.discount}
-            onChange={handleChange}
-          />
-
-          <TextField
-            select
-            name="childCategoryId"
-            value={state.childCategoryId}
-            onChange={handleChange}
-            className="optionCat"
+        <Container>
+          <Box
+            sx={{
+              height: "120vh",
+              width: 1,
+              "& .MuiTextField-root": { m: 1, width: "65ch" },
+            }}
           >
-            {childCat.map((childCat) => (
-              <MenuItem value={childCat._id}>{childCat.name}</MenuItem>
-            ))}
-          </TextField>
-          <label>Add Video</label>
-          <Box>
-            <input multiple type="file" onChange={onImageChange} />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={uploadVideo}
-            >
-              Upload Video
-            </Button>
-          </Box>
+            <Box >
+              <TextField
+                name="name"
+                label="Product Name"
+                value={state.name}
+                onChange={handleChange}
+              />
 
-          <label>Add Image(s)</label>
-          <Box >
-            <input multiple type="file" onChange={onImageChange} />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleUpload}
-            >
-              Upload Images
-            </Button>
-          </Box>
-          <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
-            <Button
-              variant="contained"
-              className="buttonCss"
-              style={{ width: "250px", marginTop: "30px" }}
-              startIcon={<AddIcon />}
-              type="submit"
-            >
-              Add
-            </Button>
-          </Box>
-        </Box>
+              <TextField
+                name="desc"
+                label="Description"
+                value={state.desc}
+                onChange={handleChange}
+              />
+              <TextField
+                name="price"
+                label="Price"
+                value={state.price}
+                onChange={handleChange}
+              />
+              <TextField
+                name="discount"
+                label="Discount"
+                value={state.discount}
+                onChange={handleChange}
+              />
 
-
+              <TextField
+                select
+                name="childCategoryId"
+                value={state.childCategoryId}
+                onChange={handleChange}
+                className="optionCat"
+              >
+                {childCat.map((childCat) => (
+                  <MenuItem value={childCat._id}>{childCat.name}</MenuItem>
+                ))}
+              </TextField>
+              <label>Add Video</label>
+              <Box>
+                <input multiple type="file" onChange={onImageChange} />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={uploadVideo}
+                >
+                  Upload Video
+                </Button>
+              </Box>
+              <br></br>
+              <label>Add Image(s)</label>
+              <Box >
+                <input multiple type="file" onChange={onImageChange} />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleUpload}
+                >
+                  Upload Images
+                </Button>
+              </Box>
+              <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
+                <Button
+                  variant="contained"
+                  className="buttonCss"
+                  style={{ width: "250px", marginTop: "30px" }}
+                  startIcon={<AddIcon />}
+                  type="submit"
+                >
+                  Add
+                </Button>
+              </Box>
+            </Box>
+          </Box>
+        </Container>
       </form>
     </>
   );

@@ -57,7 +57,7 @@ export default function ProductList() {
                     <TableCell align="right">{product.desc}</TableCell>
                     <TableCell align="right">{product.price}</TableCell>
                     <TableCell align="right">
-                      <Button as={NavLink} to={product._id} className="buttonCss" style={{ color: "white", textDecoration: "none" }}>Click Here</Button>
+                      <Button variant="contained" as={NavLink} to={product._id} style={{ textDecoration: "none" }}>Click Here</Button>
                     </TableCell>
                   </TableRow>
                 ))}
@@ -65,7 +65,8 @@ export default function ProductList() {
             </Table>
           </TableContainer>
         </Box>
-      )}
+      )
+      }
     </>
   );
 }

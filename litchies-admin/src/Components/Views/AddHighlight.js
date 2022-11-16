@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { TextField, Button, MenuItem } from "@mui/material";
+import { TextField, Button, MenuItem, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
@@ -94,12 +94,14 @@ export default function AddHighlight() {
           <Box
             sx={{
               height: "120vh",
-              width: 1,
-              "& .MuiTextField-root": { m: 1, width: "65ch" },
+              marginTop: "5vh",
+              "& .MuiTextField-root": { m: 1 },
             }}
           >
-            <div className="Pdetails">
+            <Typography variant="h2" align="center">Add Highlight</Typography>
+            <div className="Pdetails" align="center">
               <TextField
+                fullWidth
                 name="title"
                 label="Highlight Title"
                 value={state.title}
@@ -107,6 +109,7 @@ export default function AddHighlight() {
               />
 
               <TextField
+                fullWidth
                 name="desc"
                 label="Description"
                 value={state.desc}
@@ -114,10 +117,11 @@ export default function AddHighlight() {
               />
 
               <TextField
+                fullWidth
                 select
                 name="proId"
                 value={state.proId}
-                lable="Product"
+                label="Product"
                 onChange={handleChange}
                 className="optionCat"
               >
@@ -126,15 +130,16 @@ export default function AddHighlight() {
                 ))}
               </TextField>
               <TextField
+                fullWidth
                 name="discount"
                 label="Discount"
                 value={state.discount}
                 onChange={handleChange}
               />
 
-              <TextField label="Upload Banner Image" value={state.shopBanner}>
-                {" "}
-              </TextField>
+              <TextField fullWidth label="Upload Banner Image" value={state.shopBanner} />
+
+
               <div className="CSimage">
                 <div >
                   <input type="file" onChange={onImageChange} />
@@ -147,28 +152,29 @@ export default function AddHighlight() {
                   </Button>
                 </div>
               </div>
-              <Box sx={{ "& .MuiButton-root": { m: 1 } }} display="flex">
+              <Box sx={{ "& .MuiButton-root": { m: 1, width: "10vw" } }} align="center">
                 <Button
+                  size="large"
                   variant="contained"
                   className="buttonCss"
-                  style={{ width: "250px", marginTop: "30px" }}
+                  style={{ marginTop: "5vh" }}
                   startIcon={<AddIcon />}
                   onClick={handleSubmit}
                 >
                   Add
                 </Button>
-                <Box>
-                  <img
-                    style={{ width: "150px", marginLeft: "30px" }}
-                    src={img.preview}
-                    alt="..."
-                    className="Pimage"
-                  /></Box>
+
+                <img
+                  style={{ width: "150px", marginLeft: "30px" }}
+                  src={img.preview}
+                  alt="..."
+                  className="Pimage"
+                />
               </Box>
             </div>
           </Box>
         </Container>
-      </form>
+      </form >
     </>
   );
 }

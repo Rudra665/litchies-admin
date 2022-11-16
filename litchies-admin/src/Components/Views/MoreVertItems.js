@@ -35,19 +35,19 @@ const MoreVertItems = (props) => {
           {/* </Button> */}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          {<NavLink to={`addproduct/${props.id}`} >Add Product</NavLink>}
+          {<NavLink to={`verifiedShopsList/addproduct/${props.id}`} >Add Product</NavLink>}
           {/* <Button className="MorevertButton" href={`addproduct/${props.id}`}>
             Add Product
           </Button> */}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          {<NavLink to={`addShopBanner/${props.id}`}>Add Shop Banner</NavLink>}
+          {<NavLink to={`verifiedShopsList/addShopBanner/${props.id}`}>Add Shop Banner</NavLink>}
           {/* <Button className="MorevertButton" href={`addShopBanner/${props.id}`}>
             Add Shop Banner
           </Button> */}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          {<NavLink to={`showProducts/${props.id}`} >Show All Products</NavLink>}
+          {<NavLink to={`verifiedShopsList/showProducts/${props.id}`} >Show All Products</NavLink>}
           {/* <Button className="MorevertButton" href={`showProducts/${props.id}`}>
             Show All Products
           </Button> */}

@@ -9,7 +9,7 @@ function Header() {
   return (
     <Navbar style={{ background: "#f55666" }}>
       <Container>
-        <Navbar.Brand className="hheading">Litchies Admin</Navbar.Brand>
+        <Navbar.Brand marginY="1vh">Litchies Admin</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto navbarApni">
