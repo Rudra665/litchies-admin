@@ -1,37 +1,41 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
+import { Box } from "@mui/material";
 import { TextField, Button } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import { useState, useEffect } from "react";
 import axios from "axios";
-
-
-export default function AddChildCategory() {
-
-    const [subCat, setSubCat] = React.useState([])
-    const [state, setState] = React.useState({
+import MenuItem from "@mui/material/MenuItem"
+const AddChildCategory = (props) => {
+    const [Cat, setCat] = useState([]);
+    const [SubCat, setSubCat] = useState([]);
+    const [state, setState] = useState({
         name: "",
-        SubCategoryId: "",
-        CategoryId: ""
+        categoryId: "",
+        subcategoryId: "",
     });
+
+
+
+
     const handleChange = (e) => {
         const value = e.target.value;
         setState({
             ...state,
             [e.target.name]: value,
+            [e.target.Cat]: value,
+            [e.target.SubCat]: value,
         });
     };
     const handleSubmit = (e) => {
         alert("added");
         e.preventDefault();
-        const childCat = {
+        const subCat = {
             name: state.name,
-            subCategoryId: state.SubCategoryId,
-            CategoryId: state.CategoryId,
-
+            categoryId: state.categoryId,
+            subcategoryId: state.subcategoryId,
         };
 
         axios
-            .post("http://43.205.116.96:3000/productChildCategory/create", childCat)
+            .post("http://43.205.116.96:3000/productChildCategory/create", subCat)
             .then((response) => {
                 console.log(response.data);
             });
@@ -43,10 +47,10 @@ export default function AddChildCategory() {
                 return response.json();
             })
             .then((data) => {
-                setSubCat(data);
+                setSubCat(data)
             });
     };
-    React.useEffect(() => {
+    useEffect(() => {
         fetchSubCat();
     }, []);
 
@@ -56,75 +60,74 @@ export default function AddChildCategory() {
                 return response.json();
             })
             .then((data) => {
-                setSubCat(data);
+                setCat(data);
             });
     };
-    React.useEffect(() => {
-        fetchSubCat();
+    useEffect(() => {
+        fetchCat();
     }, []);
+
 
     return (
         <>
             <form onSubmit={handleSubmit}>
+                <Box>
+                    <h1 align="center">Add a SubCategory</h1>
 
+                    <TextField
+                        select
+                        name="categoryId"
+                        fullWidth
+                        label='Category '
+                        value={state.categoryId}
+                        onChange={handleChange}
+                        sx={{ my: 1 }}
+                    >
+                        {Cat.map((cat) => (
+                            <MenuItem value={cat._id}>{cat.name}</MenuItem>
+                        ))}
+                    </TextField>
 
-                <Box
-                    sx={{
+                    <TextField
+                        select
+                        name="subcategoryId"
+                        fullWidth
+                        label='Sub Category'
+                        value={state.subcategoryId}
+                        onChange={handleChange}
+                        sx={{ my: 1 }}
+                    >
 
-                        "& .MuiTextField-root": { m: 1 },
-                    }}
-                >
-                    <div><h2 align="center">Add Child Category</h2>
-                        <TextField
-                            name="name"
-                            fullWidth
-                            label="Child Category Name"
-                            value={state.name}
-                            onChange={handleChange}
-                        />
-                        <TextField
-                            select
-                            name="categoryId"
-                            fullWidth
-                            label='Category '
-                            value={state.CategoryId}
-                            onChange={handleChange}
-                            sx={{ my: 2 }}
-                        >
-                            {Cat.map((cat) => (
-                                <MenuItem value={cat._id}>{cat.name}</MenuItem>
-                            ))}
-                        </TextField>
-                        <TextField
-                            select
-                            name="categoryId"
-                            fullWidth
-                            label='Category '
-                            value={state.SubCategoryId}
-                            onChange={handleChange}
-                            sx={{ my: 2 }}
-                        >
-                            {Cat.map((cat) => (
-                                <MenuItem value={cat._id}>{cat.name}</MenuItem>
-                            ))}
-                        </TextField>
-                        <Box align="center">
-                            <Button
-                                variant="contained"
-                                color="success"
-                                startIcon={<AddIcon />}
-                                type="submit"
-                                className="buttonCss"
-                                style={{ marginTop: "15px" }}
-                            >
-                                Add
-                            </Button>
-                        </Box>
+                        {SubCat.filter((item) => item.categoryId === state.categoryId).map((item) => (
+                            <MenuItem value={item._id}>{item.name}</MenuItem>
+                        ))
+                        }
 
+                    </TextField>
+
+                    <TextField
+                        name="name"
+                        label="Enter Sub Category Name"
+                        value={state.name}
+                        onChange={handleChange}
+                        fullWidth
+                        sx={{ my: 1 }}
+                    />
+
+                    <div
+                        style={{
+                            marginTop: "10px",
+                            display: "flex",
+                            justifyContent: "space-around",
+                        }}
+                    >
+                        <Button variant="contained" className="buttonCss" type="submit">
+                            Save
+                        </Button>
                     </div>
                 </Box>
-
             </form>
         </>
     );
-}
+};
+export default AddChildCategory;

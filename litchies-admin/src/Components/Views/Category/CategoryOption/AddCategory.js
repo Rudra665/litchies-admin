@@ -41,14 +41,14 @@ const AddCategory = props => {
             <form onSubmit={handleSubmit}>
                 <React.Fragment>
 
-                    <h2 align="center" >Add a Category</h2>
+                    <h1 align="center" >Add a Category</h1>
                     <TextField
                         fullWidth
                         name="name"
                         label="Enter Category Name"
                         value={state.name}
                         onChange={handleChange}
-                        sx={{ marginY: 2 }}
+                        sx={{ marginY: 1 }}
                     />
                     <TextField
                         fullWidth
@@ -56,7 +56,7 @@ const AddCategory = props => {
                         label="Enter Category Image"
                         value={state.image}
                         onChange={handleChange}
-                        sx={{ marginY: 2 }}
+                        sx={{ marginY: 1 }}
                     />
 
                     <div

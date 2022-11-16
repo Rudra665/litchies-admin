@@ -53,7 +53,7 @@ const AddSubCategory = (props) => {
                 <Box
 
                 >
-                    <h3 align="center">Add a SubCategory</h3>
+                    <h1 align="center">Add a SubCategory</h1>
                     <TextField
                         name="name"
                         label="Enter Sub Category Name"
