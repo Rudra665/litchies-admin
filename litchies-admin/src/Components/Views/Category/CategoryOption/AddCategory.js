@@ -41,7 +41,7 @@ const AddCategory = props => {
             <form onSubmit={handleSubmit}>
                 <React.Fragment>
 
-                    <h1 align="center" >Add a Category</h1>
+                    <h2 align="center" >Add a Category</h2>
                     <TextField
                         fullWidth
                         name="name"

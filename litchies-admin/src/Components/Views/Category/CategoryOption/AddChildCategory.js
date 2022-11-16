@@ -30,8 +30,7 @@ const AddChildCategory = (props) => {
         e.preventDefault();
         const subCat = {
             name: state.name,
-            categoryId: state.categoryId,
-            subcategoryId: state.subcategoryId,
+            subCategoryId: state.subcategoryId,
         };
 
         axios
@@ -39,6 +38,7 @@ const AddChildCategory = (props) => {
             .then((response) => {
                 console.log(response.data);
             });
+        setSubCat = [""]
     };
 
     const fetchSubCat = () => {
@@ -72,7 +72,7 @@ const AddChildCategory = (props) => {
         <>
             <form onSubmit={handleSubmit}>
                 <Box>
-                    <h1 align="center">Add a SubCategory</h1>
+                    <h3 align="center">Add a Child Category</h3>
 
                     <TextField
                         select

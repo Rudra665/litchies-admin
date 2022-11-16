@@ -1,16 +1,16 @@
+import { Routes, Route, HashRouter } from "react-router-dom";
+import SignIn from "./Components/Views/LoginForm";
+import RoutesFunc from "./Components/routes";
 import * as React from "react"
-import Navbar from "./Components/ToolBar/Navbar.js"
-import { Outlet } from "react-router-dom"
-
 function App() {
   return (
     <>
-      <div>
-        <Navbar />
-        <div>
-          <Outlet />
-        </div>
-      </div>
+      <HashRouter>
+        <Routes>
+          <Route path="/" element={<SignIn />}></Route>
+          <Route path="/admin/*" element={<RoutesFunc />}></Route>
+        </Routes>
+      </HashRouter>
     </>
   );
 }
