@@ -13,7 +13,7 @@ export default function BlockedShops() {
   const [verify, setVerify] = useState([]);
 
   const fetchData = () => {
-    fetch("http://localhost:3000/Shop/GetAllBlockedShops")
+    fetch("http://43.205.116.96:3000/Shop/GetAllBlockedShops")
       .then((response) => {
         return response.json();
       })
@@ -27,46 +27,46 @@ export default function BlockedShops() {
   }, []);
 
   return (
-      <div>
-        {verify.length > 0 && (
-          <ul>
-            {verify.map((verifieduser) => (
-              <List
-                sx={{ width: "100%", maxWidth: 800, bgcolor: "background.paper" }}
-                className="reqList"
-              >
-                <ListItem alignItems="flex-start">
-                  <ListItemText
-                    primary={verifieduser.name}
-                    secondary={
-                      <React.Fragment>
-                        <Typography
-                          sx={{ display: "inline" }}
-                          component="span"
-                          variant="body2"
-                          color="text.primary"
+    <div>
+      {verify.length > 0 && (
+        <ul>
+          {verify.map((verifieduser) => (
+            <List
+              sx={{ width: "100%", maxWidth: 800, bgcolor: "background.paper" }}
+              className="reqList"
+            >
+              <ListItem alignItems="flex-start">
+                <ListItemText
+                  primary={verifieduser.name}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        {verifieduser.kartaName}
+                      </Typography>{" "}
+                      <div></div>
+                      {verifieduser.mobile}
+                      <div className="ShowProducts">
+                        <Button
+                          variant="contained"
+                          color="error"
+                          startIcon={<BlockIcon />}
                         >
-                          {verifieduser.kartaName}
-                        </Typography>{" "}
-                        <div></div>
-                        {verifieduser.mobile}
-                        <div className="ShowProducts">
-                          <Button
-                            variant="contained"
-                            color="error"
-                            startIcon={<BlockIcon />}
-                          >
-                          </Button>
-                        </div>
-                      </React.Fragment>
-                    }
-                  />
-                </ListItem>
-                <Divider variant="inset" component="li" />
-              </List>
-            ))}
-          </ul>
-        )}
-      </div>
-    );
+                        </Button>
+                      </div>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+              <Divider variant="inset" component="li" />
+            </List>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
 }

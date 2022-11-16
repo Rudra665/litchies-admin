@@ -14,7 +14,7 @@ export default function NewRequestList() {
   const [users, setUsers] = useState([]);
 
   const fetchData = () => {
-    fetch("http://localhost:3000/Shop/GetAllShops")
+    fetch("http://43.205.116.96:3000/Shop/GetAllShops")
       .then((response) => {
         return response.json();
       })

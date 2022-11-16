@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, MenuItem } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
@@ -29,7 +29,7 @@ export default function AddProduct() {
       return formData2;
     });
     await axios
-      .post("http://localhost:3000/uploadReel", formData2)
+      .post("http://43.205.116.96:3000/uploadReel", formData2)
       .then((res) => {
         return res.data;
       })
@@ -62,7 +62,7 @@ export default function AddProduct() {
       return formData;
     });
     await axios
-      .post("http://localhost:3000/product/uploadImages", formData)
+      .post("http://43.205.116.96:3000/product/uploadImages", formData)
       .then((response) => {
         if (response.status === 200) alert("Images Uploaded Successfully");
         return response.data;
@@ -89,7 +89,7 @@ export default function AddProduct() {
   };
 
   const fetchData = () => {
-    fetch("http://localhost:3000/productChildCategory/getAll")
+    fetch("http://43.205.116.96:3000/productChildCategory/getAll")
       .then((response) => {
         return response.json();
       })
@@ -135,7 +135,7 @@ export default function AddProduct() {
     };
 
     axios
-      .post("http://localhost:3000/product/createProduct", proData)
+      .post("http://43.205.116.96:3000/product/createProduct", proData)
       .then((response) => {
         console.log(response.data);
       });
@@ -143,88 +143,86 @@ export default function AddProduct() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Container>
-          <Box
-            sx={{
-              height: "120vh",
-              width: 1,
-              "& .MuiTextField-root": { m: 1, width: "65ch" },
-            }}
+
+
+        <Box display="grid" justifyContent="center">
+
+          <TextField
+            name="name"
+            label="Product Name"
+            value={state.name}
+            onChange={handleChange}
+          />
+
+          <TextField
+            name="desc"
+            label="Description"
+            value={state.desc}
+            onChange={handleChange}
+          />
+
+          <TextField
+            name="price"
+            label="Price"
+            value={state.price}
+            onChange={handleChange}
+          />
+
+          <TextField
+            name="discount"
+            label="Discount"
+            value={state.discount}
+            onChange={handleChange}
+          />
+
+          <TextField
+            select
+            name="childCategoryId"
+            value={state.childCategoryId}
+            onChange={handleChange}
+            className="optionCat"
           >
-            <div className="Pdetails">
-              <TextField
-                name="name"
-                label="Product Name"
-                value={state.name}
-                onChange={handleChange}
-              />
-
-              <TextField
-                name="desc"
-                label="Description"
-                value={state.desc}
-                onChange={handleChange}
-              />
-              <TextField
-                name="price"
-                label="Price"
-                value={state.price}
-                onChange={handleChange}
-              />
-              <TextField
-                name="discount"
-                label="Discount"
-                value={state.discount}
-                onChange={handleChange}
-              />
-
-              <select
-                name="childCategoryId"
-                value={state.childCategoryId}
-                onChange={handleChange}
-                className="optionCat"
-              >
-                {childCat.map((childCat) => (
-                  <option value={childCat._id}>{childCat.name}</option>
-                ))}
-              </select>
-              <label>Add Video</label>
-              <div className="CSimage">
-                <input multiple type="file" onChange={onImageChange} />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={uploadVideo}
-                >
-                  Upload Video
-                </Button>
-              </div>
-              <br></br>
-              <label>Add Image(s)</label>
-              <div className="CSimage">
-                <input multiple type="file" onChange={onImageChange} />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleUpload}
-                >
-                  Upload Images
-                </Button>
-              </div>
-              <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
-                <Button
-                  variant="contained"
-                  className="buttonCss"
-                  style={{ width: "250px", marginTop: "30px" }}
-                  startIcon={<AddIcon />}
-                  type="submit"
-                >
-                  Add
-                </Button>
-              </Box>
-            </div>
+            {childCat.map((childCat) => (
+              <MenuItem value={childCat._id}>{childCat.name}</MenuItem>
+            ))}
+          </TextField>
+          <label>Add Video</label>
+          <Box>
+            <input multiple type="file" onChange={onImageChange} />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={uploadVideo}
+            >
+              Upload Video
+            </Button>
           </Box>
-        </Container>
+
+          <label>Add Image(s)</label>
+          <Box >
+            <input multiple type="file" onChange={onImageChange} />
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleUpload}
+            >
+              Upload Images
+            </Button>
+          </Box>
+          <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
+            <Button
+              variant="contained"
+              className="buttonCss"
+              style={{ width: "250px", marginTop: "30px" }}
+              startIcon={<AddIcon />}
+              type="submit"
+            >
+              Add
+            </Button>
+          </Box>
+        </Box>
+
+
       </form>
     </>
   );

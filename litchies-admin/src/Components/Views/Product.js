@@ -37,7 +37,7 @@ export default function Product() {
     };
 
     axios
-      .put(`http://localhost:3000/Product/UpdateProduct/${id}`, ProductData)
+      .put(`http://43.205.116.96:3000/Product/UpdateProduct/${id}`, ProductData)
       .then((response) => {
         console.log(response.data);
       });
@@ -46,7 +46,7 @@ export default function Product() {
   const { shopId, id } = useParams();
 
   const fetchData = () => {
-    fetch(`http://localhost:3000/Product/GetProduct/${id}`)
+    fetch(`http://43.205.116.96:3000/Product/GetProduct/${id}`)
       .then((response) => {
         return response.json();
       })
@@ -60,7 +60,7 @@ export default function Product() {
   }, []);
 
   const Delete = async () => {
-    await axios.delete(`http://localhost:3000/Product/DeleteProduct/${id}`);
+    await axios.delete(`http://43.205.116.96:3000/Product/DeleteProduct/${id}`);
   };
 
   return (

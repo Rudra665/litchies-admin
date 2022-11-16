@@ -15,7 +15,7 @@ export default function Reports() {
 
   const User = (props) => {
     axios
-      .get(`http://localhost:3000/user/getUser/${props.id}`)
+      .get(`http://43.205.116.96:3000/user/getUser/${props.id}`)
       .then((response) => {
         return JSON.stringify(
           response.data.firstName + "  " + response.data.lastName
@@ -29,7 +29,7 @@ export default function Reports() {
   const [report, setReport] = useState([]);
 
   const fetchData = () => {
-    fetch("http://localhost:3000/report/getAllReports")
+    fetch("http://43.205.116.96:3000/report/getAllReports")
       .then((response) => {
         return response.json();
       })

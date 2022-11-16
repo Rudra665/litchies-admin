@@ -8,13 +8,13 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { Box, Button} from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 export default function ProductList() {
   const [products, setProducts] = useState([]);
   const { shopId } = useParams();
   const fetchProducts = () => {
-    fetch(`http://localhost:3000/Product/GetAllProductsByShopId/${shopId}`)
+    fetch(`http://43.205.116.96:3000/Product/GetAllProductsByShopId/${shopId}`)
       .then((response) => {
         return response.json();
       })
@@ -39,10 +39,10 @@ export default function ProductList() {
             <Table size="large">
               <TableHead>
                 <TableRow>
-                  <TableCell style={{fontWeight:"bold"}}>Product Name</TableCell>
-                  <TableCell style={{fontWeight:"bold"}}  align="right">Description</TableCell>
-                  <TableCell style={{fontWeight:"bold"}} align="right">Price</TableCell>
-                  <TableCell style={{fontWeight:"bold"}} align="right">View Details</TableCell>
+                  <TableCell style={{ fontWeight: "bold" }}>Product Name</TableCell>
+                  <TableCell style={{ fontWeight: "bold" }} align="right">Description</TableCell>
+                  <TableCell style={{ fontWeight: "bold" }} align="right">Price</TableCell>
+                  <TableCell style={{ fontWeight: "bold" }} align="right">View Details</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -57,7 +57,7 @@ export default function ProductList() {
                     <TableCell align="right">{product.desc}</TableCell>
                     <TableCell align="right">{product.price}</TableCell>
                     <TableCell align="right">
-                    <Button as={NavLink} to={product._id} className="buttonCss" style={{color:"white", textDecoration:"none"}}>Click Here</Button> 
+                      <Button as={NavLink} to={product._id} className="buttonCss" style={{ color: "white", textDecoration: "none" }}>Click Here</Button>
                     </TableCell>
                   </TableRow>
                 ))}

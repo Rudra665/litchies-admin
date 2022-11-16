@@ -45,7 +45,7 @@ export default function CreateShop() {
     const formData = new FormData();
     formData.append("image", img.raw);
     await axios
-      .post("http://localhost:3000/uploadImage", formData)
+      .post("http://43.205.116.96:3000/uploadImage", formData)
       .then((response1) => {
         if (response1.status === 200)
           alert("Image Successfully Uploaded")
@@ -93,7 +93,7 @@ export default function CreateShop() {
     };
 
     axios
-      .post("http://localhost:3000/Shop/CreateShop", shopData)
+      .post("http://43.205.116.96:3000/Shop/CreateShop", shopData)
       .then((response) => {
         if (response.status === 200)
           alert("Shop Successfully Created")
@@ -208,7 +208,8 @@ export default function CreateShop() {
               {" "}
             </TextField>
           </div>
-          <div display="flex" align="center" marginTop="24">
+          <div display="flex" align="center" style={{ marginTop: 24 }}>
+
 
             <input accept="image/*" type="file" onChange={onImageChange} />
             <Button
@@ -224,7 +225,7 @@ export default function CreateShop() {
                 alt="."
                 className="Pimage" /></Box>
           </div>
-          <Box align="center" sx={{ "& .MuiButton-root": { m: 1 }, }}>
+          <Box align="center" sx={{ marginTop: 3, "& .MuiButton-root": { m: 1 } }}>
             <Button
 
               variant="contained"

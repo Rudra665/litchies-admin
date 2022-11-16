@@ -10,7 +10,7 @@ export default function ProductImages() {
   }, []);
 
   const fetchData = () => {
-    fetch(`http://localhost:3000/Product/GetProduct/${id}`)
+    fetch(`http://43.205.116.96:3000/Product/GetProduct/${id}`)
       .then((response) => {
         return response.json();
       })
@@ -24,11 +24,11 @@ export default function ProductImages() {
       {product && (
         <ul>
           {product?.imageURLs?.map((image) => (
-              <img
-                className="ProductImage"
-                src={`http://localhost:3000/images/${image}`}
-                alt="FooterImage"
-              />
+            <img
+              className="ProductImage"
+              src={`http://43.205.116.96:3000/images/${image}`}
+              alt="FooterImage"
+            />
           ))}
         </ul>
       )}

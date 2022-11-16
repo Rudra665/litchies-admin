@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, MenuItem } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
@@ -22,7 +22,7 @@ export default function AddHighlight() {
     }
   };
   const fetchData = () => {
-    fetch(`http://localhost:3000/product/getAllProductsByShopId/${shopId}`)
+    fetch(`http://43.205.116.96:3000/product/getAllProductsByShopId/${shopId}`)
       .then((response) => {
         return response.json();
       })
@@ -48,18 +48,19 @@ export default function AddHighlight() {
     const formData = new FormData();
     formData.append("image", img.raw);
     await axios
-      .post("http://localhost:3000/uploadImage", formData)
+      .post("http://43.205.116.96:3000/uploadImage", formData)
       .then((response) => {
         return JSON.stringify(response.data.name);
       })
       .then((img) => {
-        setState({ 
+        setState({
           title: state.title,
           desc: state.desc,
           proId: state.proId,
           discount: state.discount,
           shopId: state.shopId,
-          shopBanner: img.replaceAll('"', "") });
+          shopBanner: img.replaceAll('"', "")
+        });
       });
   };
   const handleChange = (e) => {
@@ -81,7 +82,7 @@ export default function AddHighlight() {
     };
 
     axios
-      .post("http://localhost:3000/productOffer/create", proData)
+      .post("http://43.205.116.96:3000/productOffer/create", proData)
       .then((response) => {
         console.log(response.data);
       });
@@ -111,17 +112,19 @@ export default function AddHighlight() {
                 value={state.desc}
                 onChange={handleChange}
               />
-             
-              <select
+
+              <TextField
+                select
                 name="proId"
                 value={state.proId}
+                lable="Product"
                 onChange={handleChange}
                 className="optionCat"
               >
                 {products.map((product) => (
-                  <option value={product._id}>{product.name}</option>
+                  <MenuItem value={product._id}>{product.name}</MenuItem>
                 ))}
-              </select>
+              </TextField>
               <TextField
                 name="discount"
                 label="Discount"
@@ -144,22 +147,23 @@ export default function AddHighlight() {
                   </Button>
                 </div>
               </div>
-              <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
+              <Box sx={{ "& .MuiButton-root": { m: 1 } }} display="flex">
                 <Button
                   variant="contained"
                   className="buttonCss"
                   style={{ width: "250px", marginTop: "30px" }}
                   startIcon={<AddIcon />}
-                 onClick={handleSubmit}
+                  onClick={handleSubmit}
                 >
                   Add
                 </Button>
-                <img
-                  style={{ width: "150px", marginLeft: "30px" }}
-                  src={img.preview}
-                  alt="..."
-                  className="Pimage"
-                />
+                <Box>
+                  <img
+                    style={{ width: "150px", marginLeft: "30px" }}
+                    src={img.preview}
+                    alt="..."
+                    className="Pimage"
+                  /></Box>
               </Box>
             </div>
           </Box>

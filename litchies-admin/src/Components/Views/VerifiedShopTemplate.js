@@ -55,7 +55,7 @@ export default function VerifiedShopTemplate() {
     };
 
     axios
-      .put(`http://localhost:3000/Shop/UpdateShop/${id}`, shopData)
+      .put(`http://43.205.116.96:3000/Shop/UpdateShop/${id}`, shopData)
       .then((response) => {
         console.log(response.shopData);
       });
@@ -66,7 +66,7 @@ export default function VerifiedShopTemplate() {
     const formData = new FormData();
     formData.append("image", img.raw);
     await axios
-      .post("http://localhost:3000/uploadImage", formData)
+      .post("http://43.205.116.96:3000/uploadImage", formData)
       .then((response) => {
         return JSON.stringify(response.data.name);
       })
@@ -92,7 +92,7 @@ export default function VerifiedShopTemplate() {
   const { id } = useParams();
 
   const fetchData = () => {
-    fetch(`http://localhost:3000/Shop/GetShopById/${id}`)
+    fetch(`http://43.205.116.96:3000/Shop/GetShopById/${id}`)
       .then((response) => {
         return response.json();
       })
@@ -105,7 +105,7 @@ export default function VerifiedShopTemplate() {
     fetchData();
   }, []);
 
-  const url = `http://localhost:3000/images/${user.shopImg}`;
+  const url = `http://43.205.116.96:3000/images/${user.shopImg}`;
 
   return (
     <>

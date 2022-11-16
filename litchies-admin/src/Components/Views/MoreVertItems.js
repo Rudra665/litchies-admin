@@ -31,29 +31,29 @@ const MoreVertItems = (props) => {
       <Menu anchorEl={anchorEl} keepMounted onClose={handleClose} open={open}>
         <MenuItem onClick={handleClose}>
           {/* <Button className="MorevertButton" href={`admin/addHighlight/${props.id}`}> */}
-          {<NavLink to={`addHighlight/${props.id}`} className="MorevertButton">Add Highlight</NavLink>}
+          {<NavLink to={`verifiedShopsList/addHighlight/${props.id}`}>Add Highlight</NavLink>}
           {/* </Button> */}
         </MenuItem>
-        <MenuItem>
-          {<NavLink to={`addproduct/${props.id}`} className="MorevertButton">Add Product</NavLink>}
+        <MenuItem onClick={handleClose}>
+          {<NavLink to={`addproduct/${props.id}`} >Add Product</NavLink>}
           {/* <Button className="MorevertButton" href={`addproduct/${props.id}`}>
             Add Product
           </Button> */}
         </MenuItem>
-        <MenuItem>
-          {<NavLink to={`addShopBanner/${props.id}`} className="MorevertButton">Add Shop Banner</NavLink>}
+        <MenuItem onClick={handleClose}>
+          {<NavLink to={`addShopBanner/${props.id}`}>Add Shop Banner</NavLink>}
           {/* <Button className="MorevertButton" href={`addShopBanner/${props.id}`}>
             Add Shop Banner
           </Button> */}
         </MenuItem>
-        <MenuItem>
-          {<NavLink to={`showProducts/${props.id}`} className="MorevertButton">Show All Products</NavLink>}
+        <MenuItem onClick={handleClose}>
+          {<NavLink to={`showProducts/${props.id}`} >Show All Products</NavLink>}
           {/* <Button className="MorevertButton" href={`showProducts/${props.id}`}>
             Show All Products
           </Button> */}
         </MenuItem>
-        <MenuItem>
-          {<NavLink to={props.id} className="MorevertButton">View Shop</NavLink>}
+        <MenuItem onClick={handleClose}>
+          {<NavLink to={props.id} >View Shop</NavLink>}
         </MenuItem>
       </Menu>
     </div>
