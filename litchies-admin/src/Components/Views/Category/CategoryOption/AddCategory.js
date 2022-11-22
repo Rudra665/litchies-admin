@@ -11,8 +11,18 @@ import axios from "axios";
 const AddCategory = props => {
     const [state, setState] = useState({
         name: "",
-        image: "",
+        imageURLs: "",
     });
+    const [img, setImg] = React.useState("")
+    const onImageChange = (e) => {
+        const selectedFIle = "";
+        const targetFile = e.target.files;
+        selectedFIle = targetFile
+
+
+        setImg(selectedFIle);
+        console.log(img);
+    };
     const handleChange = (e) => {
         const value = e.target.value;
         setState({
@@ -20,22 +30,46 @@ const AddCategory = props => {
             [e.target.name]: value,
         });
     };
-    const handleSubmit = (e) => {
-        alert("added");
+
+    const handleUpload = async (e) => {
         e.preventDefault();
-        const cat = {
+        const formData = new FormData();
+        formData.append("image", img);
+
+        await axios
+            .post("http://43.205.116.96:3000/Uploadimage/?image", formData)
+            .then((response) => {
+                if (response.status === 200) alert("Images Uploaded Successfully");
+                return response.data;
+            })
+            .then((data) => {
+                setState({
+                    image: state.image.push(data)
+                });
+            })
+
+            .then((img) => {
+                setState({
+                    image: state.imageURLs
+                });
+            });
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const proData = {
             name: state.name,
             image: state.image,
             srno: 7
         };
 
         axios
-            .post("http://43.205.116.96:3000/productCategory/create", cat)
+            .post("http://43.205.116.96:3000/product/createProduct", proData)
             .then((response) => {
                 console.log(response.data);
             });
-
     };
+
     return (
         <>
             <form onSubmit={handleSubmit}>
@@ -50,14 +84,17 @@ const AddCategory = props => {
                         onChange={handleChange}
                         sx={{ marginY: 1 }}
                     />
-                    <TextField
-                        fullWidth
-                        name="image"
-                        label="Enter Category Image"
-                        value={state.image}
-                        onChange={handleChange}
-                        sx={{ marginY: 1 }}
-                    />
+                    <label style={{ marginBlock: "1vh" }}>Add Image(s)</label>
+                    <Box >
+                        <input multiple type="file" onChange={onImageChange} />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleUpload}
+                        >
+                            Upload Images
+                        </Button>
+                    </Box>
 
                     <div
                         style={{

@@ -12,10 +12,6 @@ const AddChildCategory = (props) => {
         categoryId: "",
         subcategoryId: "",
     });
-
-
-
-
     const handleChange = (e) => {
         const value = e.target.value;
         setState({
@@ -29,7 +25,8 @@ const AddChildCategory = (props) => {
         alert("added");
         e.preventDefault();
         const subCat = {
-            name: state.name,
+            categoryId: state.categoryId,
+            name: state.name,   
             subCategoryId: state.subcategoryId,
         };
 

@@ -200,7 +200,7 @@ export default function AddProduct() {
                   Upload Video
                 </Button>
               </Box>
-              <br></br>
+
               <label>Add Image(s)</label>
               <Box >
                 <input multiple type="file" onChange={onImageChange} />

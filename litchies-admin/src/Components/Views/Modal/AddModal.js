@@ -12,7 +12,7 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: "fit-content",
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 24,
@@ -23,25 +23,25 @@ export default function AddModal(props) {
 
 
     return (
-        <div>
 
-            <Modal
-                open={props.open}
-                onClose={props.onClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
 
-                <Box sx={style}>
-                    <IconButton onClick={props.onClose}><ClearIcon /></IconButton>
-                    {props.actionType == 0 ?
-                        <AddCategory />
-                        : props.actionType == 1 ?
-                            <AddSubCategory onClose={props.onClose} /> :
-                            <AddChildCategory />
-                    }
-                </Box>
-            </Modal>
-        </div>
+        <Modal
+            open={props.open}
+            onClose={props.onClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+        >
+
+            <Box sx={style}>
+                <IconButton onClick={props.onClose}><ClearIcon /></IconButton>
+                {props.actionType == 0 ?
+                    <AddCategory />
+                    : props.actionType == 1 ?
+                        <AddSubCategory onClose={props.onClose} /> :
+                        <AddChildCategory />
+                }
+            </Box>
+        </Modal>
+
     );
 }

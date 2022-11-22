@@ -22,7 +22,7 @@ export default function Reports() {
         );
       })
       .then((res) => {
-        setUser(res.replaceAll('"', ""));
+        setUser(res.replaceAll('', ""));
       });
   };
 

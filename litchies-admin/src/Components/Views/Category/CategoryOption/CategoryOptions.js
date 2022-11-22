@@ -16,7 +16,7 @@ export default function CategoryOptions() {
 
     const handleClose = () => setOpen(false);
     return (
-        <>
+        <><div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <Box sx={{ display: "flex", justifyContent: "center", mt: 10, mx: 2 }}>
 
                 <Box >
@@ -43,6 +43,7 @@ export default function CategoryOptions() {
                 </Box>
             </Box>
             <AddModal open={open} actionType={actionType} onClose={handleClose} />
+        </div>
         </>
     );
 }

@@ -98,7 +98,7 @@ export default function CreateShop() {
         if (response.status === 200)
           alert("Shop Successfully Created")
       });
-    window.location.reload();
+
   };
 
   return (
@@ -210,7 +210,6 @@ export default function CreateShop() {
           </div>
           <div display="flex" align="center" style={{ marginTop: 24 }}>
 
-
             <input accept="image/*" type="file" onChange={onImageChange} />
             <Button
               variant="contained"
@@ -220,10 +219,12 @@ export default function CreateShop() {
               Upload
             </Button>
             <Box>
-              <img
+              {img.preview && <img
+                width="100vh"
                 src={img.preview}
                 alt="."
-                className="Pimage" /></Box>
+                className="Pimage" />}
+            </Box>
           </div>
           <Box align="center" sx={{ marginTop: 3, "& .MuiButton-root": { m: 1 } }}>
             <Button
