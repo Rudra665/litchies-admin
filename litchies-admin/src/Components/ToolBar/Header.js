@@ -4,134 +4,174 @@ import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "@mui/material";
 import { NavLink } from "react-router-dom";
+import Logo from "../Images/logo/Logo.png"
 import * as React from "react"
+import { Box } from "@mui/system";
 function Header() {
   return (
-    <Navbar style={{ background: "#f55666" }}>
+    <Navbar style={{ background: "#D4F1F4" }}>
       <Container>
-        <Navbar.Brand marginY="1vh">Litchies Admin</Navbar.Brand>
+        <Box marginX="10px"><img width="100vh" src={Logo} /></Box>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto navbarApni">
             <Nav.Link>
               <NavLink
                 to="home"
-                style={({ isActive }) =>
-                  isActive
-                    ? {
-                      color: "black",
-                    }
-                    : {
-                      textDecoration: "none",
-                      fontFamily: "Lato",
-                      lineHeight: "0.8em",
-                      color: "inherit",
-                      fontSize: "calc(1.2 * 1rem)",
-                    }
-                }
+                style={{ textDecoration: "none" }}
               >
-                Home
+                <Button
+
+                  sx={({ isActive }) =>
+
+                    isActive
+                      ? {
+                        color: "white",
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>
+                  Home
+                </Button>
+
               </NavLink>
             </Nav.Link>
             <Nav.Link>
               <NavLink
                 to="newRequests"
-                style={({ isActive }) =>
-                  isActive
-                    ? {
-                      color: "black",
-                    }
-                    : {
-                      textDecoration: "none",
-                      fontFamily: "Lato",
-                      lineHeight: "0.8em",
-                      color: "inherit",
-                      fontSize: "calc(1.2 * 1rem)",
-                    }
-                }
+                style={{ textDecoration: "none" }}
               >
-                New Requests
+                <Button
+
+                  sx={({ isActive }) =>
+
+                    isActive
+                      ? {
+                        color: "white",
+
+
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>
+                  New Requests
+                </Button>
               </NavLink>
             </Nav.Link>
             <Nav.Link>
               <NavLink
                 to="blockedShops"
-                style={({ isActive }) =>
-                  isActive
-                    ? {
-                      color: "black",
-                    }
-                    : {
-                      textDecoration: "none",
-                      fontFamily: "Lato",
-                      lineHeight: "0.8em",
-                      color: "inherit",
-                      fontSize: "calc(1.2 * 1rem)",
-                    }
-                }
+                style={{ textDecoration: "none" }}
               >
-                Blocked Shops
+                <Button
+
+                  sx={({ isActive }) =>
+
+                    isActive
+                      ? {
+                        color: "white",
+
+
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Blocked Shops</Button>
+
               </NavLink>
             </Nav.Link>
 
             <Nav.Link>
               <NavLink
                 to="createShop"
-                style={({ isActive }) =>
-                  isActive
-                    ? {
-                      color: "black",
-                    }
-                    : {
-                      textDecoration: "none",
-                      fontFamily: "Lato",
-                      lineHeight: "0.8em",
-                      color: "inherit",
-                      fontSize: "calc(1.2 * 1rem)",
-                    }
-                }
+                style={{ textDecoration: "none" }}
               >
-                Create Shop
+                <Button
+
+                  sx={({ isActive }) =>
+
+                    isActive
+                      ? {
+                        color: "white",
+
+
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Create Shop</Button>
+
               </NavLink>
             </Nav.Link>
             <Nav.Link>
               <NavLink
                 to="categories"
-                style={({ isActive }) =>
-                  isActive
-                    ? {
-                      color: "black",
-                    }
-                    : {
-                      textDecoration: "none",
-                      fontFamily: "Lato",
-                      lineHeight: "0.8em",
-                      color: "inherit",
-                      fontSize: "calc(1.2 * 1rem)",
-                    }
-                }
+                style={{ textDecoration: "none" }}
               >
-                Categories
+                <Button
+
+                  sx={({ isActive }) =>
+
+                    isActive
+                      ? {
+                        color: "white",
+
+
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Categories</Button>
+
               </NavLink>
             </Nav.Link>
             <Nav.Link>
               <NavLink
                 to="reports"
-                style={({ isActive }) =>
-                  isActive
-                    ? {
-                      color: "black",
-                    }
-                    : {
-                      textDecoration: "none",
-                      fontFamily: "Lato",
-                      lineHeight: "0.8em",
-                      color: "inherit",
-                      fontSize: "calc(1.2 * 1rem)",
-                    }
-                }
+                style={{ textDecoration: "none" }}
+
               >
-                Reports
+                <Button
+
+                  sx={({ isActive }) =>
+
+                    isActive
+                      ? {
+                        color: "white",
+
+
+                      }
+                      : {
+
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Reports</Button>
+
               </NavLink>
             </Nav.Link>
           </Nav>
@@ -140,7 +180,7 @@ function Header() {
           </Button>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }
 

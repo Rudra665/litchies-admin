@@ -22,13 +22,16 @@ export default function ProductImages() {
   return (
     <>
       {product && (
-        <ul>
+        <ul align="center">
           {product?.imageURLs?.map((image) => (
-            <img
+
+            <img width="200vh"
+
               className="ProductImage"
               src={`http://43.205.116.96:3000/images/${image}`}
               alt="FooterImage"
             />
+
           ))}
         </ul>
       )}

@@ -4,6 +4,7 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { NavLink } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const MoreVertItems = (props) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -31,32 +32,30 @@ const MoreVertItems = (props) => {
       <Menu anchorEl={anchorEl} keepMounted onClose={handleClose} open={open}>
         <MenuItem onClick={handleClose}>
           {/* <Button className="MorevertButton" href={`admin/addHighlight/${props.id}`}> */}
-          {<NavLink to={`verifiedShopsList/addHighlight/${props.id}`}>Add Highlight</NavLink>}
+          {<NavLink to={`verifiedShopsList/addHighlight/${props.id}`} sx={{ textDecoration: "none" }}> <Button fullWidth>Add Highlight</Button></NavLink>}
           {/* </Button> */}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          {<NavLink to={`verifiedShopsList/addproduct/${props.id}`} >Add Product</NavLink>}
+          {<NavLink to={`verifiedShopsList/addproduct/${props.id}`} sx={{ textDecoration: "none" }} ><Button fullWidth>Add Product</Button></NavLink>}
           {/* <Button className="MorevertButton" href={`addproduct/${props.id}`}>
             Add Product
           </Button> */}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          {<NavLink to={`verifiedShopsList/addShopBanner/${props.id}`}>Add Shop Banner</NavLink>}
+          {<NavLink to={`verifiedShopsList/addShopBanner/${props.id}`} sx={{ textDecoration: "none" }}><Button fullWidth>Add Shop Banner</Button></NavLink>}
           {/* <Button className="MorevertButton" href={`addShopBanner/${props.id}`}>
             Add Shop Banner
           </Button> */}
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          {<NavLink to={`verifiedShopsList/showProducts/${props.id}`} >Show All Products</NavLink>}
+          {<NavLink to={`verifiedShopsList/showProducts/${props.id}`} sx={{ textDecoration: "none" }} ><Button fullWidth>Show All Products</Button></NavLink>}
           {/* <Button className="MorevertButton" href={`showProducts/${props.id}`}>
             Show All Products
           </Button> */}
         </MenuItem>
-        <MenuItem onClick={handleClose}>
-          {<NavLink to={props.id} >View Shop</NavLink>}
-        </MenuItem>
+
       </Menu>
-    </div>
+    </div >
   );
 };
 export default MoreVertItems;

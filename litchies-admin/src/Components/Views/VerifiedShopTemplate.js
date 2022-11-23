@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography, Grid } from "@mui/material";
 import Container from "@mui/material/Container";
 import UpdateIcon from "@mui/icons-material/Update";
 import axios from "axios";
@@ -110,133 +110,146 @@ export default function VerifiedShopTemplate() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Container class="proContainer">
-          <Box
-            sx={{
-              bgcolor: "#fce2d4",
-              height: "150vh",
-              borderRadius: "25px",
-              width: "100%",
-              "& .MuiTextField-root": { m: 1, width: "65ch" },
-            }}
-          >
-            <h1 className="PHeading">{user.name}</h1>
-            <div className="ImgContainer">
-              <h2>Shop Image</h2>
-              <img src={url} alt="ShopImage" className="ShopImage" />
 
-              <div >
-                <div style={{ marginLeft: "-140px" }}>
-                  <input type="file" onChange={onImageChange} />
+        <Box
+          padding="20px"
+          align="center"
+          sx={{
+            bgcolor: "#fce2d4",
+            display: "flex",
+            justifyContent: "center",
+            height: "fit-content",
+            borderRadius: "25px",
+            width: "100%",
+            "& .MuiTextField-root": { m: 1, width: "65ch" },
+          }}
+        >
+          <Container class="proContainer">
+            <Typography variant="h3" >{user.name}</Typography>
+            <Grid container>
+              <Grid item lg="6" sm="12">
+                <Box marginY="2vh" align="center">
+                  <h2>Shop Image</h2>
+                  <img src={url} width="100vh" alt="ShopImage" className="ShopImage" />
+
+                  <Box marginY="2vh">
+                    <Box >
+                      <input type="file" onChange={onImageChange} />
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={handleUpload}
+                      >
+                        Upload
+                      </Button>
+                    </Box>
+                    <img
+                      style={{ width: "100vh" }}
+                      src={img.preview}
+
+                    />
+                  </Box>
                   <Button
+                    className="ShopButton buttonCss"
                     variant="contained"
                     color="primary"
-                    onClick={handleUpload}
+                    href={`/admin/showProducts/${user._id}`}
                   >
-                    Upload
+                    Show All Products
                   </Button>
-                </div>
-                <img
-                  style={{ width: "150px", marginLeft: "30px" }}
-                  src={img.preview}
-                  alt="..."
-                  className="Pimage"
-                />
-              </div>
-              <Button
-                className="ShopButton buttonCss"
-                variant="contained"
-                color="primary"
-                href={`/admin/showProducts/${user._id}`}
-              >
-                Show All Products
-              </Button>
-            </div>
-            <div className="shopTempDiv">
-              <TextField
-                name="name"
-                label="Shop Name"
-                value={user.name}
-                onChange={handleChange}
-              />
-              <TextField
-                name="kartaName"
-                label="Karta Name"
-                value={user.kartaName}
-                onChange={handleChange}
-              />
+                </Box>
+              </Grid>
+              <Grid item lg="6" sm="12">
+                <Box maxWidth="md">
+                  <Box marginY="2vh">
+                    <TextField
+                      name="name"
+                      label="Shop Name"
+                      value={user.name}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="kartaName"
+                      label="Karta Name"
+                      value={user.kartaName}
+                      onChange={handleChange}
+                    />
 
-              <TextField
-                name="aadharNo"
-                label="Aadhar Number"
-                value={user.aadharNo}
-                defaultValue="0"
-                onChange={handleChange}
-              />
+                    <TextField
+                      name="aadharNo"
+                      label="Aadhar Number"
+                      value={user.aadharNo}
+                      defaultValue="0"
+                      onChange={handleChange}
+                    />
 
-              <TextField
-                name="panNo"
-                label="PAN Number"
-                defaultValue="00"
-                value={user.panNo}
-                onChange={handleChange}
-              />
-              <TextField
-                name="gstNo"
-                defaultValue="00"
-                label="GST Number"
-                value={user.gstNo}
-                onChange={handleChange}
-              />
-              <TextField
-                name="mobile"
-                defaultValue="00"
-                label="Mobile Number"
-                value={user.mobile}
-                onChange={handleChange}
-              />
-              <TextField
-                name="address"
-                label="Address"
-                value={user.address}
-                defaultValue="No Address"
-                onChange={handleChange}
-              />
-              <TextField
-                name="state"
-                label="State"
-                defaultValue="UP"
-                value={user.state}
-                onChange={handleChange}
-              />
-              <TextField
-                name="city"
-                label="City"
-                defaultValue="Agra"
-                value={user.city}
-                onChange={handleChange}
-              />
-              <TextField
-                name="pincode"
-                label="Pin Code"
-                defaultValue="282005"
-                value={user.pincode}
-                onChange={handleChange}
-              />
-              <Box className="Pbuttons" sx={{ "& .MuiButton-root": { m: 1 } }}>
-                <Button
-                  className="UShopButton buttonCss"
-                  variant="contained"
-                  type="submit"
-                  startIcon={<UpdateIcon />}
-                >
-                  Update Shop
-                </Button>
+                    <TextField
+                      name="panNo"
+                      label="PAN Number"
+                      defaultValue="00"
+                      value={user.panNo}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="gstNo"
+                      defaultValue="00"
+                      label="GST Number"
+                      value={user.gstNo}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="mobile"
+                      defaultValue="00"
+                      label="Mobile Number"
+                      value={user.mobile}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="address"
+                      label="Address"
+                      value={user.address}
+                      defaultValue="No Address"
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="state"
+                      label="State"
+                      defaultValue="UP"
+                      value={user.state}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="city"
+                      label="City"
+                      defaultValue="Agra"
+                      value={user.city}
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="pincode"
+                      label="Pin Code"
+                      defaultValue="282005"
+                      value={user.pincode}
+                      onChange={handleChange}
+                    />
+                    <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
+                      <Button
+                        className="UShopButton buttonCss"
+                        variant="contained"
+                        type="submit"
+                        startIcon={<UpdateIcon />}
+                      >
+                        Update Shop
+                      </Button>
 
-              </Box>
-            </div>
-          </Box>
-        </Container>
+                    </Box>
+                  </Box>
+                </Box>
+              </Grid>
+            </Grid>
+          </Container>
+        </Box>
+
       </form>
     </>
   );

@@ -1,12 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography, Grid } from "@mui/material";
 import UpdateIcon from "@mui/icons-material/Update";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useEffect, useState } from "react";
 import { COLORS } from "./constants";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import ProductImages from "./ProductImages";
@@ -70,57 +70,75 @@ export default function Product() {
           <Box
             sx={{
               bgcolor: "#fce2d4",
-              height: "90vh",
+              height: "fit-content",
               width: 1,
-              borderRadius: "25px",
+              borderRadius: "12px",
               "& .MuiTextField-root": { m: 1, width: "65ch" },
+              paddingY: 7
             }}
           >
-            <h1 className="PHeading">{state.name}</h1>
-            <div className="ProductDiv">
+            <Typography variant="h3" align="center" sx={{ marginBottom: 5 }}>{state.name}</Typography>
+            <Box sx={{ margin: 4 }}>
               <ProductImages />
-            </div>
-            <div className="Pdetails">
-              <TextField
-                name="name"
-                label="Product Name"
-                value={state.name}
-                defaultValue="Name"
-                onChange={handleChange}
-              />
+            </Box>
+            <Box align="center" sx={{ margin: 2 }}>
+              <Box>
+                <Grid container>
+                  <Grid item lg="12">
+                    <TextField
+                      fullWidth
+                      name="name"
+                      label="Product Name"
+                      value={state.name}
+                      defaultValue="Name"
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item lg="12">
+                    <TextField
+                      fullWidth
+                      name="desc"
+                      label="Description"
+                      value={state.desc}
+                      defaultValue="Desc"
+                      onChange={handleChange}
+                    /></Grid>
+                  <Grid item lg="12">
+                    <TextField
+                      fullWidth
+                      name="price"
+                      label="Price"
+                      value={state.price}
+                      defaultValue="0"
+                      onChange={handleChange}
+                    /></Grid>
+                  <Grid item lg="12">
+                    <TextField
+                      fullWidth
+                      name="discount"
+                      label="Discount"
+                      value={state.discount}
+                      defaultValue="0"
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item lg="12">
+                    <TextField
+                      fullWidth
+                      name="videoURL"
+                      label="videoURL"
+                      value={state.videoURL}
+                      defaultValue="xyz"
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
+            </Box>
 
-              <TextField
-                name="desc"
-                label="Description"
-                value={state.desc}
-                defaultValue="Desc"
-                onChange={handleChange}
-              />
-              <TextField
-                name="price"
-                label="Price"
-                value={state.price}
-                defaultValue="0"
-                onChange={handleChange}
-              />
-              <TextField
-                name="discount"
-                label="Discount"
-                value={state.discount}
-                defaultValue="0"
-                onChange={handleChange}
-              />
-              <TextField
-                name="videoURL"
-                label="videoURL"
-                value={state.videoURL}
-                defaultValue="xyz"
-                onChange={handleChange}
-              />
-            </div>
             <Box
-              className="Pbuttons"
-              sx={{ "& .MuiButton-root": { m: 1 }, marginLeft: "10px" }}
+              align="center"
+              sx={{ "& .MuiButton-root": { m: 1 }, }}
             >
               <Button
                 style={{ background: COLORS.defaultColor }}
@@ -137,7 +155,7 @@ export default function Product() {
                 onClick={Delete}
               // href={`/admin/showProducts/${shopId}`}
               >
-                <NavLink to={`/admin/showProducts/${shopId}`}></NavLink>
+                <Link to={`verifiedShopsList/showProducts/${shopId}`}></Link>
                 Delete Product
               </Button>
             </Box>

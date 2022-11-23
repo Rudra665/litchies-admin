@@ -11,9 +11,10 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import TreeItem from "@mui/lab/TreeItem";
 import ChildCategoryList from "./ChildCategory.js";
-const SubCategoryList = props => {
+import DeleteSubCategory from "../Delete/DeleteSubCategory"
+const SubCategoryList = (props) => {
     const [category, setCategory] = useState([]);
-    const fetchSubCategories = () => {
+    const fetchSubCategories = async () => {
         fetch(
             `http://43.205.116.96:3000/productSubCategory/getSubCategoriesByProductCategory/${props.id}`
         )
@@ -23,6 +24,7 @@ const SubCategoryList = props => {
             .then((data) => {
                 setCategory(data);
             });
+
     };
     useEffect(() => {
         fetchSubCategories();
@@ -57,7 +59,7 @@ const SubCategoryList = props => {
                                                 </TreeItem>
                                             </TreeView>
                                         </TableCell>
-
+                                        <TableCell><DeleteSubCategory variant="text" id={cat._id} /></TableCell>
                                     </TableRow>
                                 ))}
                             </TableBody>

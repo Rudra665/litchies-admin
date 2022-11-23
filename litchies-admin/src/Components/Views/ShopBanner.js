@@ -55,33 +55,26 @@ export default function ShopBanner() {
     <>
       <form onSubmit={handleUpload}>
         <Container>
-          <Box
-            sx={{
-              height: "70vh",
-              width: 1,
-              "& .MuiTextField-root": { m: 1, width: "65ch" },
-            }}
-          >
-            <div className="Pdetails">
-              <div className="CSimage" style={{ marginTop: "100px" }}>
-                <input type="file" onChange={onImageChange} />
-                <Button
-                  variant="contained"
-                  className="buttonCss"
-                  onClick={handleUpload}
-                >
-                  Upload
-                </Button>
-              </div>
-              <Box style={{ marginTop: "50px" }}>
-                <img
-                  style={{ width: "250px", marginLeft: "30px" }}
-                  src={img.preview}
-                  alt="..."
-                  className="Pimage"
-                />
-              </Box>
-            </div>
+          <Box align="center" sx={{ marginY: 40 }}>
+            <Box style={{ marginTop: "50px" }}>
+              <img
+                style={{ width: "250px", marginLeft: "30px" }}
+                src={img.preview}
+              />
+            </Box>
+            <Box display="flex" justifyContent="center" alignItems="center">
+              <input width="100%" type="file" onChange={onImageChange} />
+
+              <Button
+                variant="contained"
+                className="buttonCss"
+                onClick={handleUpload}
+              >
+                Upload
+              </Button>
+
+            </Box>
+
           </Box>
         </Container>
       </form>

@@ -1,13 +1,14 @@
 import * as React from 'react'
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
+// import Table from "@mui/material/Table";
+// import TableBody from "@mui/material/TableBody";
+// import TableCell from "@mui/material/TableCell";
+// import TableContainer from "@mui/material/TableContainer";
+// import TableHead from "@mui/material/TableHead";
+// import TableRow from "@mui/material/TableRow";
+// import Paper from "@mui/material/Paper";
 import { Box, Typography } from "@mui/material";
-import MoreVertItems from "./MoreVertItems";
+
+import ShopCard from './ShopCard';
 
 
 export default function Home() {
@@ -32,28 +33,18 @@ export default function Home() {
     <>
       <Box
         sx={{
+          width: "90vw",
+          display: "flex",
+          justifyContent: "center",
           margin: "50px",
           "& .MuiTableCell-root": { width: "1ch" },
+          flexWrap: "wrap"
         }}
-      >
-        <TableContainer component={Paper}>
+      > {verify.map((verified) => (<ShopCard Shop_Name={verified.name} Karta_Name={verified.kartaName} Mobile={verified.mobile} imgUrl={verified.shopImg} id={verified._id} />))
+
+        }
+        {/* <TableContainer component={Paper}>
           <Table size="large">
-            <TableHead>
-              <TableRow>
-                <TableCell style={{ fontWeight: "bold" }}>
-                  Shop Name
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold" }} align="right">
-                  Karta Name
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold" }} align="right">
-                  Mobile Number
-                </TableCell>
-                <TableCell style={{ fontWeight: "bold" }} align="right">
-                  Show More
-                </TableCell>
-              </TableRow>
-            </TableHead>
             <TableBody>
               {verify.map((verified) => (
                 < TableRow >
@@ -72,7 +63,7 @@ export default function Home() {
                 </TableRow>))}
             </TableBody>
           </Table>
-        </TableContainer>
+        </TableContainer> */}
       </Box>
 
     </>

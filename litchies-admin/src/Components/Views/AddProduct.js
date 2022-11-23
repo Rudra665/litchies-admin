@@ -139,78 +139,92 @@ export default function AddProduct() {
       .then((response) => {
         console.log(response.data);
       });
+    window.Location.reload()
   };
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Container>
-          <Box
-            sx={{
-              height: "120vh",
-              width: 1,
-              "& .MuiTextField-root": { m: 1, width: "65ch" },
-            }}
-          >
-            <Box >
-              <TextField
-                name="name"
-                label="Product Name"
-                value={state.name}
-                onChange={handleChange}
-              />
 
-              <TextField
-                name="desc"
-                label="Description"
-                value={state.desc}
-                onChange={handleChange}
-              />
-              <TextField
-                name="price"
-                label="Price"
-                value={state.price}
-                onChange={handleChange}
-              />
-              <TextField
-                name="discount"
-                label="Discount"
-                value={state.discount}
-                onChange={handleChange}
-              />
+        <Box
+          sx={{
+            backgroundColor: "#fce2d4",
+            padding: 5,
+            height: "94vh",
+            width: "100%",
+            "& .MuiTextField-root": { m: 1, },
+          }}
+        ><Container maxWidth="lg">
+            <Box align="center">
+              <Box maxWidth="sm">
+                <TextField
+                  fullWidth
+                  name="name"
+                  label="Product Name"
+                  value={state.name}
+                  onChange={handleChange}
+                />
 
-              <TextField
-                select
-                name="childCategoryId"
-                value={state.childCategoryId}
-                onChange={handleChange}
-                className="optionCat"
-              >
-                {childCat.map((childCat) => (
-                  <MenuItem value={childCat._id}>{childCat.name}</MenuItem>
-                ))}
-              </TextField>
-              <label>Add Video</label>
-              <Box>
-                <input multiple type="file" onChange={onImageChange} />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={uploadVideo}
+                <TextField
+                  fullWidth
+                  name="desc"
+                  label="Description"
+                  value={state.desc}
+                  onChange={handleChange}
+                />
+                <TextField
+                  fullWidth
+                  name="price"
+                  label="Price"
+                  value={state.price}
+                  onChange={handleChange}
+                />
+                <TextField
+                  fullWidth
+                  name="discount"
+                  label="Discount"
+                  value={state.discount}
+                  onChange={handleChange}
+                />
+
+                <TextField
+                  fullWidth
+                  select
+                  name="childCategoryId"
+                  value={state.childCategoryId}
+                  onChange={handleChange}
+                  className="optionCat"
                 >
-                  Upload Video
-                </Button>
+                  {childCat.map((childCat) => (
+                    <MenuItem value={childCat._id}>{childCat.name}</MenuItem>
+                  ))}
+                </TextField>
               </Box>
 
-              <label>Add Image(s)</label>
-              <Box >
-                <input multiple type="file" onChange={onImageChange} />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleUpload}
-                >
-                  Upload Images
-                </Button>
+              <Box marginY="2vh">
+                <label>Add Video</label>
+                <Box>
+                  <input multiple type="file" onChange={onImageChange} />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={uploadVideo}
+                  >
+                    Upload Video
+                  </Button>
+                </Box>
+              </Box>
+              <Box marginY="2vh">
+                <label>Add Image(s)</label>
+                <Box >
+                  <input multiple type="file" onChange={onImageChange} />
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleUpload}
+                  >
+                    Upload Images
+                  </Button>
+                </Box>
               </Box>
               <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
                 <Button
@@ -224,8 +238,8 @@ export default function AddProduct() {
                 </Button>
               </Box>
             </Box>
-          </Box>
-        </Container>
+          </Container>
+        </Box>
       </form>
     </>
   );

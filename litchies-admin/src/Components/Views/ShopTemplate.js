@@ -31,6 +31,7 @@ export default function ShopTemplate() {
       .then((response) => {
         return response.json();
       });
+    alert(`Shop Verified`)
   };
 
 
@@ -51,6 +52,8 @@ export default function ShopTemplate() {
       <Container>
         <Box
           sx={{
+            display: "content",
+            justifyContent: "center",
             bgcolor: "#fce2d4",
             height: "150vh",
             width: "100%",
@@ -58,9 +61,9 @@ export default function ShopTemplate() {
           }}
         >
           <h1 className="PHeading">{user.name}</h1>
-          <div className="Simage">
-            <img src={url} alt="ShopImage" className="Pimage" />
-          </div>
+          <Box >
+            <img width="100%" src={url} alt="ShopImage" className="Pimage" />
+          </Box>
           <TextField
             id="shopName"
             label="Shop Name"
@@ -123,13 +126,13 @@ export default function ShopTemplate() {
             defaultValue="282005"
             value={user.pincode}
           />
-          <Box className="Pbuttons" sx={{ "& .MuiButton-root": { m: 1 } }}>
+          <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
             <Button className="buttonCss"
               variant="contained"
               color="success"
               startIcon={<CheckIcon />}
-              href="/admin/verifiedShopsList"
-              onClick={verified}
+
+              onClick={() => verified()}
             >
               Verify
             </Button>

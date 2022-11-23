@@ -5,7 +5,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Box } from "@mui/material";
-
+import DeleteChildCategory from "../Delete/DeleteChildCategory"
 const ChildCategoryList = (props) => {
     const [category, setCategory] = useState([]);
     const fetchChildCategories = () => {
@@ -34,6 +34,7 @@ const ChildCategoryList = (props) => {
                                     <TableCell component="th" scope="row">
                                         {cat.name}
                                     </TableCell>
+                                    <TableCell><DeleteChildCategory variant="text" /></TableCell>
                                 </TableRow>
                             ))}
                         </Table>
