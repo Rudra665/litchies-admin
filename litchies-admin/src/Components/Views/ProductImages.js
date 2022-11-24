@@ -27,7 +27,7 @@ export default function ProductImages() {
 
             <img width="200vh"
 
-              className="ProductImage"
+     
               src={`http://43.205.116.96:3000/images/${image}`}
               alt="FooterImage"
             />

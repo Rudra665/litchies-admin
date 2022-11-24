@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import * as React from "react"
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { TextField, Button } from "@mui/material";
@@ -55,14 +56,15 @@ export default function ShopTemplate() {
             display: "content",
             justifyContent: "center",
             bgcolor: "#fce2d4",
-            height: "150vh",
+            height: "100vh",
             width: "100%",
             "& .MuiTextField-root": { m: 1, width: "65ch" },
           }}
+          align="center"
         >
-          <h1 className="PHeading">{user.name}</h1>
+          <h1 >{user.name}</h1>
           <Box >
-            <img width="100%" src={url} alt="ShopImage" className="Pimage" />
+            <img width="100vh" src={url} alt="ShopImage" />
           </Box>
           <TextField
             id="shopName"
@@ -127,7 +129,7 @@ export default function ShopTemplate() {
             value={user.pincode}
           />
           <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
-            <Button className="buttonCss"
+            <Button
               variant="contained"
               color="success"
               startIcon={<CheckIcon />}
@@ -136,12 +138,12 @@ export default function ShopTemplate() {
             >
               Verify
             </Button>
-            <Button className="buttonCss"
+            <Button
               variant="contained"
               color="error"
               startIcon={<BlockIcon />}
               href="/admin/blockedShops"
-              onClick={blocked}
+              onClick={() => blocked()}
             >
               Block
             </Button>

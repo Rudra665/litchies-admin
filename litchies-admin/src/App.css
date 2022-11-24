@@ -1,0 +1,17 @@
+.onclick {
+    position: absolute;
+    top: 0%;
+    left: 1%;
+    outline: none;
+    color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 150px 150px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.onclick::-webkit-file-upload-button {
+    visibility: hidden;
+
+}

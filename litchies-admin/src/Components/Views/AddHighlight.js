@@ -99,7 +99,7 @@ export default function AddHighlight() {
             }}
           >
             <Typography variant="h2" align="center">Add Highlight</Typography>
-            <div className="Pdetails" align="center">
+            <div align="center">
               <TextField
                 fullWidth
                 name="title"
@@ -123,7 +123,7 @@ export default function AddHighlight() {
                 value={state.proId}
                 label="Product"
                 onChange={handleChange}
-                className="optionCat"
+
               >
                 {products.map((product) => (
                   <MenuItem value={product._id}>{product.name}</MenuItem>
@@ -140,23 +140,23 @@ export default function AddHighlight() {
               <TextField fullWidth label="Upload Banner Image" value={state.shopBanner} />
 
 
-              <div className="CSimage">
-                <div >
-                  <input type="file" onChange={onImageChange} />
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleUpload}
-                  >
-                    Upload
-                  </Button>
-                </div>
-              </div>
+
+              <Box >
+                <input type="file" onChange={onImageChange} />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleUpload}
+                >
+                  Upload
+                </Button>
+              </Box>
+
               <Box sx={{ "& .MuiButton-root": { m: 1, width: "10vw" } }} align="center">
                 <Button
                   size="large"
                   variant="contained"
-                  className="buttonCss"
+                  
                   style={{ marginTop: "5vh" }}
                   startIcon={<AddIcon />}
                   onClick={handleSubmit}
@@ -168,7 +168,7 @@ export default function AddHighlight() {
                   style={{ width: "150px", marginLeft: "30px" }}
                   src={img.preview}
                   alt="..."
-                  className="Pimage"
+                  
                 />
               </Box>
             </div>

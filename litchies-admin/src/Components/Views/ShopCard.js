@@ -21,6 +21,7 @@ const ShopCard = (props) => {
 
     return (
         <>
+
             <Card
                 sx={{
                     display: "grid",
@@ -37,13 +38,13 @@ const ShopCard = (props) => {
                     <Box>
                         <IconButton onClick={handleClick}><CloseIcon /></IconButton>
                     </Box>
-                    <Link to={`verifiedShopsList/${props.id}`} sx={{ textDecoration: "none" }} ><Button>Edit</Button></Link>
+
                 </Box>
                 <CardContent>
-
-                    <Box align="center" paddingY="20px">
-                        <img width="100vh" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" />
-                    </Box>
+                    <Link to={`verifiedShopsList/${props.id}`} style={{ textDecoration: "none" }} >
+                        <Box align="center" paddingY="20px">
+                            <img width="100vh" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" />
+                        </Box></Link>
                     <Box align="center" >
                         <Typography
                             sx={{
@@ -74,14 +75,12 @@ const ShopCard = (props) => {
                             {Mobile}
                         </Typography>
                     </Box>
-                    <Box paddingY="5px">
-                        <MoreVertItems id={props.id} />
-                    </Box>
                 </CardContent >
-
-
-
+                <Box align="right">
+                    <MoreVertItems id={props.id} />
+                </Box>
             </Card >
+
             <Warning open={open} onClose={handleClose} id={props.id} />
         </>
     );

@@ -192,7 +192,7 @@ export default function AddProduct() {
                   name="childCategoryId"
                   value={state.childCategoryId}
                   onChange={handleChange}
-                  className="optionCat"
+            
                 >
                   {childCat.map((childCat) => (
                     <MenuItem value={childCat._id}>{childCat.name}</MenuItem>
@@ -229,7 +229,7 @@ export default function AddProduct() {
               <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
                 <Button
                   variant="contained"
-                  className="buttonCss"
+          
                   style={{ width: "250px", marginTop: "30px" }}
                   startIcon={<AddIcon />}
                   type="submit"

@@ -5,7 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import Divider from "@mui/material/Divider";
 import ListItemText from "@mui/material/ListItemText";
 import Typography from "@mui/material/Typography";
-import { Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import BlockIcon from "@mui/icons-material/Block";
 
 
@@ -27,17 +27,16 @@ export default function BlockedShops() {
   }, []);
 
   return (
-    <div>
+    <Box>
       {verify.length > 0 && (
         <ul>
           {verify.map((verifieduser) => (
             <List
               sx={{ width: "100%", maxWidth: 800, bgcolor: "background.paper" }}
-              className="reqList"
             >
               <ListItem alignItems="flex-start">
                 <ListItemText
-                  primary={verifieduser.name}
+                  primary={verifieduser?.name}
                   secondary={
                     <React.Fragment>
                       <Typography
@@ -48,16 +47,16 @@ export default function BlockedShops() {
                       >
                         {verifieduser.kartaName}
                       </Typography>{" "}
-                      <div></div>
+                      <Box></Box>
                       {verifieduser.mobile}
-                      <div className="ShowProducts">
+                      <Box >
                         <Button
                           variant="contained"
                           color="error"
                           startIcon={<BlockIcon />}
                         >
                         </Button>
-                      </div>
+                      </Box>
                     </React.Fragment>
                   }
                 />
@@ -67,6 +66,6 @@ export default function BlockedShops() {
           ))}
         </ul>
       )}
-    </div>
+    </Box>
   );
 }

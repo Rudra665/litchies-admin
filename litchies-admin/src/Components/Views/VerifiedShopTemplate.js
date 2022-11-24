@@ -1,22 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
-import { TextField, Button, Typography, Grid } from "@mui/material";
+import { TextField, Button, Typography, Grid, Chip } from "@mui/material";
 import Container from "@mui/material/Container";
 import UpdateIcon from "@mui/icons-material/Update";
 import axios from "axios";
 
+
 export default function VerifiedShopTemplate() {
   const [img, setImg] = useState({ preview: "", raw: "" });
+  const [view, setView] = useState(false);
 
   const onImageChange = (e) => {
+
     if (e.target.files.length) {
       setImg({
         preview: URL.createObjectURL(e.target.files[0]),
         raw: e.target.files[0],
       });
+      setView(true);
     }
   };
+
   const [user, setUser] = useState({
     name: "",
     kartaName: "",
@@ -59,10 +64,12 @@ export default function VerifiedShopTemplate() {
       .then((response) => {
         console.log(response.shopData);
       });
+    window.location.reload()
   };
 
   const handleUpload = async (e) => {
     e.preventDefault();
+
     const formData = new FormData();
     formData.append("image", img.raw);
     await axios
@@ -102,10 +109,8 @@ export default function VerifiedShopTemplate() {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchData()
   }, []);
-
-  const url = `http://43.205.116.96:3000/images/${user.shopImg}`;
 
   return (
     <>
@@ -126,37 +131,46 @@ export default function VerifiedShopTemplate() {
         >
           <Container class="proContainer">
             <Typography variant="h3" >{user.name}</Typography>
-            <Grid container>
+            <Grid container columnSpacing={24}>
               <Grid item lg="6" sm="12">
-                <Box marginY="2vh" align="center">
-                  <h2>Shop Image</h2>
-                  <img src={url} width="100vh" alt="ShopImage" className="ShopImage" />
 
-                  <Box marginY="2vh">
-                    <Box >
-                      <input type="file" onChange={onImageChange} />
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleUpload}
-                      >
-                        Upload
-                      </Button>
-                    </Box>
-                    <img
-                      style={{ width: "100vh" }}
-                      src={img.preview}
-
-                    />
+                <h2>Shop Image</h2>
+                {/* {user.shopImg && <img src={`http://43.205.116.96:3000/images/${user.shopImg}`} style={{
+                  backgroundImage: !view1 ? `url('http://43.205.116.96:3000/images/${user.shopImg}')` : `url('${img.preview}')`,
+                  position: "relative",
+                  border: "5px solid #fff",
+                  borderRadius: "50%",
+                  width: "300px",
+                  height: "300px",
+                  backgroundSize: "100% 100%",
+                  margin: "100px auto",
+                  overflow: "hidden"
+                }}
+                ></img>} */}
+                <Box className="wrapper" sx={{
+                  backgroundImage: !view ? `url('http://43.205.116.96:3000/images/${user.shopImg}')` : `url('${img.preview}')`,
+                  position: "relative",
+                  border: "5px solid #fff",
+                  borderRadius: "50%",
+                  width: "200px",
+                  height: "200px",
+                  backgroundSize: "100% 100%",
+                  margin: "100px auto",
+                  overflow: "hidden"
+                }}>
+                  <input type="file" className="onclick" onClick={() => onImageChange()}></input>
+                </Box>
+                <Box marginY="2vh">
+                  <Box >
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={handleUpload}
+                    >
+                      Upload
+                    </Button>
                   </Box>
-                  <Button
-                    className="ShopButton buttonCss"
-                    variant="contained"
-                    color="primary"
-                    href={`/admin/showProducts/${user._id}`}
-                  >
-                    Show All Products
-                  </Button>
+                  <Button href={`admin/verifiedShopsList/showProducts/${user._id}`}>Show All products</Button>
                 </Box>
               </Grid>
               <Grid item lg="6" sm="12">
@@ -180,6 +194,13 @@ export default function VerifiedShopTemplate() {
                       label="Aadhar Number"
                       value={user.aadharNo}
                       defaultValue="0"
+                      onChange={handleChange}
+                    />
+                    <TextField
+                      name="email"
+                      label="E-mail"
+                      defaultValue="0"
+                      value={user.email}
                       onChange={handleChange}
                     />
 
@@ -234,7 +255,7 @@ export default function VerifiedShopTemplate() {
                     />
                     <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
                       <Button
-                        className="UShopButton buttonCss"
+
                         variant="contained"
                         type="submit"
                         startIcon={<UpdateIcon />}
@@ -250,7 +271,7 @@ export default function VerifiedShopTemplate() {
           </Container>
         </Box>
 
-      </form>
+      </form >
     </>
   );
 }

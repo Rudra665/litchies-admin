@@ -118,7 +118,7 @@ const AddChildCategory = (props) => {
                             justifyContent: "space-around",
                         }}
                     >
-                        <Button variant="contained" className="buttonCss" type="submit">
+                        <Button variant="contained" type="submit">
                             Save
                         </Button>
                     </div>

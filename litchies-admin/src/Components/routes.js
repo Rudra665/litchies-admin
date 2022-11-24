@@ -28,29 +28,20 @@ function RoutesFunc() {
         <Route path="newRequests" element={<NewRequestList />}></Route>
         <Route path="newRequests/:id" element={<ShopTemplate />}></Route>
 
-        <Route path="verifiedShopsList/:id" element={<VerifiedShopTemplate />}></Route>
-        {/* <Route path="verifiedShopsList" element={<VerifiedShopsList />}></Route> */}
-
-        <Route path="verifiedShopsList/showProducts/:shopId" element={<ProductList />}></Route>
-        <Route path="verifiedShopsList/showProducts/:shopId/:id" element={<Product />}></Route>
-
-        <Route path="verifiedShopsList/addProduct/:shopId" element={<AddProduct />}></Route>
-        <Route path="verifiedShopsList/addHighlight/:shopId" element={<AddHighlight />}></Route>
-        <Route path="verifiedShopsList/addShopBanner/:shopId" element={<ShopBanner />}></Route>
-
+        <Route path="home/verifiedShopsList/:id" element={<VerifiedShopTemplate />}></Route>
+        <Route path="home/verifiedShopsList/showProducts/:shopId" element={<ProductList />}></Route>
+        <Route path="home/verifiedShopsList/showProducts/:shopId/:id" element={<Product />}></Route>
+        <Route path="home/verifiedShopsList/addProduct/:shopId" element={<AddProduct />}></Route>
+        <Route path="home/verifiedShopsList/addHighlight/:shopId" element={<AddHighlight />}></Route>
+        <Route path="home/verifiedShopsList/addShopBanner/:shopId" element={<ShopBanner />}></Route>
         <Route path="categories" element={<Categories />}></Route>
-        {/* <Route path="categories/:catId" element={<SubCategoryList />}></Route> */}
-        {/* <Route path="categories/:catId/:subCatId" element={<ChildCategoryList />}></Route> */}
-
         <Route path="showProductsImages/:shopId/:id" element={<ProductImages />}></Route>
         <Route path="blockedShops" element={<BlockedShops />}></Route>
         <Route path="createShop" element={<CreateShop />}></Route>
         <Route path="reports" element={<Reports />}></Route>
-        {/* <Route path="showCategories/:shopId/:catId/:subCatId/:childCatId" element={<ProductRefinedList />}></Route> */}
-        {/* <Route path="addCategory/:id" element={<AddCategory />}></Route> */}
         <Route path="*" element={<Home />}></Route>
       </Routes>
-      {/* <Footer/> */}
+
     </>
   );
 }

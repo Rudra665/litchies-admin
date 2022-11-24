@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
-
+import { Navigate } from "react-router-dom";
 export default function CreateShop() {
   const [img, setImg] = useState({ preview: "", raw: "" });
 
@@ -98,6 +98,7 @@ export default function CreateShop() {
         if (response.status === 200)
           alert("Shop Successfully Created")
       });
+    <Navigate to="home" />
 
   };
 
@@ -223,7 +224,7 @@ export default function CreateShop() {
                 width="100vh"
                 src={img.preview}
                 alt="."
-                className="Pimage" />}
+              />}
             </Box>
           </div>
           <Box align="center" sx={{ marginTop: 3, "& .MuiButton-root": { m: 1 } }}>

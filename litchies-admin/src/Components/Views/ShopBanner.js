@@ -64,17 +64,13 @@ export default function ShopBanner() {
             </Box>
             <Box display="flex" justifyContent="center" alignItems="center">
               <input width="100%" type="file" onChange={onImageChange} />
-
               <Button
                 variant="contained"
-                className="buttonCss"
                 onClick={handleUpload}
               >
                 Upload
               </Button>
-
             </Box>
-
           </Box>
         </Container>
       </form>

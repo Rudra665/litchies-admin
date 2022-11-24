@@ -14,7 +14,7 @@ function Header() {
         <Box marginX="10px"><img width="100vh" src={Logo} /></Box>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto navbarApni">
+          <Nav >
             <Nav.Link>
               <NavLink
                 to="home"

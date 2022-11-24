@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 
 const Delete = (props) => {
 
-    const erase = async () => {
-        await axios.delete(`http://43.205.116.96:3000/productSubCategory/delete/${props.id}`);
+    const erase = () => {
+        axios.delete(`http://43.205.116.96:3000/productSubCategory/delete/${props.id}`);
         // alert(`SubCategory Deleted`)
         // window.location.reload()
     };

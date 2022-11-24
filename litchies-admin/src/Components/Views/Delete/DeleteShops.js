@@ -7,7 +7,7 @@ const Delete = (props) => {
 
 
     const erase = async () => {
-        await axios.delete(`http://43.205.116.96:3000/Product/DeleteProduct/${props.id}`);
+        axios.delete(`http://43.205.116.96:3000/product/deleteProduct/${props.id}`);
     };
 
     return (
