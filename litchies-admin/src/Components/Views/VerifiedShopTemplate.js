@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import Box from "@mui/material/Box";
 import { TextField, Button, Typography, Grid, Chip } from "@mui/material";
@@ -9,18 +9,20 @@ import axios from "axios";
 
 export default function VerifiedShopTemplate() {
   const [img, setImg] = useState({ preview: "", raw: "" });
-  const [view, setView] = useState(false);
+
 
   const onImageChange = (e) => {
-
     if (e.target.files.length) {
       setImg({
         preview: URL.createObjectURL(e.target.files[0]),
         raw: e.target.files[0],
       });
-      setView(true);
     }
   };
+  const onFieldChange = () => {
+
+  }
+
 
   const [user, setUser] = useState({
     name: "",
@@ -41,8 +43,12 @@ export default function VerifiedShopTemplate() {
       ...user,
       [e.target.name]: value,
     });
+
   };
+
   const handleSubmit = (e) => {
+
+    handleUpload();
     alert("updated");
     e.preventDefault();
     const shopData = {
@@ -64,7 +70,6 @@ export default function VerifiedShopTemplate() {
       .then((response) => {
         console.log(response.shopData);
       });
-    window.location.reload()
   };
 
   const handleUpload = async (e) => {
@@ -148,17 +153,23 @@ export default function VerifiedShopTemplate() {
                 }}
                 ></img>} */}
                 <Box className="wrapper" sx={{
-                  backgroundImage: !view ? `url('http://43.205.116.96:3000/images/${user.shopImg}')` : `url('${img.preview}')`,
+                  backgroundColor: "black",
                   position: "relative",
                   border: "5px solid #fff",
                   borderRadius: "50%",
                   width: "200px",
                   height: "200px",
-                  backgroundSize: "100% 100%",
                   margin: "100px auto",
                   overflow: "hidden"
                 }}>
-                  <input type="file" className="onclick" onClick={() => onImageChange()}></input>
+                  {img.preview && <img
+                    height="190vh"
+                    src={img.preview}
+                    alt="..."
+                    className="Pimage"
+                  />}
+                  <img height="190vh" src={`http://43.205.116.96:3000/images/${user.shopImg}`}></img>
+                  <input type="file" className="onClick" onChange={onImageChange} />
                 </Box>
                 <Box marginY="2vh">
                   <Box >
@@ -170,7 +181,7 @@ export default function VerifiedShopTemplate() {
                       Upload
                     </Button>
                   </Box>
-                  <Button href={`admin/verifiedShopsList/showProducts/${user._id}`}>Show All products</Button>
+                  <Button href={`showProducts/${user._id}`}>Show All products</Button>
                 </Box>
               </Grid>
               <Grid item lg="6" sm="12">
@@ -255,7 +266,7 @@ export default function VerifiedShopTemplate() {
                     />
                     <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
                       <Button
-
+                        // disabled={validation ? true : false}
                         variant="contained"
                         type="submit"
                         startIcon={<UpdateIcon />}

@@ -6,10 +6,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { Box, Button } from "@mui/material";
-
+import { Box, Button, Typography } from "@mui/material";
+import empty from "../Images/empty.gif"
 export default function ProductList() {
   const [products, setProducts] = useState([]);
   const { shopId } = useParams();
@@ -28,7 +28,7 @@ export default function ProductList() {
 
   return (
     <>
-      {products.length > 0 && (
+      {products.length > 0 ? (
         <Box
           sx={{
             margin: "50px",
@@ -65,7 +65,18 @@ export default function ProductList() {
             </Table>
           </TableContainer>
         </Box>
-      )
+      ) : (
+        <Box display="inlineFlex" alignItems="center" height="90vh" justifyContent="center">
+          <Box >
+            <Box display="flex" justifyContent="center">
+              <img src={empty}></img>
+            </Box>
+            <Typography variant="h3" color="grey">There's Nothing My Lord</Typography>
+            <Box align="center">
+              <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} sx={{ textDecoration: "none" }}><Button >Add Some</Button></Link>
+            </Box>
+          </Box>
+        </Box>)
       }
     </>
   );

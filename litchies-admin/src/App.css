@@ -1,4 +1,4 @@
-.onclick {
+.onClick {
     position: absolute;
     top: 0%;
     left: 1%;
@@ -11,7 +11,7 @@
     transition: 0.5s;
 }
 
-.onclick::-webkit-file-upload-button {
+.onClick::-webkit-file-upload-button {
     visibility: hidden;
 
 }

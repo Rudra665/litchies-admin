@@ -8,6 +8,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import CheckIcon from "@mui/icons-material/Check";
 import BlockIcon from "@mui/icons-material/Block";
 import axios from "axios";
+import { padding } from "@mui/system";
 
 export default function ShopTemplate() {
   const [user, setUser] = useState([]);
@@ -48,105 +49,123 @@ export default function ShopTemplate() {
 
   return (
     <>
+      <Container maxWidth="lg">
 
-      <CssBaseline />
-      <Container>
         <Box
           sx={{
-            display: "content",
-            justifyContent: "center",
             bgcolor: "#fce2d4",
             height: "100vh",
             width: "100%",
-            "& .MuiTextField-root": { m: 1, width: "65ch" },
+            "& .MuiTextField-root": { m: 1 },
+
           }}
           align="center"
         >
-          <h1 >{user.name}</h1>
-          <Box >
-            <img width="100vh" src={url} alt="ShopImage" />
-          </Box>
-          <TextField
-            id="shopName"
-            label="Shop Name"
-            value={user.name}
-            defaultValue="Name"
-          />
-          <TextField
-            id="kartaName"
-            label="Karta Name"
-            value={user.kartaName}
-            defaultValue="Karta"
-          />
+          <h1 >Verify Status</h1>
+          <Box sx={{
+            width: "90vh",
+            display: "flex",
+            justifyContent: "space-between",
+            marginY: 5,
 
-          <TextField
-            id="filled-basic"
-            label="Aadhar Number"
-            value={user.aadharNo}
-            defaultValue="0"
-          />
+          }}>
+            <Box overflow="hidden" border="5px solid Black" height="fit-content" borderRadius="50%">
+              <img width="200vh" src={url} alt="ShopImage" />
+            </Box>
+            <Box maxWidth="50vh">
+              <TextField
+                id="shopName"
+                fullWidth
+                label="Shop Name"
+                value={user.name}
+                defaultValue="Name"
+              />
+              <TextField
+                fullWidth
+                id="kartaName"
+                label="Karta Name"
+                value={user.kartaName}
+                defaultValue="Karta"
+              />
 
-          <TextField
-            id="filled-basic"
-            label="PAN Number"
-            defaultValue="00"
-            value={user.panNo}
-          />
-          <TextField
-            id="gstNo"
-            defaultValue="00"
-            label="GST Number"
-            value={user.gstNo}
-          />
-          <TextField
-            id="phoneNo"
-            defaultValue="00"
-            label="Mobile Number"
-            value={user.mobile}
-          />
-          <TextField
-            id="address"
-            label="Address"
-            value={user.address}
-            defaultValue="No Address"
-          />
-          <TextField
-            id="state"
-            label="State"
-            defaultValue="UP"
-            value={user.state}
-          />
-          <TextField
-            id="city"
-            label="City"
-            defaultValue="Agra"
-            value={user.city}
-          />
-          <TextField
-            id="pinCode"
-            label="Pin Code"
-            defaultValue="282005"
-            value={user.pincode}
-          />
-          <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
-            <Button
-              variant="contained"
-              color="success"
-              startIcon={<CheckIcon />}
+              <TextField
+                fullWidth
+                id="filled-basic"
+                label="Aadhar Number"
+                value={user.aadharNo}
+                defaultValue="0"
+              />
 
-              onClick={() => verified()}
-            >
-              Verify
-            </Button>
-            <Button
-              variant="contained"
-              color="error"
-              startIcon={<BlockIcon />}
-              href="/admin/blockedShops"
-              onClick={() => blocked()}
-            >
-              Block
-            </Button>
+              <TextField
+                fullWidth
+                id="filled-basic"
+                label="PAN Number"
+                defaultValue="00"
+                value={user.panNo}
+              />
+              <TextField
+                fullWidth
+                id="gstNo"
+                defaultValue="00"
+                label="GST Number"
+                value={user.gstNo}
+              />
+              <TextField
+                fullWidth
+                id="phoneNo"
+                defaultValue="00"
+                label="Mobile Number"
+                value={user.mobile}
+              />
+              <TextField
+                fullWidth
+                id="address"
+                label="Address"
+                value={user.address}
+                defaultValue="No Address"
+              />
+              <TextField
+                fullWidth
+                id="state"
+                label="State"
+                defaultValue="UP"
+                value={user.state}
+              />
+              <TextField
+                fullWidth
+                id="city"
+                label="City"
+                defaultValue="Agra"
+                value={user.city}
+              />
+              <TextField
+                fullWidth
+                id="pinCode"
+                label="Pin Code"
+                defaultValue="282005"
+                value={user.pincode}
+              />
+              <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
+                <Button
+                  variant="contained"
+                  color="success"
+                  startIcon={<CheckIcon />}
+
+                  onClick={() => verified()}
+                >
+                  Verify
+                </Button>
+                <Button
+                  variant="contained"
+                  color="error"
+                  startIcon={<BlockIcon />}
+                  href="/admin/blockedShops"
+                  onClick={() => blocked()}
+                >
+                  Block
+                </Button>
+              </Box>
+            </Box>
           </Box>
         </Box>
       </Container>

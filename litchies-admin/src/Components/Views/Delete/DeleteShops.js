@@ -10,6 +10,8 @@ const Delete = (props) => {
         axios.delete(`http://43.205.116.96:3000/product/deleteProduct/${props.id}`);
     };
 
+
+
     return (
         <Button onClick={erase} variant={props.variant} color="error">Delete Shop</Button>
     )

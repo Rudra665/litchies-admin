@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { TextField, Button, MenuItem } from "@mui/material";
+import { TextField, Button, MenuItem, Typography } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
@@ -60,7 +60,9 @@ export default function AddProduct() {
     img.map((image) => {
       formData.append("image", image);
       return formData;
-    });
+
+    }
+    );
     await axios
       .post("http://43.205.116.96:3000/product/uploadImages", formData)
       .then((response) => {
@@ -86,6 +88,7 @@ export default function AddProduct() {
           imageURLs: state.imageURLs,
         });
       });
+    setImg([null])
   };
 
   const fetchData = () => {
@@ -139,7 +142,17 @@ export default function AddProduct() {
       .then((response) => {
         console.log(response.data);
       });
-    window.Location.reload()
+    alert(`Product Added`)
+    setState({
+      name: "",
+      desc: "",
+      price: "",
+      discount: "",
+      videoUrl: [],
+      shopId: "",
+      childCategoryId: "",
+      imageURLs: [],
+    })
   };
   return (
     <>
@@ -153,7 +166,9 @@ export default function AddProduct() {
             width: "100%",
             "& .MuiTextField-root": { m: 1, },
           }}
-        ><Container maxWidth="lg">
+        >
+          <Typography align="center" mb="3vh" variant="h3">Add Product</Typography>
+          <Container maxWidth="lg">
             <Box align="center">
               <Box maxWidth="sm">
                 <TextField
@@ -192,7 +207,7 @@ export default function AddProduct() {
                   name="childCategoryId"
                   value={state.childCategoryId}
                   onChange={handleChange}
-            
+
                 >
                   {childCat.map((childCat) => (
                     <MenuItem value={childCat._id}>{childCat.name}</MenuItem>
@@ -229,7 +244,7 @@ export default function AddProduct() {
               <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
                 <Button
                   variant="contained"
-          
+
                   style={{ width: "250px", marginTop: "30px" }}
                   startIcon={<AddIcon />}
                   type="submit"

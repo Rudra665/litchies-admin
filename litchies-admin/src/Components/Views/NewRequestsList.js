@@ -8,8 +8,9 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { NavLink } from "react-router-dom";
-import { Box } from "@mui/material";
-
+import { Box, Typography } from "@mui/material";
+import NewRequestCard from "./Cards/NewRequestCard"
+import empty from "../Images/empty.gif"
 export default function NewRequestList() {
   const [users, setUsers] = useState([]);
 
@@ -29,54 +30,29 @@ export default function NewRequestList() {
 
   return (
     <>
-      {users.length > 0 && (
+      {users.length > 0 ? (
         <Box
           sx={{
             margin: "50px",
             "& .MuiTableCell-root": { width: "1ch" },
           }}
         >
-          <TableContainer component={Paper}>
-            <Table size="large">
-              <TableHead>
-                <TableRow>
-                  <TableCell style={{ fontWeight: "bold" }}>
-                    Shop Name
-                  </TableCell>
-                  <TableCell style={{ fontWeight: "bold" }} align="right">
-                    Karta Name
-                  </TableCell>
-                  <TableCell style={{ fontWeight: "bold" }} align="right">
-                    Phone Number
-                  </TableCell>
-                  <TableCell style={{ fontWeight: "bold" }} align="right">
-                    View Details
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {users.map((verifieduser) => (
-                  <TableRow
-                    key={verifieduser.name}
-                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                  >
-                    <TableCell component="th" scope="row">
-                      {verifieduser.name}
-                    </TableCell>
-                    <TableCell align="right">
-                      {verifieduser.kartaName}
-                    </TableCell>
-                    <TableCell align="right">{verifieduser.mobile}</TableCell>
-                    <TableCell align="right">
-                      {<NavLink to={verifieduser._id}>Click Here</NavLink>}
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Box>
-      )}
+
+
+          {users.map((verifieduser) => (
+            <NewRequestCard Shop_Name={verifieduser.name} Karta_Name={verifieduser.kartaName} Mobile={verifieduser.mobile} imgUrl={verifieduser.shopImg} id={verifieduser._id} />
+          ))}
+        </Box >) :
+        (
+          <Box display="inlineFlex" alignItems="center" height="90vh" justifyContent="center">
+            <Box >
+              <Box display="flex" justifyContent="center">
+                <img src={empty}></img>
+              </Box>
+              <Typography variant="h3" color="grey">There's Nothing My Lord</Typography>
+            </Box>
+          </Box>)
+      }
     </>
   );
 }
