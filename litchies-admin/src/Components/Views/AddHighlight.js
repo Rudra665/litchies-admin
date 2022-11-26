@@ -168,7 +168,6 @@ export default function AddHighlight() {
                   style={{ width: "150px", marginLeft: "30px" }}
                   src={img.preview}
                   alt="..."
-                  
                 />
               </Box>
             </div>

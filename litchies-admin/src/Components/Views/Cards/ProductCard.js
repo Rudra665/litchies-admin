@@ -3,20 +3,16 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { Button, IconButton } from "@mui/material";
+import { IconButton } from "@mui/material";
 import MoreVertItems from "../MoreVertItems";
 import CloseIcon from '@mui/icons-material/Close';
 import Warning from "../Modal/Waring";
+import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 const ShopCard = (props) => {
     const { imgUrl, Shop_Name, Karta_Name, Mobile } = props;
-    const [open, setOpen] = React.useState(false)
-    const handleClick = () => {
-        setOpen(true)
-    }
-    const handleClose = () => {
-        setOpen(false)
-    }
+
+
 
     return (
         <>
@@ -32,19 +28,17 @@ const ShopCard = (props) => {
                     borderRadius: "10px",
 
                 }}
-            ><Box display="flex" justifyContent="right" >
-                    <IconButton onClick={handleClick}><CloseIcon color="primary" /></IconButton>
+            >
+
+
+
+                <Box align="center" paddingY="20px" height="35vh" m="1vh" sx={{
+                    backgroundImage: `url("http://43.205.116.96:3000/images/${imgUrl[0]}")`, backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                }} >
+
                 </Box>
-
-
-                <Link to={`verifiedShopsList/${props.id}`} style={{ textDecoration: "none" }} >
-                    <Box align="center" paddingY="20px" height="35vh" m="1vh" sx={{
-                        backgroundImage: `url("http://43.205.116.96:3000/images/${imgUrl}")`, backgroundSize: "cover",
-                        backgroundRepeat: "no-repeat",
-                    }} >
-
-                    </Box></Link>
-                <Box align="center" >
+                <Box align="center" p="1vh">
                     <Typography
                         sx={{
                             fontWeight: "700",
@@ -78,12 +72,11 @@ const ShopCard = (props) => {
 
 
 
-                <Box align="right" display="flex" justifyContent="space-between">
-                    <MoreVertItems id={props.id} />
-                </Box>
+
             </Card >
 
-            <Warning open={open} onClose={handleClose} id={props.id} />
+
+
         </>
     );
 };

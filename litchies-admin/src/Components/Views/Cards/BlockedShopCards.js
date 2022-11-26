@@ -27,7 +27,7 @@ const BlockedShopCard = (props) => {
                 sx={{
                     display: "grid",
                     width: "300px",
-                    height: "38vh",
+                    height: "50vh",
                     m: 1,
                     p: 0,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127, 0.13)",
@@ -41,8 +41,8 @@ const BlockedShopCard = (props) => {
                 </Box>
                 <CardContent>
                     <Link to={`verifiedShopsList/${props.id}`} style={{ textDecoration: "none" }} >
-                        <Box align="center" paddingY="20px" height="15vh" overflow="hidden">
-                            <img width="90vh" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" />
+                        <Box align="center" paddingY="20px" height="30vh" overflow="hidden">
+                            <img width="80%" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" />
                         </Box></Link>
                     <Box align="center" >
                         <Typography
