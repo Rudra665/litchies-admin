@@ -11,13 +11,41 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import ProductImages from "./ProductImages";
 export default function Product() {
+  const [img, setImg] = useState({ preview: "", raw: "" });
+  const [video, setVideo] = useState({ preview: "", raw: "" });
+
+  const onImageChange = (e) => {
+    if (e.target.files.length) {
+      setImg({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+    }
+  };
+
+  const onVideoChange = (e) => {
+    if (e.target.files.length) {
+      setVideo({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+    }
+  };
+
   const [state, setState] = useState({
     name: "",
     desc: "",
     price: "",
+    shopId: "",
     discount: "",
-    videoURL: "",
+    imgUrl: [],
+    videoURL: [],
   });
+
+  const [shopName, setShopName] = useState({
+    name: ""
+  });
+
   const handleChange = (e) => {
     const value = e.target.value;
     setState({
@@ -25,6 +53,36 @@ export default function Product() {
       [e.target.name]: value,
     });
   };
+
+  const handleUpload = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", img.raw);
+    await axios
+      .post("http://43.205.116.96:3000/uploadImage", formData)
+      .then((response) => {
+        return JSON.stringify(response.data.name);
+      })
+      .then((img) => {
+        setUser({
+          name: user.name,
+          kartaName: user.kartaName,
+          email: user.email,
+          aadharNo: user.aadharNo,
+          panNo: user.panNo,
+          gstNo: user.gstNo,
+          mobile: user.mobile,
+          password: user.password,
+          address: user.address,
+          state: user.state,
+          city: user.city,
+          pincode: user.pincode,
+          shopImg: img.replaceAll('"', "")
+        });
+      });
+
+  };
+
   const handleSubmit = (e) => {
     alert("updated");
     e.preventDefault();
@@ -32,7 +90,9 @@ export default function Product() {
       name: state.name,
       price: state.price,
       desc: state.desc,
+      shopId: state.shopId,
       discount: state.discount,
+      imgUrl: state.imgUrl,
       videoURL: state.videoURL,
     };
 
@@ -59,8 +119,22 @@ export default function Product() {
     fetchData();
   }, []);
 
+  const fetchShopData = () => {
+    fetch(`http://43.205.116.96:3000/shop/getShopById/${state.shopId}`)
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setShopName(data);
+      });
+  };
+
+  useEffect(() => {
+    fetchShopData();
+  }, []);
+
   const Delete = async () => {
-    await axios.delete(`http://43.205.116.96:3000/Product/DeleteProduct/${id}`);
+    axios.delete(`http://43.205.116.96:3000/Product/DeleteProduct/${id}`);
   };
 
   return (
@@ -106,12 +180,22 @@ export default function Product() {
                   <Grid item lg="12">
                     <TextField
                       fullWidth
+                      name="Shop"
+                      label="shopName"
+                      value={shopName.name}
+                      defaultValue="0"
+                      onChange={handleChange}
+                    /></Grid>
+                  <Grid item lg="12">
+                    <TextField
+                      fullWidth
                       name="price"
                       label="Price"
                       value={state.price}
                       defaultValue="0"
                       onChange={handleChange}
                     /></Grid>
+
                   <Grid item lg="12">
                     <TextField
                       fullWidth
@@ -122,42 +206,60 @@ export default function Product() {
                       onChange={handleChange}
                     />
                   </Grid>
-                  <Grid item lg="12">
-                    <TextField
-                      fullWidth
-                      name="videoURL"
-                      label="videoURL"
-                      value={state.videoURL}
-                      defaultValue="xyz"
-                      onChange={handleChange}
+                  <Grid item lg="12" m="1vh">
+                    <Typography fontWeight="600">Image</Typography>
+                    <img width="200vh" src={img.preview}></img>
+                    <Box >
+                      <input type="file" accept="image/*" onChange={onImageChange} />
+                      <Button variant="contained">Upload Image</Button>
+                    </Box>
+                    <TextField fullWidth
+                      name="imgUrl"
+                      label="Image Url"
+                      value={img.preview}
+                      defaultValue="0"
                     />
+
+                  </Grid>
+                  <Grid item lg="12" m="1vh">
+                    <Typography fontWeight="600">Video</Typography>
+                    <Box >
+                      <input type="file" accept="video/*" onChange={onVideoChange} />
+                      <Button variant="contained">Upload Video</Button>
+                    </Box>
+                    <TextField fullWidth
+                      name="videoUrl"
+                      label="Video Url"
+                      value={video.preview}
+                      defaultValue="0"
+                    />
+
                   </Grid>
                 </Grid>
               </Box>
-            </Box>
-
-            <Box
-              align="center"
-              sx={{ "& .MuiButton-root": { m: 1 }, }}
-            >
-              <Button
-                style={{ background: COLORS.defaultColor }}
-                variant="contained"
-                startIcon={<UpdateIcon />}
-                type="submit"
+              <Box
+                align="center"
+                sx={{ "& .MuiButton-root": { m: 1 }, }}
               >
-                Update Product
-              </Button>
-              <Button
-                style={{ background: COLORS.defaultColor }}
-                variant="contained"
-                startIcon={<DeleteIcon />}
-                onClick={Delete}
-              // href={`/admin/showProducts/${shopId}`}
-              >
-                <Link to={`verifiedShopsList/showProducts/${shopId}`}></Link>
-                Delete Product
-              </Button>
+                <Button
+                  style={{ background: COLORS.defaultColor }}
+                  variant="contained"
+                  startIcon={<UpdateIcon />}
+                  type="submit"
+                >
+                  Update Product
+                </Button>
+                <Button
+                  style={{ background: COLORS.defaultColor }}
+                  variant="contained"
+                  startIcon={<DeleteIcon />}
+                  onClick={Delete}
+                // href={`/admin/showProducts/${shopId}`}
+                >
+                  <Link to={`verifiedShopsList/showProducts/${shopId}`}></Link>
+                  Delete Product
+                </Button>
+              </Box>
             </Box>
           </Box>
         </Container>

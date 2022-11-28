@@ -37,7 +37,7 @@ const ShopCard = (props) => {
                 </Box>
 
 
-                <Link to={`verifiedShopsList/${props.id}`} style={{ textDecoration: "none" }} >
+                <Link to={`verifiedShopsList/shopDetails/${props.id}`} style={{ textDecoration: "none" }} >
                     <Box align="center" paddingY="20px" height="35vh" m="1vh" sx={{
                         backgroundImage: `url("http://43.205.116.96:3000/images/${imgUrl}")`, backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",

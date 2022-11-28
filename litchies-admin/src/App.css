@@ -13,5 +13,28 @@
 
 .onClick::-webkit-file-upload-button {
     visibility: hidden;
+}
 
+::-webkit-scrollbar {
+    width: 15px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #ffffff;
+    border-radius: 50px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(255, 120, 30);
+    border-radius: 50px;
+    height: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 64, 64);
+    border-radius: 50px;
 }

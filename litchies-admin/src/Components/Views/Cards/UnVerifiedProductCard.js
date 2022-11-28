@@ -1,42 +1,45 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
+// import OwlCarousel from 'react-owl-carousel';
+import { Swiper, SwiperSlide } from "swiper/react"
+// import 'owl.carousel/dist/assets/owl.carousel.min.css';
+// import 'owl.carousel/dist/assets/owl.theme.default.min.css';
 import Typography from "@mui/material/Typography";
-import { IconButton } from "@mui/material";
-import MoreVertItems from "../MoreVertItems";
-import CloseIcon from '@mui/icons-material/Close';
-import Warning from "../Modal/Waring";
-import Button from "@mui/material/Button";
-import { Link } from "react-router-dom";
+import CheckIcon from "@mui/icons-material/Check";
 import Carousel from "../carousel/Caraousal";
-const ShopCard = (props) => {
+import { Button } from "@mui/material";
+import axios from "axios";
+const UnVerifiedProductCard = (props) => {
     const { imgUrl, Product_Name, Product_Desc, Price } = props;
-
-
-
+    const verified = () => {
+        axios
+            .put(`http://43.205.116.96:3000/Shop/ChangeVerifiedStatus/${props.id}`)
+            .then((response) => {
+                return response.json();
+            });
+        alert(`Product Verified`)
+    };
     return (
         <>
-
             <Card
                 sx={{
 
                     width: "350px",
-                    height: "55vh",
+                    height: "56vh",
                     m: 1,
                     p: 0,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
                     borderRadius: "10px",
-
                 }}
             >
-
 
                 <Box align="center" paddingY="20px" height="35vh" m="1vh" class="item" sx={{
                     display: "flex"
                 }} >
                     <Carousel images={imgUrl} shopId={props.shopId} id={props.id} />
                 </Box>
+
                 <Box align="center" p="1vh">
                     <Typography
                         sx={{
@@ -63,22 +66,24 @@ const ShopCard = (props) => {
                         component="div"
                         lineHeight="20px"
                         fontSize="12px"
-                        sx={{ mt: 1 }}
+
                     >
                         {Price}
                     </Typography>
+                    <Button
+                        variant="contained"
+                        color="success"
+                        startIcon={<CheckIcon />}
+                        mt="10px"
+                        onClick={() => verified()}
+                    >
+                        Verify
+                    </Button>
 
                 </Box>
 
-
-
-
-
             </Card >
-
-
-
         </>
     );
 };
-export default ShopCard;
+export default UnVerifiedProductCard;

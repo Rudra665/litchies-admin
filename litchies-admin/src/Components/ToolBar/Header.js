@@ -9,6 +9,7 @@ import * as React from "react"
 import { Box } from "@mui/system";
 import Home from "../Views/Home";
 import BlockedShops from "../Views/BlockedShops";
+import ShopDetails from "../Views/ShopDetails";
 import NewRequestList from "../Views/NewRequestsList";
 import { Routes, Route } from "react-router-dom";
 import ShopTemplate from "../Views/ShopTemplate";
@@ -16,6 +17,7 @@ import Product from "../Views/Product";
 import ProductList from "../Views/ProductList";
 import VerifiedShopTemplate from "../Views/VerifiedShopTemplate";
 import ProductImages from "../Views/ProductImages";
+import UnVerifiedProduct from "../Views/UnVerifiedProduct"
 import CreateShop from "../Views/CreateShop";
 import AddProduct from "../Views/AddProduct";
 import Categories from "../Views/Category/Categories.js";
@@ -167,6 +169,32 @@ function Header() {
               </Nav.Link>
               <Nav.Link>
                 <NavLink
+                  to="verifiedShopsList/UnVerifiedProducts"
+                  style={{ textDecoration: "none" }}
+                >
+                  <Button
+
+                    sx={({ isActive }) =>
+
+                      isActive
+                        ? {
+                          color: "white",
+
+
+                        }
+                        : {
+                          textDecoration: "none",
+                          fontFamily: "Lato",
+                          lineHeight: "0.8em",
+                          color: "inherit",
+                          fontSize: "calc(1.2 * 1rem)",
+                        }
+                    }>Un-Verified Products</Button>
+
+                </NavLink>
+              </Nav.Link>
+              <Nav.Link>
+                <NavLink
                   to="reports"
                   style={{ textDecoration: "none" }}
 
@@ -207,6 +235,8 @@ function Header() {
         <Route path="verifiedShopsList/:id" element={<VerifiedShopTemplate />}></Route>
         <Route path="verifiedShopsList/showProducts/:shopId" element={<ProductList />}></Route>
         <Route path="verifiedShopsList/showProducts/:shopId/:id" element={<Product />}></Route>
+        <Route path="verifiedShopsList/UnVerifiedProducts" element={<UnVerifiedProduct />}></Route>
+        <Route path="verifiedShopsList/shopDetails/:shopId" element={<ShopDetails />}></Route>
         <Route path="verifiedShopsList/addProduct/:shopId" element={<AddProduct />}></Route>
         <Route path="verifiedShopsList/addHighlight/:shopId" element={<AddHighlight />}></Route>
         <Route path="verifiedShopsList/addShopBanner/:shopId" element={<ShopBanner />}></Route>

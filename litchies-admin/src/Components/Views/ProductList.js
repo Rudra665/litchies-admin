@@ -35,15 +35,16 @@ export default function ProductList() {
         <Box
           sx={{
             display: "flex",
+            width: "95vw",
             margin: "50px",
+            justifyContent: "center",
             "& .MuiTableCell-root": { width: "1ch" },
+            flexWrap: "wrap"
           }}
         >
 
           {products.map((product) => (
-            <ProductCard Shop_Name={product.name} Karta_Name={product.desc} Mobile={product.price} imgUrl={product.imageURLs} id={product._id} />
-
-
+            <ProductCard Product_Name={product.name} Product_Desc={product.desc} Price={product.price} imgUrl={product.imageURLs} id={product._id} shopId={shopId} />
           ))}
         </Box>
       ) : (
