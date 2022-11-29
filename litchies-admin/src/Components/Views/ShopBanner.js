@@ -24,7 +24,9 @@ export default function ShopBanner() {
     shopId: shopId,
     shopBanner: "",
   });
+
   const handleUpload = async (e) => {
+    console.log(state.shopBanner);
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", img.raw);
@@ -48,7 +50,7 @@ export default function ShopBanner() {
       .then((response) => {
         console.log(response.data);
       });
-    window.location.reload();
+
   };
 
   return (

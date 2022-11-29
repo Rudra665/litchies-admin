@@ -5,21 +5,17 @@ import Card from "@mui/material/Card";
 import { Swiper, SwiperSlide } from "swiper/react"
 // import 'owl.carousel/dist/assets/owl.carousel.min.css';
 // import 'owl.carousel/dist/assets/owl.theme.default.min.css';
+import SwitchToggle from "../../Switch Toggle/SwitchToggle";
+
 import Typography from "@mui/material/Typography";
-import CheckIcon from "@mui/icons-material/Check";
+
 import Carousel from "../carousel/Caraousal";
 import { Button } from "@mui/material";
 import axios from "axios";
 const UnVerifiedProductCard = (props) => {
     const { imgUrl, Product_Name, Product_Desc, Price } = props;
-    const verified = () => {
-        axios
-            .put(`http://43.205.116.96:3000/Shop/ChangeVerifiedStatus/${props.id}`)
-            .then((response) => {
-                return response.json();
-            });
-        alert(`Product Verified`)
-    };
+   
+    
     return (
         <>
             <Card
@@ -70,15 +66,8 @@ const UnVerifiedProductCard = (props) => {
                     >
                         {Price}
                     </Typography>
-                    <Button
-                        variant="contained"
-                        color="success"
-                        startIcon={<CheckIcon />}
-                        mt="10px"
-                        onClick={() => verified()}
-                    >
-                        Verify
-                    </Button>
+                    
+                    <Box display="flex" justifyContent="center"><SwitchToggle /></Box>
 
                 </Box>
 

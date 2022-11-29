@@ -11,6 +11,7 @@ import { NavLink } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import NewRequestCard from "./Cards/NewRequestCard"
 import empty from "../Images/empty.gif"
+import { Container } from "@mui/system";
 export default function NewRequestList() {
   const [users, setUsers] = useState([]);
 
@@ -37,11 +38,12 @@ export default function NewRequestList() {
             "& .MuiTableCell-root": { width: "1ch" },
           }}
         >
+          <Container>
 
-
-          {users.map((verifieduser) => (
-            <NewRequestCard Shop_Name={verifieduser.name} Karta_Name={verifieduser.kartaName} Mobile={verifieduser.mobile} imgUrl={verifieduser.shopImg} id={verifieduser._id} />
-          ))}
+            {users.map((verifieduser) => (
+              <NewRequestCard Shop_Name={verifieduser.name} Karta_Name={verifieduser.kartaName} Mobile={verifieduser.mobile} imgUrl={verifieduser.shopImg} id={verifieduser._id} />
+            ))}
+          </Container>
         </Box >) :
         (
           <Box display="inlineFlex" alignItems="center" height="90vh" justifyContent="center">

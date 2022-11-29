@@ -36,7 +36,7 @@ export default function Warning(props) {
                 <Typography align="center" color="warning" variant='h2' id="parent-modal-title">Delete Shop?</Typography>
                 <Box align="center" marginY="3vh">
                     <Button onClick={props.onClose} variant="contained" sx={{ marginX: 2 }}>Cancel</Button>
-                    <Button ><DeleteShop id={props.id} onClick={props.onClose} variant="outlined" /></Button>
+                    <DeleteShop id={props.id} variant="outlined" />
                 </Box>
             </Box>
         </Modal>

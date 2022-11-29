@@ -18,7 +18,7 @@ export default function UnVerifiedProduct() {
     };
     useEffect(() => {
         fetchProducts();
-        console.log(products.imageURLs)
+
     }, []);
 
     return (

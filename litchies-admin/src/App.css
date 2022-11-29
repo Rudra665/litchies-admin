@@ -16,25 +16,41 @@
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
-
+    width: 10px;
+    height: 10px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: #ffffff;
+    background: #02AAB0;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #00CDAC, #02AAB0);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #00CDAC, #02AAB0);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
     border-radius: 50px;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: rgb(255, 120, 30);
-    border-radius: 50px;
-    height: 10px;
+    background: #DD5E89;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #F7BB97, #DD5E89);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #F7BB97, #DD5E89);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 30px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(255, 64, 64);
-    border-radius: 50px;
+    background: #FF512F;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #DD2476, #FF512F);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #DD2476, #FF512F);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
 }

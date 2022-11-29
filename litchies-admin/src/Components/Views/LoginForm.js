@@ -26,9 +26,7 @@ export default function SignIn() {
      { 
         navigate("/admin/*") 
     } 
-    console.log({
-      email,password
-    });
+    
   };
 
   return (

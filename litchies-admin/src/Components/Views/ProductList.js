@@ -26,7 +26,7 @@ export default function ProductList() {
   };
   useEffect(() => {
     fetchProducts();
-    console.log(products.imageURLs)
+   
   }, []);
 
   return (

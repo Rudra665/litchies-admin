@@ -28,204 +28,202 @@ import Reports from "../Views/Reports";
 function Header() {
   return (
     <>
-      <Navbar style={{ background: "#D4F1F4", width: "100%" }}>
-        <Container >
-          <Box marginX="10px"><img width="100vh" src={Logo} /></Box>
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
-          <Navbar.Collapse id="basic-navbar-nav">
+      <Navbar style={{ background: "#D4F1F4", width: "100%", display: "flex", justifyContent: "space-between" }}>
 
-            <Nav >
-              <Nav.Link>
-                <NavLink
-                  to="home"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button
+        <Box marginX="10px"><img width="100vh" src={Logo} /></Box>
 
-                    sx={({ isActive }) =>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-                      isActive
-                        ? {
-                          color: "white",
-                        }
-                        : {
-                          textDecoration: "none",
-                          fontFamily: "Lato",
-                          lineHeight: "0.8em",
-                          color: "inherit",
-                          fontSize: "calc(1.2 * 1rem)",
-                        }
-                    }>
-                    Home
-                  </Button>
+        <Box>
+          <Nav >
+            <Nav.Link>
+              <NavLink
+                to="home"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
 
-                </NavLink>
-              </Nav.Link>
-              <Nav.Link>
-                <NavLink
-                  to="newRequests"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button
+                  sx={({ isActive }) =>
 
-                    sx={({ isActive }) =>
+                    isActive
+                      ? {
+                        color: "white",
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>
+                  Home
+                </Button>
 
-                      isActive
-                        ? {
-                          color: "white",
+              </NavLink>
+            </Nav.Link>
+            <Nav.Link>
+              <NavLink
+                to="newRequests"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
 
+                  sx={({ isActive }) =>
 
-                        }
-                        : {
-                          textDecoration: "none",
-                          fontFamily: "Lato",
-                          lineHeight: "0.8em",
-                          color: "inherit",
-                          fontSize: "calc(1.2 * 1rem)",
-                        }
-                    }>
-                    New Requests
-                  </Button>
-                </NavLink>
-              </Nav.Link>
-              <Nav.Link>
-                <NavLink
-                  to="blockedShops"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button
+                    isActive
+                      ? {
+                        borderBottom: "3px solid blue"
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>
+                  New Requests
+                </Button>
+              </NavLink>
+            </Nav.Link>
+            <Nav.Link>
+              <NavLink
+                to="blockedShops"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
 
-                    sx={({ isActive }) =>
+                  sx={({ isActive }) =>
 
-                      isActive
-                        ? {
-                          color: "white",
-
-
-                        }
-                        : {
-                          textDecoration: "none",
-                          fontFamily: "Lato",
-                          lineHeight: "0.8em",
-                          color: "inherit",
-                          fontSize: "calc(1.2 * 1rem)",
-                        }
-                    }>Blocked Shops</Button>
-
-                </NavLink>
-              </Nav.Link>
-
-              <Nav.Link>
-                <NavLink
-                  to="createShop"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button
-
-                    sx={({ isActive }) =>
-
-                      isActive
-                        ? {
-                          color: "white",
+                    isActive
+                      ? {
+                        borderBottom: "3px solid blue"
 
 
-                        }
-                        : {
-                          textDecoration: "none",
-                          fontFamily: "Lato",
-                          lineHeight: "0.8em",
-                          color: "inherit",
-                          fontSize: "calc(1.2 * 1rem)",
-                        }
-                    }>Create Shop</Button>
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Blocked Shops</Button>
 
-                </NavLink>
-              </Nav.Link>
-              <Nav.Link>
-                <NavLink
-                  to="categories"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button
+              </NavLink>
+            </Nav.Link>
 
-                    sx={({ isActive }) =>
+            <Nav.Link>
+              <NavLink
+                to="createShop"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
 
-                      isActive
-                        ? {
-                          color: "white",
+                  sx={({ isActive }) =>
 
-
-                        }
-                        : {
-                          textDecoration: "none",
-                          fontFamily: "Lato",
-                          lineHeight: "0.8em",
-                          color: "inherit",
-                          fontSize: "calc(1.2 * 1rem)",
-                        }
-                    }>Categories</Button>
-
-                </NavLink>
-              </Nav.Link>
-              <Nav.Link>
-                <NavLink
-                  to="verifiedShopsList/UnVerifiedProducts"
-                  style={{ textDecoration: "none" }}
-                >
-                  <Button
-
-                    sx={({ isActive }) =>
-
-                      isActive
-                        ? {
-                          color: "white",
+                    isActive
+                      ? {
+                        borderBottom: "3px solid blue"
 
 
-                        }
-                        : {
-                          textDecoration: "none",
-                          fontFamily: "Lato",
-                          lineHeight: "0.8em",
-                          color: "inherit",
-                          fontSize: "calc(1.2 * 1rem)",
-                        }
-                    }>Un-Verified Products</Button>
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Create Shop</Button>
 
-                </NavLink>
-              </Nav.Link>
-              <Nav.Link>
-                <NavLink
-                  to="reports"
-                  style={{ textDecoration: "none" }}
+              </NavLink>
+            </Nav.Link>
+            <Nav.Link>
+              <NavLink
+                to="categories"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
 
-                >
-                  <Button
+                  sx={({ isActive }) =>
 
-                    sx={({ isActive }) =>
-
-                      isActive
-                        ? {
-                          color: "white",
+                    isActive
+                      ? {
+                        borderBottom: "3px solid blue"
 
 
-                        }
-                        : {
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Categories</Button>
 
-                          fontFamily: "Lato",
-                          lineHeight: "0.8em",
-                          color: "inherit",
-                          fontSize: "calc(1.2 * 1rem)",
-                        }
-                    }>Reports</Button>
+              </NavLink>
+            </Nav.Link>
+            <Nav.Link>
+              <NavLink
+                to="verifiedShopsList/UnVerifiedProducts"
+                style={{ textDecoration: "none" }}
+              >
+                <Button
 
-                </NavLink>
-              </Nav.Link>
-            </Nav>
-            <Button variant="contained" href="/" backgroundColor="black">
-              Logout
-            </Button>
-          </Navbar.Collapse>
-        </Container>
+                  sx={({ isActive }) =>
+
+                    isActive
+                      ? {
+                        borderBottom: "3px solid blue"
+
+
+                      }
+                      : {
+                        textDecoration: "none",
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Un-Verified Products</Button>
+
+              </NavLink>
+            </Nav.Link>
+            <Nav.Link>
+              <NavLink
+                to="reports"
+                style={{ textDecoration: "none" }}
+
+              >
+                <Button
+
+                  sx={({ isActive }) =>
+
+                    isActive
+                      ? {
+                        borderBottom: "3px solid blue"
+
+                      }
+                      : {
+
+                        fontFamily: "Lato",
+                        lineHeight: "0.8em",
+                        color: "inherit",
+                        fontSize: "calc(1.2 * 1rem)",
+                      }
+                  }>Reports</Button>
+              </NavLink>
+            </Nav.Link>
+          </Nav>
+        </Box>
+        <Box>
+          <Button variant="outlined" href="/" >LogOut</Button>
+        </Box>
+
+
       </Navbar >
 
       <Routes>

@@ -3,15 +3,21 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
-import { IconButton } from "@mui/material";
-import MoreVertItems from "../MoreVertItems";
-import CloseIcon from '@mui/icons-material/Close';
-import Warning from "../Modal/Waring";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
-const ShopCard = (props) => {
+import CheckIcon from "@mui/icons-material/Check";
+import axios from "axios";
+const NewRequestCard = (props) => {
     const { imgUrl, Shop_Name, Karta_Name, Mobile } = props;
-
+    const verified = () => {
+        axios
+            .put(`http://43.205.116.96:3000/Shop/ChangeVerifiedStatus/${props.id}`)
+            .then((response) => {
+                return response.json();
+            });
+        alert(`Product Verified`)
+        window.location.reload()
+    };
 
     return (
         <>
@@ -19,11 +25,11 @@ const ShopCard = (props) => {
             <Card
                 sx={{
                     display: "grid",
-                    width: "300px",
-                    height: "38vh",
+                    width: "350px",
+                    height: "55vh",
                     m: 1,
                     p: 0,
-                    boxShadow: "14px 22px 52px -12px rgba(127, 127, 127, 0.13)",
+                    boxShadow: "14px 22px 52px 12px rgba(127, 127, 127, 0.13)",
                     borderRadius: "10px",
 
                 }}
@@ -31,8 +37,8 @@ const ShopCard = (props) => {
 
                 <CardContent>
                     <Link to={`${props.id}`} style={{ textDecoration: "none" }} >
-                        <Box align="center" paddingY="20px" overflow="hidden" height="3vh">
-                            <img width="100vh" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" />
+                        <Box align="center" paddingY="20px" overflow="hidden" >
+                            <img width="200vh" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" />
                         </Box></Link>
                     <Box align="center" >
                         <Typography
@@ -63,7 +69,18 @@ const ShopCard = (props) => {
                         >
                             {Mobile}
                         </Typography>
+                        <Box mt="3vh">
+                            <Button
+                                variant="contained"
+                                color="success"
+                                startIcon={<CheckIcon />}
+                                mt="10px"
+                                onClick={() => verified()}
+                            >
+                                Verify
+                            </Button></Box>
                     </Box>
+
                 </CardContent >
 
             </Card >
@@ -72,4 +89,4 @@ const ShopCard = (props) => {
         </>
     );
 };
-export default ShopCard;
+export default NewRequestCard;

@@ -54,33 +54,47 @@ export default function Product() {
     });
   };
 
-  const handleUpload = async (e) => {
+  const handleUploadImage = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", img.raw);
+    formData.append("imageUrls", img.raw);
     await axios
       .post("http://43.205.116.96:3000/uploadImage", formData)
       .then((response) => {
         return JSON.stringify(response.data.name);
       })
       .then((img) => {
-        setUser({
-          name: user.name,
-          kartaName: user.kartaName,
-          email: user.email,
-          aadharNo: user.aadharNo,
-          panNo: user.panNo,
-          gstNo: user.gstNo,
-          mobile: user.mobile,
-          password: user.password,
-          address: user.address,
-          state: user.state,
-          city: user.city,
-          pincode: user.pincode,
-          shopImg: img.replaceAll('"', "")
+        setState({
+          name: state.name,
+          price: state.price,
+          desc: state.desc,
+          shopId: state.shopId,
+          discount: state.discount,
+          imgUrl: state.imgUrl,
+          videoURL: state.videoURL,
         });
       });
-
+  };
+  const handleUploadVideo = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("videoUrl", video.raw);
+    await axios
+      .post("http://43.205.116.96:3000/uploadImage", formData)
+      .then((response) => {
+        return JSON.stringify(response.data.name);
+      })
+      .then((img) => {
+        setState({
+          name: state.name,
+          price: state.price,
+          desc: state.desc,
+          shopId: state.shopId,
+          discount: state.discount,
+          imgUrl: state.imgUrl,
+          videoURL: state.videoURL,
+        });
+      });
   };
 
   const handleSubmit = (e) => {
@@ -180,22 +194,12 @@ export default function Product() {
                   <Grid item lg="12">
                     <TextField
                       fullWidth
-                      name="Shop"
-                      label="shopName"
-                      value={shopName.name}
-                      defaultValue="0"
-                      onChange={handleChange}
-                    /></Grid>
-                  <Grid item lg="12">
-                    <TextField
-                      fullWidth
                       name="price"
                       label="Price"
                       value={state.price}
                       defaultValue="0"
                       onChange={handleChange}
                     /></Grid>
-
                   <Grid item lg="12">
                     <TextField
                       fullWidth
@@ -211,7 +215,7 @@ export default function Product() {
                     <img width="200vh" src={img.preview}></img>
                     <Box >
                       <input type="file" accept="image/*" onChange={onImageChange} />
-                      <Button variant="contained">Upload Image</Button>
+                      <Button variant="contained" onClick={handleUploadImage}>Upload Image</Button>
                     </Box>
                     <TextField fullWidth
                       name="imgUrl"
@@ -225,7 +229,7 @@ export default function Product() {
                     <Typography fontWeight="600">Video</Typography>
                     <Box >
                       <input type="file" accept="video/*" onChange={onVideoChange} />
-                      <Button variant="contained">Upload Video</Button>
+                      <Button variant="contained" onClick={handleUploadVideo}>Upload Video</Button>
                     </Box>
                     <TextField fullWidth
                       name="videoUrl"

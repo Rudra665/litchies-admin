@@ -18,10 +18,7 @@ const AddCategory = props => {
         const selectedFIle = "";
         const targetFile = e.target.files;
         selectedFIle = targetFile
-
-
-        setImg(selectedFIle);
-        console.log(img);
+        setImg(selectedFIle); 
     };
     const handleChange = (e) => {
         const value = e.target.value;

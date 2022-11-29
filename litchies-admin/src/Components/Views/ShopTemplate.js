@@ -69,7 +69,7 @@ export default function ShopTemplate() {
             marginY: 5,
 
           }}>
-            <Box overflow="hidden" border="5px solid Black" height="fit-content" borderRadius="50%">
+            <Box overflow="hidden" border="5px solid Black" height="fitContent" borderRadius="50%">
               <img width="200vh" src={url} alt="ShopImage" />
             </Box>
             <Box maxWidth="50vh">

@@ -39,7 +39,7 @@ export default function VerifiedShopTemplate(props) {
 
     }, []);
     // const img = http://43.205.116.96:3000/images/${user.shopImg};
-    console.log(shopId);
+
     return (
         <>
 

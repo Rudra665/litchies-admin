@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Box from "@mui/material/Box";
-import { TextField, Button } from "@mui/material";
+import { TextField, Button, Typography, Autocomplete, Stack } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { Navigate } from "react-router-dom";
+// var webpack = require('webpack');
 export default function CreateShop() {
   const [img, setImg] = useState({ preview: "", raw: "" });
+  const [category, setCategory] = useState([]);
+  const [categoryId, setCategoryId] = useState({});
+
+  const fetchCategories = () => {
+    fetch("http://43.205.116.96:3000/productCategory/getAll")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setCategory(data);
+      });
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
   const onImageChange = (e) => {
     if (e.target.files.length) {
@@ -30,6 +47,7 @@ export default function CreateShop() {
     city: "",
     pincode: "",
     shopImg: "",
+    category: [],
     isVerified: true,
   });
 
@@ -39,7 +57,11 @@ export default function CreateShop() {
       ...state,
       [e.target.name]: value,
     });
+
   };
+  useEffect((e) => {
+    console.log('Updated State', categoryId)
+  }, [categoryId])
   const handleUpload = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -68,6 +90,7 @@ export default function CreateShop() {
           state: state.state,
           city: state.city,
           pincode: state.pincode,
+          category: categoryId,
           shopImg: img.replaceAll('"', "")
         });
       });
@@ -89,6 +112,7 @@ export default function CreateShop() {
       state: state.state,
       city: state.city,
       pincode: state.pincode,
+      category: category._id,
       isVerified: state.isVerified,
     };
 
@@ -98,8 +122,22 @@ export default function CreateShop() {
         if (response.status === 200)
           alert("Shop Successfully Created")
       });
-    <Navigate to="home" />
-
+    setState({
+      name: "",
+      kartaName: "",
+      email: "",
+      aadharNo: "",
+      panNo: "",
+      gstNo: "",
+      mobile: "",
+      password: "",
+      address: "",
+      state: "",
+      city: "",
+      pincode: "",
+      category: [],
+    });
+    setImg({ preview: "", raw: "" })
   };
 
   return (
@@ -198,6 +236,7 @@ export default function CreateShop() {
               onChange={handleChange}
               type="text"
             />
+
             <TextField
               name="pincode"
               label="Pin Code"
@@ -205,9 +244,27 @@ export default function CreateShop() {
               onChange={handleChange}
               type="text"
             />
-            <TextField label="Shop Image" value={state.shopImg}>
-              {" "}
-            </TextField>
+            <Stack>
+              <Autocomplete
+                multiple
+                id="tags-outlined"
+                options={category}
+                getOptionLabel={(option) => option.name}
+                onChange={(event, value) => {
+                  setCategoryId(value)
+
+                }}
+                filterSelectedOptions
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Category"
+                    placeholder="Select More"
+                  />
+                )}
+              />
+            </Stack>
+            <TextField label="Shop Image" value={state.shopImg} />
           </div>
           <div display="flex" align="center" style={{ marginTop: 24 }}>
 
