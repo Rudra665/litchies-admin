@@ -252,7 +252,6 @@ export default function CreateShop() {
                 getOptionLabel={(option) => option.name}
                 onChange={(event, value) => {
                   setCategoryId(value)
-
                 }}
                 filterSelectedOptions
                 renderInput={(params) => (

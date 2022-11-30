@@ -1,18 +1,19 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { TextField, Button, MenuItem, Typography } from "@mui/material";
+import { TextField, Button, MenuItem, Typography, Autocomplete } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { Stack } from "@mui/system";
 
 export default function AddHighlight() {
   const { shopId } = useParams();
   const [products, setProduct] = useState([]);
   const [img, setImg] = useState({ preview: "", raw: "" });
-
+  const [proId, setProId] = useState([])
   const onImageChange = (e) => {
     if (e.target.files.length) {
       setImg({
@@ -38,7 +39,7 @@ export default function AddHighlight() {
   const [state, setState] = useState({
     title: "",
     desc: "",
-    proId: "",
+    proId: {},
     discount: "",
     shopId: shopId,
     shopBanner: "",
@@ -56,8 +57,8 @@ export default function AddHighlight() {
         setState({
           title: state.title,
           desc: state.desc,
-          proId: state.proId,
-          discount: state.discount,
+          proId: state.products.proId,
+          discount: state.products.discount,
           shopId: state.shopId,
           shopBanner: img.replaceAll('"', "")
         });
@@ -77,7 +78,7 @@ export default function AddHighlight() {
       desc: state.desc,
       proId: state.proId,
       discount: state.discount,
-      shopId: state.shopId,
+      shopId: proId,
       shopBanner: state.shopBanner,
     };
 
@@ -116,19 +117,22 @@ export default function AddHighlight() {
                 onChange={handleChange}
               />
 
-              <TextField
-                fullWidth
-                select
-                name="proId"
-                value={state.proId}
-                label="Product"
-                onChange={handleChange}
-
-              >
-                {products.map((product) => (
-                  <MenuItem value={product._id}>{product.name}</MenuItem>
-                ))}
-              </TextField>
+              <Stack>
+                <Autocomplete
+                  multiple
+                  id="tags-outlined"
+                  options={products}
+                  getOptionLabel={(option) => option.name}
+                  filterSelectedOptions
+                  onChange={(event, value) => setProId(value)}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="filterSelectedOptions"
+                      placeholder="Favorites"
+                    />
+                  )}
+                /></Stack>
               <TextField
                 fullWidth
                 name="discount"
@@ -156,7 +160,7 @@ export default function AddHighlight() {
                 <Button
                   size="large"
                   variant="contained"
-                  
+
                   style={{ marginTop: "5vh" }}
                   startIcon={<AddIcon />}
                   onClick={handleSubmit}

@@ -36,9 +36,10 @@ const NewRequestCard = (props) => {
             >
 
                 <CardContent>
+                    <Box></Box>
                     <Link to={`${props.id}`} style={{ textDecoration: "none" }} >
                         <Box align="center" paddingY="20px" overflow="hidden" >
-                            <img width="200vh" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" />
+                            <img width="200vh" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" borderRadius="10px" />
                         </Box></Link>
                     <Box align="center" >
                         <Typography

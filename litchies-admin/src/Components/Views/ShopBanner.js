@@ -21,15 +21,16 @@ export default function ShopBanner() {
   };
 
   const [state, setState] = useState({
-    shopId: shopId,
+    shopId: [shopId],
     shopBanner: "",
   });
 
   const handleUpload = async (e) => {
-    console.log(state.shopBanner);
+    // console.log(state.shopId);
+
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", img.raw);
+    formData.append("shopBanner", img.preview);
     await axios
       .post("http://43.205.116.96:3000/uploadImage", formData)
       .then((response) => {
@@ -37,12 +38,12 @@ export default function ShopBanner() {
       })
       .then((img) => {
         setState({
-          shopId: state.shopId,
+
           shopBanner: img.replaceAll('"', "")
         });
       });
     const proData = {
-      shopId: state.shopId,
+      shopId: state.shopId[0],
       shopBanner: state.shopBanner,
     };
     await axios
@@ -50,7 +51,7 @@ export default function ShopBanner() {
       .then((response) => {
         console.log(response.data);
       });
-
+    console.log(state.shopBanner);
   };
 
   return (

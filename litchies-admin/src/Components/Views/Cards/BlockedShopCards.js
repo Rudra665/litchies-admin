@@ -53,7 +53,7 @@ const BlockedShopCard = (props) => {
                                 lineHeight: "26px",
                             }}
                         >
-                            {Shop_Name}
+                            <b>Shop Name: </b> {Shop_Name}
                         </Typography>
                         <Typography
                             color="text.secondary"
@@ -62,7 +62,7 @@ const BlockedShopCard = (props) => {
                             fontSize="12px"
                             sx={{ mt: 1 }}
                         >
-                            {Karta_Name}
+                            <b>Owner Name: </b> {Karta_Name}
                         </Typography>
                         <Typography
                             color="text.secondary"
@@ -71,7 +71,7 @@ const BlockedShopCard = (props) => {
                             fontSize="12px"
                             sx={{ mt: 1 }}
                         >
-                            {Mobile}
+                            <b>Mobile: </b> {Mobile}
                         </Typography>
                     </Box>
                 </CardContent >

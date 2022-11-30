@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import { NavLink } from "react-router-dom";
 import Logo from "../Images/logo/Logo.png"
 import * as React from "react"
@@ -24,13 +24,14 @@ import Categories from "../Views/Category/Categories.js";
 import AddHighlight from "../Views/AddHighlight";
 import ShopBanner from "../Views/ShopBanner";
 import Reports from "../Views/Reports";
+import { Typography } from "@mui/material";
 
 function Header() {
   return (
     <>
       <Navbar style={{ background: "#D4F1F4", width: "100%", display: "flex", justifyContent: "space-between" }}>
 
-        <Box marginX="10px"><img width="100vh" src={Logo} /></Box>
+        <Box marginX="10px"><img width="110vh" src={Logo} /></Box>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
@@ -220,7 +221,7 @@ function Header() {
           </Nav>
         </Box>
         <Box>
-          <Button variant="outlined" href="/" >LogOut</Button>
+          <Button variant="contained" href="/" ><Typography color="white">LogOut</Typography></Button>
         </Box>
 
 

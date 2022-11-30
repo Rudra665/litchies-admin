@@ -5,9 +5,11 @@ import Container from "@mui/material/Container";
 import { Link, useParams } from "react-router-dom";
 import ProductList from "./ProductList";
 import { Button } from "@mui/material";
+import Banner from "./Banner";
+import UnVerifiedProduct from "./UnVerifiedProduct";
 
 export default function VerifiedShopTemplate(props) {
-
+    const [hide, setHide] = useState(true)
     const [user, setUser] = useState({
         name: "",
         kartaName: "",
@@ -19,6 +21,9 @@ export default function VerifiedShopTemplate(props) {
         state: "",
         city: "",
         pincode: "",
+        location: {
+            coordinates: [], type: "point"
+        },
         shopImg: "",
     });
 
@@ -42,17 +47,17 @@ export default function VerifiedShopTemplate(props) {
 
     return (
         <>
-
-
             <Box sx={{ backgroundColor: "#ffcc80", height: "fit-content", paddingY: "3vh", align: "center" }}>
                 <Typography align="center" variant="h2" py="2vh">{user.name}</Typography>
                 <Container>
                     <Box display="flex" justifyContent="space-between" my="2vh">
-                        <Box sx={{ borderRadius: "50%", border: "5px solid White", height: "30vh", width: "30vh", overflow: "hidden", backgroundImage: `url("http://43.205.116.96:3000/images/${user.shopImg}")`, backgroundSize: "cover" }}>
-                        </Box>
+                        <Box display="grid">
+                            <Box sx={{ borderRadius: "50%", border: "5px solid White", height: "30vh", width: "30vh", overflow: "hidden", backgroundImage: `url("http://43.205.116.96:3000/images/${user.shopImg}")`, backgroundSize: "cover" }}>
+                            </Box>
+                            <Box align="center" ><Button onClick={() => setHide(!hide)} variant="contained">Un-Verified Products</Button></Box></Box>
                         <Box my="2vh">
                             <Typography variant="h3" fontWeight="550">Details</Typography>
-                            <Box align="left">
+                            <Box align="left" maxWidth="500px">
                                 <Typography variant="h5" my="1vh">Name: <Typography variant="p" color="Blue">{user.name}</Typography></Typography>
                                 <Typography variant="h5" my="1vh">Karta Name: <Typography variant="p" color="Blue"> {user.kartaName}</Typography></Typography>
                                 <Typography variant="h5" my="1vh">E-mail: <Typography variant="p" color="Blue"> {user.email}</Typography></Typography>
@@ -64,7 +69,8 @@ export default function VerifiedShopTemplate(props) {
                                 <Typography variant="h5" my="1vh">City: <Typography variant="p" color="Blue">{user.city}</Typography></Typography>
                                 <Typography variant="h5" my="1vh">State: <Typography variant="p" color="Blue">{user.state}</Typography></Typography>
                                 <Typography variant="h5" my="1vh">Pincode: <Typography variant="p" color="Blue">{user.pincode}</Typography> </Typography>
-                                <Link to={`/admin/verifiedShopsList/${shopId}`}><Button variant="contained" >Edit Details</Button></Link>
+                                <Typography variant="h5" my="1vh">Location: <Typography variant="p" color="Blue">{user.location.coordinates}</Typography> </Typography>
+                                <Link to={`/admin/verifiedShopsList/${shopId}`}><Button variant="contained"  >Edit Details</Button></Link>
                             </Box>
 
                         </Box>
@@ -73,10 +79,16 @@ export default function VerifiedShopTemplate(props) {
 
 
                 </Container>
-
+                <Box display={hide ? "none" : "visible"} sx={{ marginTop: "1vh" }} ease>
+                    <Typography variant="h3" align="center" fontWeight="600">Un-Verified Products</Typography>
+                    <UnVerifiedProduct />
+                </Box>
                 <Box my="12vh">
                     <Typography variant="h3" align="center" fontWeight="600">Products</Typography>
                     <ProductList /></Box>
+                <Box my="12vh">
+                    <Typography variant="h3" align="center" fontWeight="600">Banners</Typography>
+                    <Banner /></Box>
 
             </Box>
 

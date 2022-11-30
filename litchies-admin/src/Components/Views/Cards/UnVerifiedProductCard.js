@@ -14,15 +14,15 @@ import { Button } from "@mui/material";
 import axios from "axios";
 const UnVerifiedProductCard = (props) => {
     const { imgUrl, Product_Name, Product_Desc, Price } = props;
-   
-    
+
+
     return (
         <>
             <Card
                 sx={{
 
                     width: "350px",
-                    height: "56vh",
+                    height: "60vh",
                     m: 1,
                     p: 0,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
@@ -45,7 +45,7 @@ const UnVerifiedProductCard = (props) => {
                             lineHeight: "26px",
                         }}
                     >
-                        {Product_Name}
+                        <b>Product Name: </b>  {Product_Name}
                     </Typography>
                     <Box height="5vh" overflow="hidden">
                         <Typography
@@ -54,7 +54,7 @@ const UnVerifiedProductCard = (props) => {
                             fontSize="12px"
                             sx={{ mt: 1 }}
                         >
-                            {Product_Desc}
+                            <b>Description: </b> {Product_Desc}
                         </Typography>
                     </Box>
                     <Typography
@@ -64,10 +64,10 @@ const UnVerifiedProductCard = (props) => {
                         fontSize="12px"
 
                     >
-                        {Price}
+                        <b>Price: </b> {Price}
                     </Typography>
-                    
-                    <Box display="flex" justifyContent="center"><SwitchToggle /></Box>
+
+                    <Box display="flex" justifyContent="center" mt="2vh"><SwitchToggle /></Box>
 
                 </Box>
 

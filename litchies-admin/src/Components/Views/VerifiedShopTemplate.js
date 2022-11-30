@@ -30,6 +30,7 @@ export default function VerifiedShopTemplate() {
     city: "",
     pincode: "",
     shopImg: "",
+    location: { coordinates: [], type: "point" },
   });
   const handleSubmit = (e) => {
 
@@ -48,6 +49,7 @@ export default function VerifiedShopTemplate() {
       state: user.state,
       city: user.city,
       pincode: user.pincode,
+      location: user.location,
       shopImg: user.shopImg,
     };
 
@@ -84,6 +86,7 @@ export default function VerifiedShopTemplate() {
           state: user.state,
           city: user.city,
           pincode: user.pincode,
+          location: user.location,
           shopImg: img.replaceAll('"', "")
         });
       });
@@ -168,142 +171,120 @@ export default function VerifiedShopTemplate() {
                 </Box>
               </Grid>
               <Grid item lg="6" sm="12">
-                <Box maxWidth="md">
-                  <Box marginY="2vh">
-                    <Formik
+                <Box >
+                  <Box marginY="2vh" maxWidth="md">
 
-                      validate={values => {
-                        const errors = {};
-                        if (!values.name && !values.address && !values.state && !values.city && !values.pincode && !values.kartaName && !values.email && !values.mobile && !values.gstNo && !values.aadharNo) {
-                          errors.email = 'Required';
-                          errors.name = 'Required';
-                          errors.address = 'Required';
-                          errors.state = 'Required';
-                          errors.city = 'Required';
-                          errors.pincode = 'Required';
-                          errors.kartaName = 'Required';
-                          errors.mobile = 'Required';
-                          errors.gstNo = 'Required';
-                          errors.aadharNo = 'Required';
-                        } else if (
-                          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                        ) {
-                          errors.email = 'Invalid email address';
-                        }
-                        return errors;
-                      }}
+                    <TextField name="name" defaultValue="0"
+                      label="Name"
+                      value={user.name}
 
-                    >
-                      {({
-                        errors,
-                        touched,
-                        handleBlur,
-                      }) => (
-                        <Form onSubmit={handleSubmit}>
-                          <TextField name="name" defaultValue="0"
-                            label="Name"
-                            value={user.name}
-                            onBlur={handleBlur}
-                            onChange={handleChange} />
-                          {errors.email && touched.email && errors.email}
-                          <TextField name="email" defaultValue="0"
-                            label="Email"
-                            type="email"
-                            onBlur={handleBlur}
-                            value={user.email}
-                            onChange={handleChange} />
-                          {errors.email && touched.email && errors.email}
-                          <TextField
-                            name="kartaName"
-                            onBlur={handleBlur}
-                            label="Karta Name"
-                            value={user.kartaName}
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
-                          <TextField
-                            name="aadharNo"
-                            label="Aadhar Number"
+                      onChange={handleChange} />
 
-                            // error={user.aadharNo == 12 ? false : true}
-                            value={user.aadharNo}
-                            onBlur={handleBlur}
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
-                          <TextField
-                            name="panNo"
-                            label="PAN Number"
-                            defaultValue="00"
-                            onBlur={handleBlur}
-                            value={user.panNo}
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
-                          <TextField
-                            name="gstNo"
-                            defaultValue="00"
-                            onBlur={handleBlur}
-                            label="GST Number"
-                            value={user.gstNo}
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
-                          <TextField
-                            name="mobile"
-                            defaultValue="00"
-                            label="Mobile Number"
-                            onBlur={handleBlur}
-                            value={user.mobile}
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
-                          <TextField
-                            name="address"
-                            label="Address"
-                            value={user.address}
-                            onBlur={handleBlur}
-                            defaultValue="No Address"
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
-                          <TextField
-                            name="state"
-                            label="State"
-                            onBlur={handleBlur}
-                            defaultValue="UP"
-                            value={user.state}
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
+                    <TextField name="email" defaultValue="0"
+                      label="Email"
+                      type="email"
 
-                          <TextField
-                            name="city"
-                            label="City"
-                            onBlur={handleBlur}
-                            defaultValue="Agra"
-                            value={user.city}
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
+                      value={user.email}
+                      onChange={handleChange} />
 
-                          <TextField
-                            name="pincode"
-                            label="Pin Code"
-                            onBlur={handleBlur}
-                            defaultValue="282005"
-                            value={user.pincode}
-                            onChange={handleChange}
-                          />
-                          {errors.email && touched.email && errors.email}
-                          <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
-                            <Button variant="contained" type="submit" startIcon={<UpdateIcon />}>
-                              Submit
-                            </Button>
-                          </Box>
-                        </Form>
-                      )}
-                    </Formik>
+                    <TextField
+                      name="kartaName"
+
+                      label="Karta Name"
+                      value={user.kartaName}
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="aadharNo"
+                      label="Aadhar Number"
+
+                      // error={user.aadharNo == 12 ? false : true}
+                      value={user.aadharNo}
+
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="panNo"
+                      label="PAN Number"
+                      defaultValue="00"
+
+                      value={user.panNo}
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="gstNo"
+                      defaultValue="00"
+
+                      label="GST Number"
+                      value={user.gstNo}
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="mobile"
+                      defaultValue="00"
+                      label="Mobile Number"
+
+                      value={user.mobile}
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="address"
+                      label="Address"
+                      value={user.address}
+
+                      defaultValue="No Address"
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="state"
+                      label="State"
+
+                      defaultValue="UP"
+                      value={user.state}
+                      onChange={handleChange}
+                    />
+
+
+                    <TextField
+                      name="city"
+                      label="City"
+
+                      defaultValue="Agra"
+                      value={user.city}
+                      onChange={handleChange}
+                    />
+
+
+                    <TextField
+                      name="pincode"
+                      label="Pin Code"
+
+                      defaultValue="282005"
+                      value={user.pincode}
+                      onChange={handleChange}
+                    />
+
+                    <TextField
+                      name="location"
+                      label="Location"
+
+                      defaultValue="0"
+                      value={user.location.coordinates}
+                      onChange={handleChange}
+                    />
+
+                    <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
+                      <Button variant="contained" onClick={handleSubmit} startIcon={<UpdateIcon />}>
+                        Submit
+                      </Button>
+                    </Box>
+
                   </Box>
                 </Box>
 

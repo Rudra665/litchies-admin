@@ -53,7 +53,7 @@ const ShopCard = (props) => {
                             lineHeight: "26px",
                         }}
                     >
-                        {Shop_Name}
+                        <b>Shop Name: </b> {Shop_Name}
                     </Typography>
                     <Typography
                         color="text.secondary"
@@ -62,7 +62,7 @@ const ShopCard = (props) => {
                         fontSize="12px"
                         sx={{ mt: 1 }}
                     >
-                        {Karta_Name}
+                        <b>Owner Name: </b>{Karta_Name}
                     </Typography>
                     <Typography
                         color="text.secondary"
@@ -71,16 +71,17 @@ const ShopCard = (props) => {
                         fontSize="12px"
                         sx={{ mt: 1 }}
                     >
-                        {Mobile}
+                        <b>Mobile: </b> {Mobile}
                     </Typography>
+                    <Box align="right" display="flex" justifyContent="space-between">
+                        <MoreVertItems id={props.id} />
+                    </Box>
                 </Box>
 
 
 
 
-                <Box align="right" display="flex" justifyContent="space-between">
-                    <MoreVertItems id={props.id} />
-                </Box>
+
             </Card >
 
             <Warning open={open} onClose={handleClose} id={props.id} />

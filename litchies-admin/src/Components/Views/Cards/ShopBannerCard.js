@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import Carousel from "../carousel/Caraousal";
-const ProductCard = (props) => {
+const ShopBanner = (props) => {
     const { imgUrl, Product_Name, Product_Desc, Price } = props;
 
 
@@ -62,4 +62,4 @@ const ProductCard = (props) => {
         </>
     );
 };
-export default ProductCard;
+export default ShopBanner;
