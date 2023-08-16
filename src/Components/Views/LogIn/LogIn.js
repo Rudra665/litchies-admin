@@ -21,6 +21,7 @@ const SignIn=()=>{
     event.preventDefault();
     if(state.email === "admin" && state.password==="admin")   
      { 
+        alert("Welcome Litchies Admin")
         navigate("/admin/*") 
         // alert("logged In")
     } 

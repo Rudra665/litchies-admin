@@ -42,7 +42,6 @@ export default function UnVerifiedProduct() {
             ) : (
                 <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84",}}>
                     <Box >
-            <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Un-Verified Products</Typography>
 
                         <Box display="flex" justifyContent="center">
                             <img src={empty} width='500px'></img>

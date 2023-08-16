@@ -26,6 +26,9 @@ export default function SignIn() {
      { 
         navigate("/admin/*") 
     } 
+    else{
+      alert("Wrong Credentials! Try Again")
+    }
     
   };
 

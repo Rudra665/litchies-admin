@@ -27,7 +27,7 @@ const BlockedShopCard = (props) => {
                 sx={{
                     display: "grid",
                     width: "350px",
-                    height: "495px",
+                    height: "535px",
                     m: 1,
                     p: 0,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127, 0.13)",

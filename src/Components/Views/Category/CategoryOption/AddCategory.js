@@ -46,6 +46,7 @@ const AddCategory = (props) => {
           };
 
     const handleSubmit = (e) => {
+        if(state.name && data){
         e.preventDefault();
         const proData = {
             name: state.name,
@@ -59,7 +60,10 @@ const AddCategory = (props) => {
                 alert("Category Added Successfuly")
                 window.location.reload()
             });
-            
+        }
+        else{
+            alert("Fill All Fields")
+        }
     };
 
     return (

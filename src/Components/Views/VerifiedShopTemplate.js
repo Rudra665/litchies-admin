@@ -33,12 +33,8 @@ export default function VerifiedShopTemplate() {
     location: { coordinates: [], type: "point" },
   });
   const handleSubmit = (e) => {
-
-
-    handleUpload();
-    alert("updated");
-    e.preventDefault();
-    const shopData = {
+    if(user.aadharNo && user.mobile && user.panNo && user.shopImg)
+    {const shopData = {
       name: user.name,
       kartaName: user.kartaName,
       aadharNo: user.aadharNo,
@@ -56,10 +52,16 @@ export default function VerifiedShopTemplate() {
     axios
       .put(`http://43.205.116.96:3000/Shop/UpdateShop/${id}`, shopData)
       .then((response) => {
-        console.log(response.shopData);
+        if(response.status==200){
+    alert("updated");
+    console.log(response.shopData);
+        }
+        
       });
-
-
+    }
+    else{
+      alert("Fill All The fields")
+    }
   };
 
   const handleUpload = async (e) => {
@@ -70,7 +72,10 @@ export default function VerifiedShopTemplate() {
     await axios
       .post("http://43.205.116.96:3000/uploadImage", formData)
       .then((response) => {
+        if(response.status===200){
+          alert("Image Uploaded")
         return JSON.stringify(response.data.name);
+      }
       })
       .then((img) => {
         setUser({
@@ -142,9 +147,9 @@ export default function VerifiedShopTemplate() {
                   backgroundColor: "black",
                   position: "relative",
                   border: "5px solid #fff",
-                  borderRadius: "50%",
-                  width: "200px",
-                  height: "200px",
+                  borderRadius: "10%",
+                  width: "170px",
+                  height: "170px",
                   margin: "100px auto",
                   overflow: "hidden"
                 }}>

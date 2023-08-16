@@ -146,7 +146,7 @@ export default function ShopTemplate() {
                 defaultValue="282005"
                 value={user.pincode}
               />
-              <Box sx={{ "& .MuiButton-root": { m: 1 } }}>
+              <Box sx={{ "& .MuiButton-root": { m: 1 }, justifyContent:"space-between" }}>
                 <Button
                   variant="contained"
                   color="success"

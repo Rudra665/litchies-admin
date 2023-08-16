@@ -27,7 +27,6 @@ export default function ShopBanner() {
 
   const handleUpload = async (e) => {
     // console.log(state.shopId);
-
     e.preventDefault();
     const formData = new FormData();
     formData.append("shopBanner", img.preview);
@@ -49,7 +48,12 @@ export default function ShopBanner() {
     await axios
       .post("http://43.205.116.96:3000/banner/create", proData)
       .then((response) => {
-        console.log(response.data);
+        if(response.status===200)
+        {
+          alert("Banner Uploaded");
+          console.log(response.data);
+        }
+        
       });
     console.log(state.shopBanner);
   };

@@ -98,8 +98,8 @@ export default function Product() {
   };
 
   const handleSubmit = (e) => {
-    alert("updated");
-    e.preventDefault();
+    if(state.imgUrl && state.discount && state.name && state.price && state.shopId)
+   { e.preventDefault();
     const ProductData = {
       name: state.name,
       price: state.price,
@@ -113,8 +113,13 @@ export default function Product() {
     axios
       .put(`http://43.205.116.96:3000/Product/UpdateProduct/${id}`, ProductData)
       .then((response) => {
-        console.log(response.data);
+        if(response.status===200){
+          alert("Product Updated")
+          console.log(response.data);
+        }
+        
       });
+    }
   };
 
   const { shopId, id } = useParams();
@@ -148,7 +153,11 @@ export default function Product() {
   }, []);
 
   const Delete = async () => {
-    axios.delete(`http://43.205.116.96:3000/Product/DeleteProduct/${id}`);
+    axios.delete(`http://43.205.116.96:3000/Product/DeleteProduct/${id}`)
+    .then((res)=>{
+      if(res.status===200)
+    alert("Product Deleted")
+  })
   };
 
   return (

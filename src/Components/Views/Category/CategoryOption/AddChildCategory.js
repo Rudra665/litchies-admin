@@ -22,8 +22,8 @@ const AddChildCategory = (props) => {
         });
     };
     const handleSubmit = (e) => {
-        alert("added");
-        e.preventDefault();
+        if(state.name&&state.categoryId&&state.subcategoryId)
+        {e.preventDefault();
         const subCat = {
             categoryId: state.categoryId,
             name: state.name,   
@@ -33,9 +33,15 @@ const AddChildCategory = (props) => {
         axios
             .post("http://43.205.116.96:3000/productChildCategory/create", subCat)
             .then((response) => {
+                if(response.status===200){
+                    alert("Child Category Added")
                 console.log(response.data);
-            });
+            }});
         setSubCat = [""]
+        }
+        else{
+            alert("Fill All The Fields")
+        }
     };
 
     const fetchSubCat = () => {

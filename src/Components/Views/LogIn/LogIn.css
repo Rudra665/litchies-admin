@@ -60,7 +60,10 @@
     .label {
         position: relative;
         bottom:50px;
-        
+        margin-left: 10px;
+        font-weight:500;
+        font-size: 19px;
+        color: #222831;
         -webkit-transition: all 0.5s ease;
         -moz-transition: all 0.5s ease;
         -ms-transition: all 0.5s ease;
@@ -71,15 +74,16 @@
 
     .input {
         width: 350px;
-        background-color: transparent;
+        background-color: white;
         border-radius: 10px;
-        border-bottom: 3px #ffffff;
         padding:12px 20px;
         margin-block: 20px;
         outline: none;
         &:focus ~ label,
         &:valid ~ label {
             margin-top: -45px;
+            color: #eeeeee;
+            
             -webkit-transition: all 0.5s ease;
             -moz-transition: all 0.5s ease;
             -ms-transition: all 0.5s ease;
@@ -87,6 +91,7 @@
             transition: all 0.5s ease;
         }
     }
+    
 }
 
 .btn {

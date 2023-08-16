@@ -125,7 +125,8 @@ export default function AddProduct() {
     });
   };
   const handleSubmit = (e) => {
-    e.preventDefault();
+    if(state.shopId&& state.imageURLs && state.discount && state.price && state.name && state.childCategoryId)
+    {e.preventDefault();
     const proData = {
       name: state.name,
       desc: state.desc,
@@ -140,9 +141,11 @@ export default function AddProduct() {
     axios
       .post("http://43.205.116.96:3000/product/createProduct", proData)
       .then((response) => {
+        if(response.status===200){
+        alert(`Product Added`)
         console.log(response.data);
-      });
-    alert(`Product Added`)
+      }});
+    
     setState({
       name: "",
       desc: "",
@@ -153,6 +156,8 @@ export default function AddProduct() {
       childCategoryId: "",
       imageURLs: [],
     })
+    setImg(img.replaceAll('"', ""))
+  }
   };
   return (
     <>
@@ -190,6 +195,7 @@ export default function AddProduct() {
                   fullWidth
                   name="price"
                   label="Price"
+                  type="number"
                   value={state.price}
                   onChange={handleChange}
                 />
@@ -197,6 +203,8 @@ export default function AddProduct() {
                   fullWidth
                   name="discount"
                   label="Discount"
+                  type="number"
+
                   value={state.discount}
                   onChange={handleChange}
                 />

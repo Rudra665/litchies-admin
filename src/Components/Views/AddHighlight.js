@@ -72,6 +72,7 @@ export default function AddHighlight() {
     });
   };
   const handleSubmit = (e) => {
+    if(state.title && state.discount && state.proId && state.shopBanner){
     e.preventDefault();
     const proData = {
       title: state.title,
@@ -87,6 +88,10 @@ export default function AddHighlight() {
       .then((response) => {
         console.log(response.data);
       });
+    }
+    else{
+      alert("Fill All Fields")
+    }
   };
   return (
     <>
