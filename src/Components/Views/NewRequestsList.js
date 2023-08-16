@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { Box, Typography } from "@mui/material";
 import NewRequestCard from "./Cards/NewRequestCard"
-import empty from "../Elements/Images/empty.gif"
+import empty from "../Elements/Images/empty1.gif"
 import { Container } from "@mui/system";
 export default function NewRequestList() {
   const [users, setUsers] = useState([]);
@@ -32,7 +32,8 @@ export default function NewRequestList() {
                         margin: "50px",
                         justifyContent: "center",
                         "& .MuiTableCell-root": { width: "1ch" },
-                        flexWrap: "wrap"
+                        flexWrap: "wrap",
+                        bgcolor:"#4b5b84"
         }}
         >
           <Container>
@@ -43,12 +44,13 @@ export default function NewRequestList() {
           </Container>
         </Box >) :
         (
-          <Box display="inlineFlex" alignItems="center" height="90vh" justifyContent="center">
+          <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84"}}>
             <Box >
+            <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>New Requests</Typography>
+
               <Box display="flex" justifyContent="center">
-                <img src={empty}></img>
+                <img src={empty} width='500px'></img>
               </Box>
-              <Typography variant="h3" color="grey">There's Nothing My Lord</Typography>
             </Box>
           </Box>)
       }

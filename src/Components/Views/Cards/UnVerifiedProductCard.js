@@ -20,6 +20,7 @@ const UnVerifiedProductCard = (props) => {
         <>
             <Card
                 sx={{
+                    backgroundColor:"#94acc3",
 
                     width: "350px",
                     height: "60vh",

@@ -21,7 +21,6 @@ import ShopBanner from "../../Views/ShopBanner";
 import Reports from "../../Views/Reports";
 import { Link } from "react-router-dom";
 import { Login } from "@mui/icons-material";
-import { bgcolor } from "@mui/system";
 const { useState, useEffect } = React
 
 const Sidebar = () => {
@@ -154,6 +153,7 @@ const Sidebar = () => {
             key={index}
           >
           <Link to={item.link} className={currentLink===item.link?'active-Link active':''}>
+          
             <box-icon
               class={`${middle && "boxicon"} 
                       ${!middle && "first-and-last-trash-fix"}

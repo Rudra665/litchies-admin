@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import { Link, useParams } from "react-router-dom";
-import { NavLink } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
-import empty from "../Elements/Images/empty.gif"
+import empty from "../Elements/Images/empty1.gif"
 import ShopBannerCard from "./Cards/ShopBannerCard";
 export default function BannerList() {
     const [banner, setBanner] = useState([]);
@@ -37,7 +29,8 @@ export default function BannerList() {
                         margin: "50px",
                         justifyContent: "center",
                         "& .MuiTableCell-root": { width: "1ch" },
-                        flexWrap: "wrap"
+                        flexWrap: "wrap",
+                        bgcolor:"#4b5b84"
                     }}
                 >
 
@@ -46,14 +39,13 @@ export default function BannerList() {
                     ))}
                 </Box>
             ) : (
-                <Box display="inlineFlex" alignItems="center" height="90vh" justifyContent="center">
+                <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84"}}>
                     <Box >
                         <Box display="flex" justifyContent="center">
-                            <img src={empty}></img>
+                            <img src={empty} width='500px'></img>
                         </Box>
-                        <Typography variant="h3" color="grey">There's Nothing My Lord</Typography>
                         <Box align="center">
-                            <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} sx={{ textDecoration: "none" }}><Button >Add Some</Button></Link>
+                            <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} sx={{ textDecoration: "none" }}><Button variant="contained" style={{color:"white"}}>Add Some</Button></Link>
                         </Box>
                     </Box>
                 </Box>)

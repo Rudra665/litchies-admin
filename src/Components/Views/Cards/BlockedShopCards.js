@@ -32,6 +32,7 @@ const BlockedShopCard = (props) => {
                     p: 0,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127, 0.13)",
                     borderRadius: "10px",
+                    backgroundColor:"#94acc3"
 
                 }}
             >

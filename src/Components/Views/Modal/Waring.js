@@ -3,7 +3,9 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import DeleteShop from "../Delete/DeleteShops";
-import { Typography } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
+import { IconButton, Typography } from '@mui/material';
+import { display } from '@mui/system';
 const style = {
     position: 'absolute',
     top: '50%',
@@ -33,10 +35,13 @@ export default function Warning(props) {
             aria-describedby="parent-modal-description"
         >
             <Box sx={{ ...style, width: 700 }}>
+            <Box style={{display:"flex", justifyContent:'end' }}>
+            <IconButton onClick={props.onClose}><ClearIcon /></IconButton>
+            </Box>
                 <Typography align="center" color="warning" variant='h2' id="parent-modal-title">Delete Shop?</Typography>
                 <Box align="center" marginY="3vh">
                     <Button onClick={props.onClose} variant="contained" sx={{ marginX: 2 }}>Cancel</Button>
-                    <DeleteShop id={props.id} variant="outlined" onClick={props.handleClose} />
+                    <DeleteShop id={props.id} variant="outlined" onClick={props.onClose} />
                 </Box>
             </Box>
         </Modal>

@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import axios from "axios";
 
 export default function Reports() {
@@ -47,12 +47,17 @@ export default function Reports() {
       {report.length > 0 && (
         <Box
           sx={{
-            margin: "50px",
+            padding:"30px",
+            width:"100%",
+            height:"100vh",
             "& .MuiTableCell-root": { width: "1ch" },
+            bgcolor:"#94acc3"
           }}
         >
-          <TableContainer component={Paper}>
-            <Table size="large">
+                    <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Reports</Typography>
+
+          <TableContainer component={Paper} sx={{bgcolor:"#4b5b84",ml:"5%", width:"90%" }}>
+            <Table size="large" >
               <TableHead>
                 <TableRow>
                   <TableCell style={{ fontWeight: "bold" }}>

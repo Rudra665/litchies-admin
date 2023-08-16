@@ -160,11 +160,11 @@ export default function AddProduct() {
 
         <Box
           sx={{
-            backgroundColor: "#fce2d4",
             padding: 5,
             height: "94vh",
             width: "100%",
             "& .MuiTextField-root": { m: 1, },
+            bgcolor:"#bbc3cc"
           }}
         >
           <Typography align="center" mb="3vh" variant="h3">Add Product</Typography>

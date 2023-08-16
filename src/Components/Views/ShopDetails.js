@@ -47,7 +47,7 @@ export default function VerifiedShopTemplate(props) {
 
     return (
         <>
-            <Box sx={{ backgroundColor: "#ffcc80", height: "fit-content", paddingY: "3vh", align: "center" }}>
+            <Box sx={{ bgcolor:"#4b5b84", height: "fit-content", paddingY: "3vh", align: "center" }}>
                 <Typography align="center" variant="h2" py="2vh">{user.name}</Typography>
                 <Container>
                     <Box display="flex" justifyContent="space-between" my="2vh">
@@ -58,18 +58,18 @@ export default function VerifiedShopTemplate(props) {
                         <Box my="2vh">
                             <Typography variant="h3" fontWeight="550">Details</Typography>
                             <Box align="left" maxWidth="500px">
-                                <Typography variant="h5" my="1vh">Name: <Typography variant="p" color="Blue">{user.name}</Typography></Typography>
-                                <Typography variant="h5" my="1vh">Karta Name: <Typography variant="p" color="Blue"> {user.kartaName}</Typography></Typography>
-                                <Typography variant="h5" my="1vh">E-mail: <Typography variant="p" color="Blue"> {user.email}</Typography></Typography>
-                                <Typography variant="h5" my="1vh">Aadhar No: <Typography variant="p" color="Blue">{user.aadharNo}</Typography></Typography>
-                                <Typography variant="h5" my="1vh">Address: <Typography variant="p" color="Blue">{user.address}</Typography> </Typography>
-                                <Typography variant="h5" my="1vh">Gst No: <Typography variant="p" color="Blue">{user.gstNo}</Typography> </Typography>
-                                <Typography variant="h5" my="1vh">Mobile <Typography variant="p" color="Blue">{user.mobile}</Typography></Typography>
-                                <Typography variant="h5" my="1vh">Pan No: <Typography variant="p" color="Blue">{user.panNo}</Typography></Typography>
-                                <Typography variant="h5" my="1vh">City: <Typography variant="p" color="Blue">{user.city}</Typography></Typography>
-                                <Typography variant="h5" my="1vh">State: <Typography variant="p" color="Blue">{user.state}</Typography></Typography>
-                                <Typography variant="h5" my="1vh">Pincode: <Typography variant="p" color="Blue">{user.pincode}</Typography> </Typography>
-                                <Typography variant="h5" my="1vh">Location: <Typography variant="p" color="Blue">{user.location.coordinates}</Typography> </Typography>
+                                <Typography variant="h5" my="1vh">Name: <Typography variant="p" color="white">{user.name}</Typography></Typography>
+                                <Typography variant="h5" my="1vh">Karta Name: <Typography variant="p" color="white"> {user.kartaName}</Typography></Typography>
+                                <Typography variant="h5" my="1vh">E-mail: <Typography variant="p" color="white"> {user.email}</Typography></Typography>
+                                <Typography variant="h5" my="1vh">Aadhar No: <Typography variant="p" color="white">{user.aadharNo}</Typography></Typography>
+                                <Typography variant="h5" my="1vh">Address: <Typography variant="p" color="white">{user.address}</Typography> </Typography>
+                                <Typography variant="h5" my="1vh">Gst No: <Typography variant="p" color="white">{user.gstNo}</Typography> </Typography>
+                                <Typography variant="h5" my="1vh">Mobile <Typography variant="p" color="white">{user.mobile}</Typography></Typography>
+                                <Typography variant="h5" my="1vh">Pan No: <Typography variant="p" color="white">{user.panNo}</Typography></Typography>
+                                <Typography variant="h5" my="1vh">City: <Typography variant="p" color="white">{user.city}</Typography></Typography>
+                                <Typography variant="h5" my="1vh">State: <Typography variant="p" color="white">{user.state}</Typography></Typography>
+                                <Typography variant="h5" my="1vh">Pincode: <Typography variant="p" color="white">{user.pincode}</Typography> </Typography>
+                                <Typography variant="h5" my="1vh">Location: <Typography variant="p" color="white">{user.location.coordinates}</Typography> </Typography>
                                 <Link to={`/admin/verifiedShopsList/${shopId}`}><Button variant="contained"  >Edit Details</Button></Link>
                             </Box>
 

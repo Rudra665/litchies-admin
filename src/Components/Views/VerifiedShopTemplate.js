@@ -123,11 +123,10 @@ export default function VerifiedShopTemplate() {
           padding="20px"
           align="center"
           sx={{
-            bgcolor: "#fce2d4",
+            bgcolor:"#4b5b84",
             display: "flex",
             justifyContent: "center",
             height: "fit-content",
-            borderRadius: "25px",
             width: "100%",
             "& .MuiTextField-root": { m: 1, width: "65ch" },
           }}
@@ -167,7 +166,7 @@ export default function VerifiedShopTemplate() {
                   >
                     Upload
                   </Button>
-                  <Button href={`showProducts/${user._id}`}>Show All products</Button>
+                  <Button href={`showProducts/${user._id}`} sx={{color:"white"}}>Show All products</Button>
                 </Box>
               </Grid>
               <Grid item lg="6" sm="12">

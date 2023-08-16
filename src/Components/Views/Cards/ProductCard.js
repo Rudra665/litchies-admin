@@ -18,6 +18,8 @@ const ProductCard = (props) => {
                     p: 0,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
                     borderRadius: "10px",
+                    backgroundColor:"#94acc3"
+
                 }}
             >
                 <Box align="center" paddingY="20px" height="200px" m="1vh" class="item" sx={{

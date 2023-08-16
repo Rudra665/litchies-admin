@@ -1,22 +1,56 @@
-import React, { useEffect } from "react";
+/* eslint-disable no-undef */
+import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import { TextField, Button, Autocomplete, Stack } from "@mui/material";
-import { useState } from "react";
-import axios from "axios";
+import * as yup from 'yup';
 import { useFormik } from "formik";
-// var webpack = require('webpack');
+import axios from "axios";
+
 export default function CreateShop() {
+
+  const validationSchema = yup.object().shape({
+    name: yup.string().required('Name is required'),
+    kartaName: yup.string().required('Karta Name is required'),
+    email: yup.string().email('Invalid email').required('Email is required'),
+    aadharNo: yup
+      .string()
+      .matches(/^[0-9]{12}$/, 'Aadhar number must be 12 digits')
+      .required('Aadhar Number is required'),
+    panNo: yup
+      .string()
+      .matches(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid PAN number')
+      .required('PAN Number is required'),
+    gstNo: yup
+      .string()
+      .matches(/^[0-9A-Z]{15}$/, 'Invalid GST number')
+      .required('GST Number is required'),
+    mobile: yup
+      .string()
+      .matches(/^[0-9]{10}$/, 'Mobile number must be 10 digits')
+      .required('Mobile Number is required'),
+    password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
+    address: yup.string().required('Address is required'),
+    state: yup.string().required('State is required'),
+    city: yup.string().required('City is required'),
+    pincode: yup
+      .string()
+      .matches(/^[0-9]{6}$/, 'Pincode must be 6 digits')
+      .required('Pincode is required'),
+    category: yup.array().min(1, 'Select at least one category').required('Category is required'),
+    shopImg: yup.string().required('Shop Image is required'),
+  });
+
   const [img, setImg] = useState({ preview: "", raw: "" });
   const [category, setCategory] = useState([]);
 
-  const fetchCategories = () => {
-    fetch("http://43.205.116.96:3000/productCategory/getAll")
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        setCategory(data);
-      });
+  const fetchCategories = async () => {
+    try {
+      const response = await fetch("http://43.205.116.96:3000/productCategory/getAll");
+      const data = await response.json();
+      setCategory(data);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
   };
 
   useEffect(() => {
@@ -32,7 +66,7 @@ export default function CreateShop() {
     }
   };
 
-const formik =useFormik({
+const formik = useFormik({
   initialValues:{
     name: "",
     kartaName: "",
@@ -49,6 +83,7 @@ const formik =useFormik({
     category: [],
     shopImg:""
   },
+  validationSchema:validationSchema,
   onSubmit: values => {
     alert(JSON.stringify( values.category.map((e)=>e._id), null, 2));
       const formData = new FormData();
@@ -91,13 +126,12 @@ const formik =useFormik({
               alert("Shop Successfully Created")
           });})
           .then(()=>{formik.resetForm()})
-    
-    
   },
 });
 
   return (
     <>
+  
       <form onSubmit={formik.handleSubmit}>
         <Box
           style={{ paddingBlock: "100px" }}
@@ -107,6 +141,7 @@ const formik =useFormik({
             height: "auto",
             width: "100%",
             "& .MuiTextField-root": { m: 1, width: "65ch" },
+            bgcolor:"#bbc3cc"
           }}
         >
           <h1 style={{ textAlign: "center" }}>Create your shop</h1>
@@ -123,85 +158,110 @@ const formik =useFormik({
               label="Shop Name"
               value={formik.values.name}
               onChange={formik.handleChange}
+              error={formik.touched.name && formik.errors.name && true}
             ></TextField>
+            {formik.touched.name && formik.errors.name && <div style={{color:"red"}}>{formik.errors.name}</div>}
             <TextField
               name="kartaName"
               type="text"
               label="Karta Name"
               value={formik.values.kartaName}
               onChange={formik.handleChange}
+              error={formik.touched.kartaName && formik.errors.kartaName && true}
             />
+            {formik.touched.kartaName && formik.errors.kartaName && <div style={{color:"red"}}>{formik.errors.kartaName}</div>}
             <TextField
               name="email"
               type="text"
               label="Email"
               value={formik.values.email}
               onChange={formik.handleChange}
+              error={formik.touched.email && formik.errors.email && true}
             />
+            {formik.touched.email && formik.errors.email && <div style={{color:"red"}}>{formik.errors.email}</div>}
             <TextField
               name="password"
               type="text"
               label="Password"
               value={formik.values.password}
               onChange={formik.handleChange}
-            ></TextField>
+              error={formik.touched.password && formik.errors.password && true}
+            />
+            {formik.touched.password && formik.errors.password && <div style={{color:"red"}}>{formik.errors.password}</div>}
             <TextField
               name="aadharNo"
               label="Aadhar Number"
-              type="text"
+              type="number"
               value={formik.values.aadharNo}
               onChange={formik.handleChange}
+              error={formik.touched.aadharNo && formik.errors.aadharNo && true}
             />
+            {formik.touched.aadharNo && formik.errors.aadharNo && <div style={{color:"red"}}>{formik.errors.aadharNo}</div>}
             <TextField
               name="panNo"
               label="PAN Number"
               value={formik.values.panNo}
               onChange={formik.handleChange}
-              type="text"
+              error={formik.touched.panNo && formik.errors.panNo && true}
             />
+            {formik.touched.panNo && formik.errors.panNo && <div style={{color:"red"}}>{formik.errors.panNo}</div>}
             <TextField
               name="gstNo"
               label="GST Number"
               value={formik.values.gstNo}
-              type="text"
+              type="number"
+
               onChange={formik.handleChange}
+              error={formik.touched.gstNo && formik.errors.gstNo && true}
             />
+            {formik.touched.gstNo && formik.errors.gstNo && <div style={{color:"red"}}>{formik.errors.gstNo}</div>}
             <TextField
               name="mobile"
               label="Mobile Number"
+              type="number"
+
               value={formik.values.mobile}
               onChange={formik.handleChange}
-              type="text"
+              error={formik.touched.mobile && formik.errors.mobile && true}
             />
+            {formik.touched.mobile && formik.errors.mobile && <div style={{color:"red"}}>{formik.errors.mobile}</div>}
             <TextField
               name="address"
               label="Address"
               value={formik.values.address}
               onChange={formik.handleChange}
               type="text"
+              error={formik.touched.address && formik.errors.address && true}
             />
+            {formik.touched.address && formik.errors.address && <div style={{color:"red"}}>{formik.errors.address}</div>}
             <TextField
               name="state"
               label="State"
               value={formik.values.state}
               onChange={formik.handleChange}
               type="text"
+              error={formik.touched.state && formik.errors.state && true}
             />
+            {formik.touched.state && formik.errors.state && <div style={{color:"red"}}>{formik.errors.state}</div>}
             <TextField
               name="city"
               label="City"
               value={formik.values.city}
               onChange={formik.handleChange}
               type="text"
+              error={formik.touched.city && formik.errors.city && true}
             />
-
+            {formik.touched.city && formik.errors.city && <div style={{color:"red"}}>{formik.errors.city}</div>}
             <TextField
               name="pincode"
               label="Pin Code"
               value={formik.values.pincode}
               onChange={formik.handleChange}
-              type="text"
+              type="number"
+
+              error={formik.touched.pincode && formik.errors.pincode && true}
             />
+            {formik.touched.pincode && formik.errors.pincode && <div style={{color:"red"}}>{formik.errors.pincode}</div>}
             <Stack>
               <Autocomplete
               name="category"
@@ -215,12 +275,23 @@ const formik =useFormik({
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                error={formik.touched.category && formik.errors.category && true}
                     label="Category"
                     placeholder="Select More"
                   />
                 )}
               />
             </Stack>
+            {formik.touched.category && formik.errors.category && <div style={{color:"red"}}>{formik.errors.category}</div>}
+          <TextField name="shopImg"
+              label="Image Name"
+              error={formik.touched.shopImg && formik.errors.shopImg && true}
+              value={formik.values.shopImg}
+              onChange={formik.handleChange}
+              type="text"
+              disabled/>
+            {formik.touched.shopImg && formik.errors.shopImg && <div style={{color:"red"}}>{formik.errors.shopImg}</div>}
+              
           </div>
           <div display="flex" align="center" style={{ marginTop: 24 }}>
 

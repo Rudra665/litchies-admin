@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Box, Button, Typography } from "@mui/material";
-import empty from "../Elements/Images/empty.gif"
+import empty from "../Elements/Images/empty1.gif"
 import UnVerifiedProductCard from "./Cards/UnVerifiedProductCard";
 export default function UnVerifiedProduct() {
     const [products, setProducts] = useState([]);
@@ -40,14 +40,14 @@ export default function UnVerifiedProduct() {
                     ))}
                 </Box>
             ) : (
-                <Box display="inlineFlex" alignItems="center" height="90vh" justifyContent="center">
+                <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84"}}>
                     <Box >
+            <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Un Verified Shops Product</Typography>
                         <Box display="flex" justifyContent="center">
-                            <img src={empty}></img>
+                            <img src={empty} width='500px'></img>
                         </Box>
-                        <Typography variant="h3" color="grey">There's Nothing My Lord</Typography>
                         <Box align="center">
-                            <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} sx={{ textDecoration: "none" }}><Button >Add Some</Button></Link>
+                            <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} sx={{  }}><Button variant="contained">Add Some</Button></Link>
                         </Box>
                     </Box>
                 </Box>)

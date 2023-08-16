@@ -97,6 +97,7 @@ export default function AddHighlight() {
               height: "220px",
               marginTop: "20px",
               "& .MuiTextField-root": { m: 1 },
+              bgcolor:"#bbc3cc"
             }}
           >
             <Typography variant="h2" align="center">Add Highlight</Typography>

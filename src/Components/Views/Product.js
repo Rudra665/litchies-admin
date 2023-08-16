@@ -157,7 +157,7 @@ export default function Product() {
         <Container class="proContainer">
           <Box
             sx={{
-              bgcolor: "#fce2d4",
+              bgcolor:"#4b5b84",
               height: "fit-content",
               width: 1,
               borderRadius: "12px",

@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Box } from "@mui/material";
 import ShopCard from '../Cards/ShopCard';
+import { bgcolor } from '@mui/system';
 export default function Home() {
   const [verify, setVerify] = React.useState([]);
 
@@ -23,12 +24,14 @@ export default function Home() {
     <>
       <Box
         sx={{
-          width: "90vw",
+          width: "100%",
+          height:"auto",
           display: "flex",
           justifyContent: "center",
-          margin: "50px",
-          "& .MuiTableCell-root": { width: "1ch" },
-          flexWrap: "wrap"
+          paddingLeft: "30px",
+          "& .MuiTableCell-root": { width: "2ch" },
+          flexWrap: "wrap",
+          bgcolor:"#4b5b84"
         }}
       > {verify.map((verified) => (<ShopCard Shop_Name={verified.name} Karta_Name={verified.kartaName} Mobile={verified.mobile} imgUrl={verified.shopImg} id={verified._id} />))
         }

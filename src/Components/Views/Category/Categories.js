@@ -41,12 +41,12 @@ function Categories() {
             {category.length > 0 && (
                 <Box
                     sx={{
-
-                        marginTop: "50px",
+                        
                         "& .MuiTableCell-root": { width: "100%" },
+                        
                     }}
                 >
-                    <h1 className="head">Categories</h1>
+                    <h1 className="head" style={{color:"#1e2328"}}>Categories</h1>
                     <CategoryOptions />
                     <TableContainer component={Paper}>
                         <Container>
