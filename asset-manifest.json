@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/litchies-admin/static/css/main.ad07bcbf.css",
-    "main.js": "/litchies-admin/static/js/main.90f1a1ad.js",
+    "main.js": "/litchies-admin/static/js/main.2671ea83.js",
     "static/media/empty1.gif": "/litchies-admin/static/media/empty1.5e30f72ac6a34a494394.gif",
     "static/media/Profile.png": "/litchies-admin/static/media/Profile.c8950e9864bba405ea41.png",
     "static/media/Login.png": "/litchies-admin/static/media/Login.4c917487a22df3ec758a.png",
     "index.html": "/litchies-admin/index.html",
     "main.ad07bcbf.css.map": "/litchies-admin/static/css/main.ad07bcbf.css.map",
-    "main.90f1a1ad.js.map": "/litchies-admin/static/js/main.90f1a1ad.js.map"
+    "main.2671ea83.js.map": "/litchies-admin/static/js/main.2671ea83.js.map"
   },
   "entrypoints": [
     "static/css/main.ad07bcbf.css",
-    "static/js/main.90f1a1ad.js"
+    "static/js/main.2671ea83.js"
   ]
 }
