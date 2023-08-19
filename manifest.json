@@ -1,7 +1,7 @@
 {
   "short_name": "Litchies",
   "name": "Litchies Admin",
-  "start_url": ".",
+  "start_url": "https://Rudra665.github.io/litchies-admin/login",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"
