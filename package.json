@@ -1,7 +1,7 @@
 {
   "name": "litchies-admin",
   "version": "0.1.2",
-  "homepage": "https://Rudra665.github.io/litchies-admin/",
+  "homepage": "https://rudra665.github.io/litchies-admin/",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.1",
