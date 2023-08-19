@@ -5,12 +5,12 @@ import RoutesFunc from './routes';
 function App() {
   return (
     
-      <BrowserRouter>
+      
         <Routes>
           <Route exact path="/" element={<SignIn />}></Route>
           <Route exact path="admin/*" element={<RoutesFunc />}></Route>
         </Routes>
-      </BrowserRouter>
+      
    
   );
 }
