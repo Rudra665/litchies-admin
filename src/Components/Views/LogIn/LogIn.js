@@ -29,7 +29,10 @@ const SignIn=()=>{
 	return(
         <div className='background'>
 		<div className="wrapper">
-            <h2>LOGIN</h2>
+            <div className='SideImage'></div>
+            <div className='LoginForm'>
+            <div className='Profile' ></div>
+            <h2 className='h3'>LOGIN</h2>
             <div className="group">
                 <input
                     type="text"
@@ -41,9 +44,8 @@ const SignIn=()=>{
                     onChange={handleChange}
                     required
                 />
-                <label htmlFor="email" className="label">
-                    Email
-                </label>
+                <label className='label'>Email</label>
+                
             </div>
             <div className="group">
                 <input
@@ -56,15 +58,15 @@ const SignIn=()=>{
                     value={state.password}
                     required
                 />
+                <label className='label'>Password</label>
                     
-                <label htmlFor="password" className="label"  >
-                    Password
-                </label>
+               
             </div>
             <button type="submit" className="btn" onClick={handleSubmit}>
                 <span>LOGIN</span>
             </button>
             <span className="footer"></span>
+            </div>
         </div>
         </div>
 	)

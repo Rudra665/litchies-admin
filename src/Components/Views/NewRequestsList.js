@@ -29,14 +29,16 @@ export default function NewRequestList() {
           sx={{
             display: "flex",
                         width: "96vw",
-                        margin: "50px",
+                        height:"100vh",
+                        paddingY:"50px",
+                        marginX: "50px",
                         justifyContent: "center",
                         "& .MuiTableCell-root": { width: "1ch" },
                         flexWrap: "wrap",
                         bgcolor:"#4b5b84"
         }}
         >
-          <Container>
+          <Container sx={{display: "flex",}}>
 
             {users.map((verifieduser) => (
               <NewRequestCard Shop_Name={verifieduser.name} Karta_Name={verifieduser.kartaName} Mobile={verifieduser.mobile} imgUrl={verifieduser.shopImg} id={verifieduser._id} />
@@ -44,7 +46,7 @@ export default function NewRequestList() {
           </Container>
         </Box >) :
         (
-          <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84"}}>
+          <Box display="flex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84"}}>
             <Box >
             <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>New Requests</Typography>
 

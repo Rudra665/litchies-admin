@@ -6,6 +6,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Link } from "react-router-dom";
 import CheckIcon from "@mui/icons-material/Check";
+import DeleteIcon from "@mui/icons-material/Delete";
+
 import axios from "axios";
 const NewRequestCard = (props) => {
     const { imgUrl, Shop_Name, Karta_Name, Mobile } = props;
@@ -18,6 +20,17 @@ const NewRequestCard = (props) => {
         alert(`Product Verified`)
         window.location.reload()
     };
+    
+    const erase = async () => {
+        axios.delete(`http://43.205.116.96:3000/shop/deleteShop/${props.id}`).then((res)=>{
+            if(res.status===200){
+                alert("Shop Deleted")
+                window.location.reload()
+            }
+        })
+        
+    };
+
 
     return (
         <>
@@ -80,6 +93,16 @@ const NewRequestCard = (props) => {
                                 onClick={() => verified()}
                             >
                                 Verify
+                            </Button></Box>
+                            <Box mt="3vh">
+                            <Button
+                                variant="contained"
+                                color="error"
+                                startIcon={<DeleteIcon />}
+                                mt="10px"
+                                onClick={() => erase()}
+                            >
+                                Delete
                             </Button></Box>
                     </Box>
 

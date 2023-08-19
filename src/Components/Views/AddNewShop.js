@@ -85,7 +85,6 @@ const formik = useFormik({
   },
   validationSchema:validationSchema,
   onSubmit: values => {
-    alert(JSON.stringify( values.category.map((e)=>e._id), null, 2));
       const formData = new FormData();
       formData.append("image", img.raw);
        axios
@@ -101,7 +100,8 @@ const formik = useFormik({
         .then((img) => {
           formik.setFieldValue('shopImg', img.replaceAll('"', ""))
         })
-        .then(()=>{const shopData = {
+        .then(()=>{
+          const shopData = {
           name: values.name,
           kartaName: values.kartaName,
           email: values.email,
@@ -124,11 +124,11 @@ const formik = useFormik({
           .then((response) => {
             if (response.status === 200)
               alert("Shop Successfully Created")
-          });})
-          .then(()=>{formik.resetForm()})
+    });}).then(()=>{formik.resetForm() && setImg(img.replaceAll('"', ""))})
+          
   },
 });
-
+  
   return (
     <>
   
@@ -209,7 +209,6 @@ const formik = useFormik({
               name="gstNo"
               label="GST Number"
               value={formik.values.gstNo}
-              type="number"
 
               onChange={formik.handleChange}
               error={formik.touched.gstNo && formik.errors.gstNo && true}
@@ -261,37 +260,32 @@ const formik = useFormik({
 
               error={formik.touched.pincode && formik.errors.pincode && true}
             />
-            {formik.touched.pincode && formik.errors.pincode && <div style={{color:"red"}}>{formik.errors.pincode}</div>}
-            <Stack>
-              <Autocomplete
-              name="category"
-                multiple
-                id="tags-outlined"
-                options={category}
-                getOptionLabel={(option) => option.name}
-                value={formik.values.category}
-                onChange={(event,value)=>formik.setFieldValue('category',value)}
-                filterSelectedOptions
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                error={formik.touched.category && formik.errors.category && true}
-                    label="Category"
-                    placeholder="Select More"
-                  />
-                )}
-              />
-            </Stack>
-            {formik.touched.category && formik.errors.category && <div style={{color:"red"}}>{formik.errors.category}</div>}
-          <TextField name="shopImg"
-              label="Image Name"
-              error={formik.touched.shopImg && formik.errors.shopImg && true}
-              value={formik.values.shopImg}
-              onChange={formik.handleChange}
-              type="text"
-              disabled/>
-            {formik.touched.shopImg && formik.errors.shopImg && <div style={{color:"red"}}>{formik.errors.shopImg}</div>}
+           {formik.touched.pincode && formik.errors.pincode && <div style={{color:"red"}}>{formik.errors.pincode}</div>}
+             <Stack>
+               <Autocomplete
+               name="category"
+                 multiple
+                 id="tags-outlined"
+                 value={formik.values.category}
+                 options={category}
+                 getOptionLabel={(option) => option.name}
               
+                 onChange={(event,value)=>formik.setFieldValue('category',value)}
+                 filterSelectedOptions
+                 renderInput={(params) => (
+                   <TextField
+                     {...params}
+                 error={formik.touched.category && formik.errors.category && true}
+              
+                     label="Category"
+                  
+                     placeholder="Select More"
+                   />
+                 )}
+               />
+             </Stack>
+           {formik.touched.category && formik.errors.category && <div style={{color:"red"}}>{formik.errors.category}</div>} 
+          
           </div>
           <div display="flex" align="center" style={{ marginTop: 24 }}>
 
@@ -317,7 +311,6 @@ const formik = useFormik({
               variant="contained"
               color="success"
               type="submit"
-
             >
               Create
             </Button>
