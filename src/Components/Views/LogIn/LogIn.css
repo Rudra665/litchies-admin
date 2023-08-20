@@ -1,46 +1,31 @@
 body{
-    background-color: aliceblue;
+    background: rgb(2,0,36);
+    background: linear-gradient(36deg, rgba(2,0,36,1) 0%, rgba(37,41,58,1) 50%, rgba(48,56,76,1) 100%);
     height:100vh;
     width:100%;
 }
 
 .background{
-    background-color: aliceblue;
+    background: rgb(2,0,36);
+    background: linear-gradient(36deg, rgba(2,0,36,1) 0%, rgba(37,41,58,1) 50%, rgba(48,56,76,1) 100%);
     height:100vh;
     width:100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
 }
 
 .group {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
-    margin-top: 35px;
+    margin-top: 15px;
     padding: 0 10px;
     border: 1px #222831 !important;
 
-    .label {
-        position: relative;
-        bottom:80px;
-        margin-left: 10px;
-        font-weight:500;
-        font-size: 19px;
-        color: #222831;
-        -webkit-transition: all 0.5s ease;
-        -moz-transition: all 0.5s ease;
-        -ms-transition: all 0.5s ease;
-        -o-transition: all 0.5s ease;
-        transition: all 0.5s ease;
-        pointer-events: none;
-}
-
     .input {
     width: 300px;
-        background-color:aliceblue;
+        background-color:transparent;
         border-radius: 10px;
-        padding:12px 7px;
+        padding:12px 0px;
         outline: none;
         &:focus ~ label,
         &:valid ~ label {
@@ -53,7 +38,6 @@ body{
     }
 }
 .LoginForm{
-    border: 5px black;
 display: grid;
 justify-content: center;
 align-items: center;
@@ -62,17 +46,12 @@ justify-items: center;
 }
 
 .wrapper{
-    height:400px;
-    width:700px;
+    height:450px;
+    width:800px;
     display: flex;
-    background-image:url('/public/Login.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    justify-content: space-between;
-    background-color:beige;
-    box-shadow: -8px 13px 100px rgb(0,0,0,0.5);
-    border-radius: 20px;
-    padding: 30px 70px;
+    margin: 3% 25%;
+    justify-content:center ;
+    box-shadow: -8px 13px 100px rgba(0, 0, 0, 0.5);
 }
 
 .btn {
@@ -80,9 +59,9 @@ justify-items: center;
     background-color: #004bbb;
     outline: none;
     padding: 10px 20px;
-    border-radius: 12px;
+    border-radius: 12px !important;
     font-weight: 500;
-    margin: 35px 0;
+    margin: 15px 0 !important;
     border: 3px solid #004bbb;
     -webkit-transition: all 1s linear;
     -moz-transition: all 1s linear;
@@ -103,24 +82,29 @@ justify-items: center;
 }
 
 .LoginForm{
-    border: 5px black;
+border: 5px black;
 display: grid;
 justify-content: center;
 align-items: center;
-
-width: 350px;
+height:300px;
+width: 400px;
 justify-items: center;
 } 
 
 
 .SideImage{
-    width: 350px;
+    width: 400px;
+    z-index: 2;
+    background-image:url('/public/Login.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .Profile{
     background-image:url('/public/Profile.png'); 
-    height:50px;
-    width:50px;
+    height:90px;
+    width:90px;
     background-size: contain;
     background-repeat: no-repeat;
 }

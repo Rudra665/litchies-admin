@@ -162,7 +162,7 @@ const Sidebar = () => {
               name={item.iconName}
               type={item.type}
               color={
-                hovered === index || currentLink === item.link ? "black" : item.color
+                hovered === index || currentLink === item.link ? "#f9003b" : 'white'
               }
               animation={currentLink === item.link && animate ? "tada" : ""}
               rotate={item.rotate}

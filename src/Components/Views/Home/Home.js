@@ -31,7 +31,7 @@ export default function Home() {
           paddingLeft: "30px",
           "& .MuiTableCell-root": { width: "2ch" },
           flexWrap: "wrap",
-          bgcolor:"#4b5b84"
+          bgcolor:"white"
         }}
       > {verify.map((verified) => (<ShopCard Shop_Name={verified.name} Karta_Name={verified.kartaName} Mobile={verified.mobile} imgUrl={verified.shopImg} id={verified._id} />))
         }

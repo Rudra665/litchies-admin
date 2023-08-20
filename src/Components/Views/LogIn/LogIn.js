@@ -1,6 +1,20 @@
 import React, { useState } from 'react'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import './LogIn.css'
+
 import { useNavigate } from 'react-router-dom';
+import { Button, TextField, Typography } from '@mui/material';
+
+const theme = createTheme({
+    palette: {
+      primary:{
+        main:"#1565c0"
+      } ,
+      secondary:{
+        main:"#f9003b"
+      } ,
+    },
+  });
 
 const SignIn=()=>{
     let navigate = useNavigate();
@@ -8,6 +22,7 @@ const SignIn=()=>{
         email:'',
         password:''
     })
+
 
     const handleChange = (e) => {
         const value = e.target.value;
@@ -27,48 +42,57 @@ const SignIn=()=>{
     } 
 };
 	return(
+        <ThemeProvider theme={theme}>
+
         <div className='background'>
+        <Typography variant='h3' textAlign='center' color='white' sx={{pt:6, pl:4}}>Welcome To <span style={{color:'#f9003b'}}>Litchies</span> Admin</Typography>
+            
 		<div className="wrapper">
             <div className='SideImage'></div>
             <div className='LoginForm'>
-            <div className='Profile' ></div>
             <h2 className='h3'>LOGIN</h2>
+            <div className='Profile' ></div>
+
             <div className="group">
-                <input
+                <TextField
                     type="text"
                     size="30"
                     id="email"
                     className="input"
+                    label="Email"
+                    variant="standard"
+                    color='secondary'
                     name="email"
                     value={state.email}
                     onChange={handleChange}
                     required
                 />
-                <label className='label'>Email</label>
                 
             </div>
             <div className="group">
-                <input
+                <TextField
                     type="password"
-                    minLength="8"
                     className="input"
                     id='password'
                     name="password"
+                    label="Password"
+                    variant="standard"
+                    color='secondary'
                     onChange={handleChange}
                     value={state.password}
                     required
                 />
-                <label className='label'>Password</label>
                     
                
             </div>
-            <button type="submit" className="btn" onClick={handleSubmit}>
+            <Button type="submit" className='btn' color='secondary' variant='contained' onClick={handleSubmit}>
                 <span>LOGIN</span>
-            </button>
+            </Button>
             <span className="footer"></span>
             </div>
         </div>
         </div>
+        </ThemeProvider>
 	)
 }
 
