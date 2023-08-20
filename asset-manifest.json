@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/litchies-admin/static/css/main.ad07bcbf.css",
-    "main.js": "/litchies-admin/static/js/main.ed23d095.js",
+    "main.css": "/litchies-admin/static/css/main.4e0d06f4.css",
+    "main.js": "/litchies-admin/static/js/main.dcb7fde3.js",
     "static/media/empty1.gif": "/litchies-admin/static/media/empty1.5e30f72ac6a34a494394.gif",
-    "static/media/Profile.png": "/litchies-admin/static/media/Profile.c8950e9864bba405ea41.png",
-    "static/media/Login.png": "/litchies-admin/static/media/Login.4c917487a22df3ec758a.png",
+    "static/media/Login.jpg": "/litchies-admin/static/media/Login.408978c98f6bab76a352.jpg",
+    "static/media/Profile.png": "/litchies-admin/static/media/Profile.210cdf37702f56563ea6.png",
     "index.html": "/litchies-admin/index.html",
-    "main.ad07bcbf.css.map": "/litchies-admin/static/css/main.ad07bcbf.css.map",
-    "main.ed23d095.js.map": "/litchies-admin/static/js/main.ed23d095.js.map"
+    "main.4e0d06f4.css.map": "/litchies-admin/static/css/main.4e0d06f4.css.map",
+    "main.dcb7fde3.js.map": "/litchies-admin/static/js/main.dcb7fde3.js.map"
   },
   "entrypoints": [
-    "static/css/main.ad07bcbf.css",
-    "static/js/main.ed23d095.js"
+    "static/css/main.4e0d06f4.css",
+    "static/js/main.dcb7fde3.js"
   ]
 }
