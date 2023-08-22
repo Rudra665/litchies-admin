@@ -36,7 +36,7 @@ export default function CreateShop() {
       .string()
       .matches(/^[0-9]{6}$/, 'Pincode must be 6 digits')
       .required('Pincode is required'),
-    category: yup.array().min(1, 'Select at least one category').required('Category is required'),
+    category: yup.object().required('Category is required'),
     shopImg: yup.string().required('Shop Image is required'),
   });
 
@@ -83,8 +83,8 @@ const formik = useFormik({
     category: [],
     shopImg:""
   },
-  validationSchema:validationSchema,
   onSubmit: values => {
+    // console.log('hello')
       const formData = new FormData();
       formData.append("image", img.raw);
        axios
@@ -95,10 +95,7 @@ const formik = useFormik({
           return response1;
         })
         .then((response) => {
-          return JSON.stringify(response.data.name);
-        })
-        .then((img) => {
-          formik.setFieldValue('shopImg', img.replaceAll('"', ""))
+          return setImg({preview: JSON.stringify(response.data.name)}) 
         })
         .then(()=>{
           const shopData = {
@@ -116,7 +113,7 @@ const formik = useFormik({
           city: values.city,
           pincode: values.pincode,
           category: values.category.map((e)=>e._id),
-          shopImg:values.shopImg,
+          shopImg:img.preview,
           isVerified: values.isVerified,
         };
         axios
@@ -124,7 +121,7 @@ const formik = useFormik({
           .then((response) => {
             if (response.status === 200)
               alert("Shop Successfully Created")
-    });}).then(()=>{formik.resetForm() && setImg(img.replaceAll('"', ""))})
+    });}).then(()=>{formik.resetForm() && setImg({preview:'',raw:''})})
           
   },
 });
@@ -275,7 +272,6 @@ const formik = useFormik({
                  renderInput={(params) => (
                    <TextField
                      {...params}
-                 error={formik.touched.category && formik.errors.category && true}
               
                      label="Category"
                   
@@ -284,7 +280,6 @@ const formik = useFormik({
                  )}
                />
              </Stack>
-           {formik.touched.category && formik.errors.category && <div style={{color:"red"}}>{formik.errors.category}</div>} 
           
           </div>
           <div display="flex" align="center" style={{ marginTop: 24 }}>
