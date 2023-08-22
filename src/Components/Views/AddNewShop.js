@@ -266,7 +266,7 @@ const formik = useFormik({
                  value={formik.values.category}
                  options={category}
                  getOptionLabel={(option) => option.name}
-              
+                 error={formik.touched.category && formik.errors.category && true}
                  onChange={(event,value)=>formik.setFieldValue('category',value)}
                  filterSelectedOptions
                  renderInput={(params) => (
@@ -280,7 +280,7 @@ const formik = useFormik({
                  )}
                />
              </Stack>
-          
+             {formik.touched.category && formik.errors.category && <div style={{color:"red"}}>{formik.errors.category}</div>}
           </div>
           <div display="flex" align="center" style={{ marginTop: 24 }}>
 
