@@ -8,6 +8,7 @@ import MoreVertItems from "../MoreVertItems";
 import CloseIcon from '@mui/icons-material/Close';
 import Warning from "../Modal/Waring";
 import { Link } from "react-router-dom";
+import { style } from "@mui/system";
 const ShopCard = (props) => {
     const { imgUrl, Shop_Name, Karta_Name, Mobile } = props;
     const [open, setOpen] = React.useState(false)
@@ -24,32 +25,33 @@ const ShopCard = (props) => {
             <Card
                 sx={{
                     display: "grid",
-                    width: "350px",
+                    width: "300px",
                     height: "auto",
-                    m: 1,
-                    p: 0,
+                    my: 4,
+                    mx:2,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
-                    borderRadius: "10px",
-                    backgroundColor:"#94acc3"
+                    backgroundColor:"white"
                 }}
-            ><Box display="flex" justifyContent="right" >
+            ><div style={{zIndex:2, position:'absolute'}} >
                     <IconButton onClick={handleClick}><CloseIcon color="primary" /></IconButton>
-                </Box>
+                </div>
 
 
                 <Link to={`verifiedShopsList/shopDetails/${props.id}`} style={{ textDecoration: "none" }} >
-                    <Box align="center" paddingY="20px" height="40vh" m="2vh" sx={{
-                        backgroundImage: `url("http://43.205.116.96:3000/images/${imgUrl}")`, backgroundSize: "cover",
+                    <Box align="center" height="300px" width="300px" sx={{
+                        backgroundImage: `url("http://43.205.116.96:3000/images/${imgUrl}")`,backgroundSize:"contain",
                         backgroundRepeat: "no-repeat",
                     }} >
 
                     </Box></Link>
-                <Box align="center" >
+                <Box textAlign='center' >
                     <Typography
                         sx={{
+                            margin:'12px',
+                            paddingX:'20px',
                             fontWeight: "700",
-                            fontSize: "16px",
-                            fontFamily: "inter",
+                            fontSize: "23px",
+                            fontFamily: "math",
                             lineHeight: "26px",
                         }}
                     >
@@ -59,17 +61,19 @@ const ShopCard = (props) => {
                         color="text.secondary"
                         component="div"
                         lineHeight="20px"
-                        fontSize="12px"
-                        sx={{ mt: 1 }}
+                        fontFamily="math"
+                        fontSize="18px"
+                        sx={{paddingX:'20px',marginX:'12px', mt: 1 }}
                     >
                         <b>Owner Name: </b>{Karta_Name}
                     </Typography>
                     <Typography
                         color="text.secondary"
                         component="div"
+                        fontFamily="math"
                         lineHeight="20px"
-                        fontSize="12px"
-                        sx={{ mt: 1 }}
+                        fontSize="15px"
+                        sx={{paddingX:'20px',margin:'12px', mt: 1 }}
                     >
                         <b>Mobile: </b> {Mobile}
                     </Typography>

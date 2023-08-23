@@ -38,7 +38,7 @@ export default function Warning(props) {
             <Box style={{display:"flex", justifyContent:'end' }}>
             <IconButton onClick={props.onClose}><ClearIcon /></IconButton>
             </Box>
-                <Typography align="center" color="warning" variant='h2' id="parent-modal-title">Delete Shop?</Typography>
+                <Typography align="center" color="warning" variant='h4' id="parent-modal-title">Delete Shop permanently from Database?</Typography>
                 <Box align="center" marginY="3vh">
                     <Button onClick={props.onClose} variant="contained" sx={{ marginX: 2 }}>Cancel</Button>
                     <DeleteShop id={props.id} variant="outlined" onClick={props.onClose} />

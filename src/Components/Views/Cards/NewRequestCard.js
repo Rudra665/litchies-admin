@@ -38,21 +38,18 @@ const NewRequestCard = (props) => {
             <Card
                 sx={{
                     display: "grid",
-                    width: "350px",
-                    height: "535px",
+                    width: "300px",
+                    height: "auto",
                     m: 1,
                     p: 0,
                     boxShadow: "14px 22px 52px 12px rgba(127, 127, 127, 0.13)",
-                    borderRadius: "10px",
-                    backgroundColor:"#94acc3"
 
                 }}
             >
 
                 <CardContent>
-                    <Box></Box>
                     <Link to={`${props.id}`} style={{ textDecoration: "none" }} >
-                        <Box align="center" paddingY="20px" overflow="hidden" >
+                        <Box align="center" overflow="hidden" >
                             <img width="200vh" src={"http://43.205.116.96:3000/images/" + imgUrl} alt="img" borderRadius="10px" />
                         </Box></Link>
                     <Box align="center" >

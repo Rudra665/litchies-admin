@@ -2,7 +2,6 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 // import OwlCarousel from 'react-owl-carousel';
-import { Swiper, SwiperSlide } from "swiper/react"
 // import 'owl.carousel/dist/assets/owl.carousel.min.css';
 // import 'owl.carousel/dist/assets/owl.theme.default.min.css';
 import SwitchToggle from "../../Switch Toggle/SwitchToggle";
@@ -20,18 +19,15 @@ const UnVerifiedProductCard = (props) => {
         <>
             <Card
                 sx={{
-                    backgroundColor:"#94acc3",
-
-                    width: "350px",
+                    width: "300px",
                     height: "60vh",
                     m: 1,
                     p: 0,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
-                    borderRadius: "10px",
                 }}
             >
 
-                <Box align="center" paddingY="20px" height="35vh" m="1vh" class="item" sx={{
+                <Box align="center"  height="35vh" margin={0} class="item" sx={{
                     display: "flex"
                 }} >
                     <Carousel images={imgUrl} shopId={props.shopId} id={props.id} />

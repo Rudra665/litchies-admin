@@ -22,6 +22,9 @@ export default function Home() {
 
   return (
     <>
+    <Box sx={{ display:"flex", justifyContent:"center", width:"100%" }}>
+        <h1>Store List</h1>
+      </Box>
       <Box
         sx={{
           width: "100%",
@@ -33,7 +36,9 @@ export default function Home() {
           flexWrap: "wrap",
           bgcolor:"white"
         }}
-      > {verify.map((verified) => (<ShopCard Shop_Name={verified.name} Karta_Name={verified.kartaName} Mobile={verified.mobile} imgUrl={verified.shopImg} id={verified._id} />))
+      > 
+      
+      {verify.map((verified) => (<ShopCard Shop_Name={verified.name} Karta_Name={verified.kartaName} Mobile={verified.mobile} imgUrl={verified.shopImg} id={verified._id} />))
         }
       </Box>
 

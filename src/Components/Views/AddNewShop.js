@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
+import CircularProgress from '@mui/material/CircularProgress';
 import { TextField, Button, Autocomplete, Stack } from "@mui/material";
 import * as yup from 'yup';
 import { useFormik } from "formik";
@@ -36,12 +37,13 @@ export default function CreateShop() {
       .string()
       .matches(/^[0-9]{6}$/, 'Pincode must be 6 digits')
       .required('Pincode is required'),
-    category: yup.object().required('Category is required'),
     shopImg: yup.string().required('Shop Image is required'),
   });
 
   const [img, setImg] = useState({ preview: "", raw: "" });
   const [category, setCategory] = useState([]);
+  const [submit, setSubmit] = useState(false);
+
 
   const fetchCategories = async () => {
     try {
@@ -83,15 +85,16 @@ const formik = useFormik({
     category: [],
     shopImg:""
   },
+  validationSchema:validationSchema,
   onSubmit: values => {
     // console.log('hello')
+    setSubmit(true)
       const formData = new FormData();
       formData.append("image", img.raw);
        axios
         .post("http://43.205.116.96:3000/uploadImage", formData)
         .then((response1) => {
           if (response1.status === 200)
-            alert("Image Successfully Uploaded")
           return response1;
         })
         .then((response) => {
@@ -112,7 +115,7 @@ const formik = useFormik({
           state: values.state,
           city: values.city,
           pincode: values.pincode,
-          category: values.category.map((e)=>e._id),
+          category: values.category,
           shopImg:img.preview,
           isVerified: values.isVerified,
         };
@@ -120,8 +123,9 @@ const formik = useFormik({
           .post("http://43.205.116.96:3000/Shop/CreateShop", shopData)
           .then((response) => {
             if (response.status === 200)
+            setSubmit(false)
               alert("Shop Successfully Created")
-    });}).then(()=>{formik.resetForm() && setImg({preview:'',raw:''})})
+    });}).then(()=>{formik.resetForm() && setImg({preview:null,raw:null}) && setCategory([])})
           
   },
 });
@@ -263,15 +267,16 @@ const formik = useFormik({
                name="category"
                  multiple
                  id="tags-outlined"
-                 value={formik.values.category}
+                 
                  options={category}
                  getOptionLabel={(option) => option.name}
-                 error={formik.touched.category && formik.errors.category && true}
-                 onChange={(event,value)=>formik.setFieldValue('category',value)}
+                 onChange={(event,option)=>
+                   formik.setFieldValue('category', category)}
                  filterSelectedOptions
                  renderInput={(params) => (
                    <TextField
                      {...params}
+                     error={formik.touched.category && formik.errors.category && true}
               
                      label="Category"
                   
@@ -312,6 +317,7 @@ const formik = useFormik({
           </Box>
         </Box>
       </form>
+      {submit?<div style={{zIndex:3, display: 'flex', backfaceVisibility:"70%"}}><CircularProgress /></div>:''}
     </>
   );
 }
