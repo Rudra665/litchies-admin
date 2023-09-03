@@ -13,7 +13,7 @@ export default function AddHighlight() {
   const { shopId } = useParams();
   const [products, setProduct] = useState([]);
   const [img, setImg] = useState({ preview: "", raw: "" });
-  const [proId, setProId] = useState([])
+  const [proId, setProId] = useState('')
   const onImageChange = (e) => {
     if (e.target.files.length) {
       setImg({
@@ -51,18 +51,10 @@ export default function AddHighlight() {
     await axios
       .post("http://43.205.116.96:3000/uploadImage", formData)
       .then((response) => {
-        return JSON.stringify(response.data.name);
-      })
-      .then((img) => {
-        setState({
-          title: state.title,
-          desc: state.desc,
-          proId: state.products.proId,
-          discount: state.products.discount,
-          shopId: state.shopId,
-          shopBanner: img.replaceAll('"', "")
-        });
-      });
+        if(response.status=='200')
+        alert('Image Uploaded')
+      }
+      )
   };
   const handleChange = (e) => {
     const value = e.target.value;
@@ -72,14 +64,14 @@ export default function AddHighlight() {
     });
   };
   const handleSubmit = (e) => {
-    if(state.title && state.discount && state.proId && state.shopBanner){
+    if(state.title && state.discount ){
     e.preventDefault();
     const proData = {
       title: state.title,
       desc: state.desc,
-      proId: state.proId,
-      discount: state.discount,
-      shopId: proId,
+      products:[{proId: proId,
+        discount: state.discount,}],
+      shopId: shopId,
       shopBanner: state.shopBanner,
     };
 
@@ -102,7 +94,6 @@ export default function AddHighlight() {
               height: "220px",
               marginTop: "20px",
               "& .MuiTextField-root": { m: 1 },
-              bgcolor:"#bbc3cc"
             }}
           >
             <Typography variant="h2" align="center">Add Highlight</Typography>
@@ -130,12 +121,12 @@ export default function AddHighlight() {
                   options={products}
                   getOptionLabel={(option) => option.name}
                   filterSelectedOptions
-                  onChange={(event, value) => setProId(value)}
+                  onChange={(event, value) => setProId(value.map((i)=>i._id))}
                   renderInput={(params) => (
                     <TextField
                       {...params}
-                      label="filterSelectedOptions"
-                      placeholder="Favorites"
+                      label="Select Product"
+                      placeholder="Add Some"
                     />
                   )}
                 /></Stack>
@@ -146,11 +137,6 @@ export default function AddHighlight() {
                 value={state.discount}
                 onChange={handleChange}
               />
-
-              <TextField fullWidth label="Upload Banner Image" value={state.shopBanner} />
-
-
-
               <Box >
                 <input type="file" onChange={onImageChange} />
                 <Button
@@ -161,10 +147,13 @@ export default function AddHighlight() {
                   Upload
                 </Button>
               </Box>
-
-              <Box sx={{ "& .MuiButton-root": { m: 1, width: "50px" } }} align="center">
+              <img
+                  style={{ width: "150px", marginLeft: "30px" }}
+                  src={img.preview}
+                  alt="..."
+                />
+              <Box sx={{ "& .MuiButton-root": { m: 1, ml:5 } }} align="center">
                 <Button
-                  size="large"
                   variant="contained"
                   style={{ marginTop: "20px" }}
                   startIcon={<AddIcon />}
@@ -173,11 +162,7 @@ export default function AddHighlight() {
                   Add
                 </Button>
 
-                <img
-                  style={{ width: "150px", marginLeft: "30px" }}
-                  src={img.preview}
-                  alt="..."
-                />
+                
               </Box>
             </div>
           </Box>

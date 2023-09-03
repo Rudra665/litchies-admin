@@ -4,46 +4,17 @@ import Box from "@mui/material/Box";
 import CircularProgress from '@mui/material/CircularProgress';
 import { TextField, Button, Autocomplete, Stack } from "@mui/material";
 import * as yup from 'yup';
-import { useFormik } from "formik";
+import {useForm} from 'react-hook-form'
 import axios from "axios";
 
 export default function CreateShop() {
-
-  const validationSchema = yup.object().shape({
-    name: yup.string().required('Name is required'),
-    kartaName: yup.string().required('Karta Name is required'),
-    email: yup.string().email('Invalid email').required('Email is required'),
-    aadharNo: yup
-      .string()
-      .matches(/^[0-9]{12}$/, 'Aadhar number must be 12 digits')
-      .required('Aadhar Number is required'),
-    panNo: yup
-      .string()
-      .matches(/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, 'Invalid PAN number')
-      .required('PAN Number is required'),
-    gstNo: yup
-      .string()
-      .matches(/^[0-9A-Z]{15}$/, 'Invalid GST number')
-      .required('GST Number is required'),
-    mobile: yup
-      .string()
-      .matches(/^[0-9]{10}$/, 'Mobile number must be 10 digits')
-      .required('Mobile Number is required'),
-    password: yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
-    address: yup.string().required('Address is required'),
-    state: yup.string().required('State is required'),
-    city: yup.string().required('City is required'),
-    pincode: yup
-      .string()
-      .matches(/^[0-9]{6}$/, 'Pincode must be 6 digits')
-      .required('Pincode is required'),
-    shopImg: yup.string().required('Shop Image is required'),
-  });
-
+  const { handleSubmit ,reset , control, register, formState: { errors }, setValue } = useForm();
+  
   const [img, setImg] = useState({ preview: "", raw: "" });
   const [category, setCategory] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [submit, setSubmit] = useState(false);
-
+  
 
   const fetchCategories = async () => {
     try {
@@ -68,72 +39,50 @@ export default function CreateShop() {
     }
   };
 
-const formik = useFormik({
-  initialValues:{
-    name: "",
-    kartaName: "",
-    email: "",
-    aadharNo: "",
-    panNo: "",
-    gstNo: "",
-    mobile: "",
-    password: "",
-    address: "",
-    state: "",
-    city: "",
-    pincode: "",
-    category: [],
-    shopImg:""
-  },
-  validationSchema:validationSchema,
-  onSubmit: values => {
-    // console.log('hello')
-    setSubmit(true)
+  const onSubmit = async (data) => {
+    setSubmit(true);
+    try {
       const formData = new FormData();
       formData.append("image", img.raw);
-       axios
-        .post("http://43.205.116.96:3000/uploadImage", formData)
-        .then((response1) => {
-          if (response1.status === 200)
-          return response1;
-        })
-        .then((response) => {
-          return setImg({preview: JSON.stringify(response.data.name)}) 
-        })
-        .then(()=>{
-          const shopData = {
-          name: values.name,
-          kartaName: values.kartaName,
-          email: values.email,
-          aadharNo: values.aadharNo,
-          shopImg: values.shopImg,
-          panNo: values.panNo,
-          gstNo: values.gstNo,
-          mobile: values.mobile,
-          password: values.password,
-          address: values.address,
-          state: values.state,
-          city: values.city,
-          pincode: values.pincode,
-          category: values.category,
-          shopImg:img.preview,
-          isVerified: values.isVerified,
+      const response1 = await axios.post("http://43.205.116.96:3000/uploadImage", formData);
+      alert('Shop Image Uploaded')
+      if(response1.status === 200) {
+        const shopData = {
+          name: data.name,
+          kartaName: data.kartaName,
+          email: data.email,
+          aadharNo: data.aadharNo,
+          panNo: data.panNo,
+          gstNo: data.gstNo,
+          mobile: data.mobile,
+          password: data.password,
+          address: data.address,
+          state: data.state,
+          city: data.city,
+          pincode: data.pincode,
+          category: selectedCategories,
+          shopImg:response1.data.name,
+          isVerified:false
         };
-        axios
-          .post("http://43.205.116.96:3000/Shop/CreateShop", shopData)
-          .then((response) => {
-            if (response.status === 200)
-            setSubmit(false)
-              alert("Shop Successfully Created")
-    });}).then(()=>{formik.resetForm() && setImg({preview:null,raw:null}) && setCategory([])})
-          
-  },
-});
-  
+
+        const response2 = await axios.post("http://43.205.116.96:3000/Shop/CreateShop", shopData);
+        if (response2.status === 200) {
+          setSubmit(false);
+          alert("Shop Successfully Created");
+          reset()
+          // Reset other form fields...
+          setImg({ preview: " ", raw: '' });
+          setSelectedCategories([]);
+        }}
+       } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmit(false);
+    }
+  };
   return (
     <>
   
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Box
           style={{ paddingBlock: "100px" }}
           sx={{
@@ -142,7 +91,6 @@ const formik = useFormik({
             height: "auto",
             width: "100%",
             "& .MuiTextField-root": { m: 1, width: "65ch" },
-            bgcolor:"#bbc3cc"
           }}
         >
           <h1 style={{ textAlign: "center" }}>Create your shop</h1>
@@ -153,143 +101,244 @@ const formik = useFormik({
               flexDirection: "column",
             }}
           >
-            <TextField
-              name="name"
-              type="text"
-              label="Shop Name"
-              value={formik.values.name}
-              onChange={formik.handleChange}
-              error={formik.touched.name && formik.errors.name && true}
-            ></TextField>
-            {formik.touched.name && formik.errors.name && <div style={{color:"red"}}>{formik.errors.name}</div>}
-            <TextField
-              name="kartaName"
-              type="text"
-              label="Karta Name"
-              value={formik.values.kartaName}
-              onChange={formik.handleChange}
-              error={formik.touched.kartaName && formik.errors.kartaName && true}
-            />
-            {formik.touched.kartaName && formik.errors.kartaName && <div style={{color:"red"}}>{formik.errors.kartaName}</div>}
-            <TextField
-              name="email"
-              type="text"
-              label="Email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              error={formik.touched.email && formik.errors.email && true}
-            />
-            {formik.touched.email && formik.errors.email && <div style={{color:"red"}}>{formik.errors.email}</div>}
-            <TextField
-              name="password"
-              type="text"
-              label="Password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              error={formik.touched.password && formik.errors.password && true}
-            />
-            {formik.touched.password && formik.errors.password && <div style={{color:"red"}}>{formik.errors.password}</div>}
-            <TextField
-              name="aadharNo"
-              label="Aadhar Number"
-              type="number"
-              value={formik.values.aadharNo}
-              onChange={formik.handleChange}
-              error={formik.touched.aadharNo && formik.errors.aadharNo && true}
-            />
-            {formik.touched.aadharNo && formik.errors.aadharNo && <div style={{color:"red"}}>{formik.errors.aadharNo}</div>}
-            <TextField
-              name="panNo"
-              label="PAN Number"
-              value={formik.values.panNo}
-              onChange={formik.handleChange}
-              error={formik.touched.panNo && formik.errors.panNo && true}
-            />
-            {formik.touched.panNo && formik.errors.panNo && <div style={{color:"red"}}>{formik.errors.panNo}</div>}
-            <TextField
-              name="gstNo"
-              label="GST Number"
-              value={formik.values.gstNo}
+             <TextField
+          name="name"
+          label="Shop Name"
+          error={!!errors.name}
+          helperText={errors.name?.message}
+          inputProps={{
+            // Apply schema validation rules
+            ...register("name", {
+              required: "Name is required",
+              minLength: {
+                value: 3, // Minimum length of 3 characters
+                message: "Name must be at least 3 characters"
+              }
+            })
+          }}
+        />
 
-              onChange={formik.handleChange}
-              error={formik.touched.gstNo && formik.errors.gstNo && true}
-            />
-            {formik.touched.gstNo && formik.errors.gstNo && <div style={{color:"red"}}>{formik.errors.gstNo}</div>}
-            <TextField
-              name="mobile"
-              label="Mobile Number"
-              type="number"
+<TextField
+  name="kartaName"
+  type="text"
+  label="Karta Name"
+  error={!!errors.kartaName}
+  helperText={errors.kartaName?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("kartaName", {
+      required: "Karta Name is required",
+      minLength: {
+        value: 3, // Minimum length of 3 characters
+        message: "Karta Name must be at least 3 characters"
+      }
+    })
+  }}
+/>
 
-              value={formik.values.mobile}
-              onChange={formik.handleChange}
-              error={formik.touched.mobile && formik.errors.mobile && true}
-            />
-            {formik.touched.mobile && formik.errors.mobile && <div style={{color:"red"}}>{formik.errors.mobile}</div>}
-            <TextField
-              name="address"
-              label="Address"
-              value={formik.values.address}
-              onChange={formik.handleChange}
-              type="text"
-              error={formik.touched.address && formik.errors.address && true}
-            />
-            {formik.touched.address && formik.errors.address && <div style={{color:"red"}}>{formik.errors.address}</div>}
-            <TextField
-              name="state"
-              label="State"
-              value={formik.values.state}
-              onChange={formik.handleChange}
-              type="text"
-              error={formik.touched.state && formik.errors.state && true}
-            />
-            {formik.touched.state && formik.errors.state && <div style={{color:"red"}}>{formik.errors.state}</div>}
-            <TextField
-              name="city"
-              label="City"
-              value={formik.values.city}
-              onChange={formik.handleChange}
-              type="text"
-              error={formik.touched.city && formik.errors.city && true}
-            />
-            {formik.touched.city && formik.errors.city && <div style={{color:"red"}}>{formik.errors.city}</div>}
-            <TextField
-              name="pincode"
-              label="Pin Code"
-              value={formik.values.pincode}
-              onChange={formik.handleChange}
-              type="number"
+<TextField
+  name="email"
+  type="text"
+  label="Email"
+  error={!!errors.email}
+  helperText={errors.email?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("email", {
+      required: "Email is required",
+      pattern: {
+        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i, // Basic email pattern
+        message: "Invalid email address"
+      }
+    })
+  }}
+/>
 
-              error={formik.touched.pincode && formik.errors.pincode && true}
-            />
-           {formik.touched.pincode && formik.errors.pincode && <div style={{color:"red"}}>{formik.errors.pincode}</div>}
-             <Stack>
-               <Autocomplete
-               name="category"
-                 multiple
-                 id="tags-outlined"
-                 
-                 options={category}
-                 getOptionLabel={(option) => option.name}
-                 onChange={(event,option)=>
-                   formik.setFieldValue('category', category)}
-                 filterSelectedOptions
-                 renderInput={(params) => (
-                   <TextField
-                     {...params}
-                     error={formik.touched.category && formik.errors.category && true}
-              
-                     label="Category"
-                  
-                     placeholder="Select More"
-                   />
-                 )}
-               />
-             </Stack>
-             {formik.touched.category && formik.errors.category && <div style={{color:"red"}}>{formik.errors.category}</div>}
+<TextField
+  name="password"
+  type="password" // Change to "password" type for password fields
+  label="Password"
+  error={!!errors.password}
+  helperText={errors.password?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("password", {
+      required: "Password is required",
+      minLength: {
+        value: 8, // Minimum length of 8 characters
+        message: "Password must be at least 8 characters"
+      }
+    })
+  }}
+/>
+
+<TextField
+  name="aadharNo"
+  label="Aadhar Number"
+  type="number"
+  error={!!errors.aadharNo}
+  helperText={errors.aadharNo?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("aadharNo", {
+      required: "Aadhar Number is required",
+      pattern: {
+        value: /^[0-9]{12}$/, // Aadhar number must be 12 digits
+        message: "Aadhar number must be 12 digits"
+      }
+    })
+  }}
+/>
+
+            <TextField
+  name="panNo"
+  label="PAN Number"
+  error={!!errors.panNo}
+  helperText={errors.panNo?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("panNo", {
+      required: "PAN Number is required",
+      pattern: {
+        value: /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/, // Valid PAN format
+        message: "Invalid PAN number"
+      }
+    })
+  }}
+/>
+
+<TextField
+  name="gstNo"
+  label="GST Number"
+  error={!!errors.gstNo}
+  helperText={errors.gstNo?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("gstNo", {
+      required: "GST Number is required",
+      pattern: {
+        value: /^[0-9A-Z]{15}$/, // Valid GST format
+        message: "Invalid GST number"
+      }
+    })
+  }}
+/>
+
+
+<TextField
+  name="mobile"
+  label="Mobile Number"
+  type="number"
+  error={!!errors.mobile}
+  helperText={errors.mobile?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("mobile", {
+      required: "Mobile Number is required",
+      pattern: {
+        value: /^[0-9]{10}$/, // Mobile number must be 10 digits
+        message: "Mobile number must be 10 digits"
+      }
+    })
+  }}
+/>
+
+
+<TextField
+  name="address"
+  label="Address"
+  error={!!errors.address}
+  helperText={errors.address?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("address", {
+      required: "Address is required"
+    })
+  }}
+/>
+
+<TextField
+  name="state"
+  label="State"
+  error={!!errors.state}
+  helperText={errors.state?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("state", {
+      required: "State is required"
+    })
+  }}
+/>
+
+
+<TextField
+  name="city"
+  label="City"
+  error={!!errors.city}
+  helperText={errors.city?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("city", {
+      required: "City is required"
+    })
+  }}
+/>
+
+
+<TextField
+  name="pincode"
+  label="Pin Code"
+  type="number"
+  error={!!errors.pincode}
+  helperText={errors.pincode?.message}
+  inputProps={{
+    // Apply schema validation rules
+    ...register("pincode", {
+      required: "Pin Code is required",
+      pattern: {
+        value: /^[0-9]{6}$/, // Pin code must be 6 digits
+        message: "Pin code must be 6 digits"
+      }
+    })
+  }}
+/>
+
+
+<Stack>
+<Autocomplete
+  multiple
+  id="tags-outlined"
+  options={category}
+  getOptionLabel={(option) => option.name}
+  onChange={(event,Value) => {
+    setSelectedCategories(Value.map((item)=>item._id)); // Manually set the value using setValue
+    console.log(selectedCategories)
+ 
+  }}
+  filterSelectedOptions
+  renderInput={(params) => (
+    <TextField
+      {...params}
+      label="Category"
+      placeholder="Select More"
+      error={!!errors.category}
+      helperText={errors.category?.message}
+    />
+  )}
+/>
+</Stack>
           </div>
           <div display="flex" align="center" style={{ marginTop: 24 }}>
 
-            <input accept="image/*" type="file" onChange={onImageChange} />
+                <input
+        accept="image/*"
+        type="file"
+        {...register('shopImg', { required: 'Shop Image is required' })}
+        style={{ marginBottom: '10px' }}
+        onChange={onImageChange}
+      />
+      {errors.shopImg && <p style={{ color: 'red' }}>{errors.shopImg.message}</p>}
+
             {/* <Button
               variant="contained"
               color="primary"
@@ -307,7 +356,6 @@ const formik = useFormik({
           </div>
           <Box align="center" sx={{ marginTop: 3, "& .MuiButton-root": { m: 1 } }}>
             <Button
-
               variant="contained"
               color="success"
               type="submit"

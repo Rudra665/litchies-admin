@@ -30,24 +30,33 @@ const ShopCard = (props) => {
                     my: 4,
                     mx:2,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
-                    backgroundColor:"white"
+                    backgroundColor:"white",
+                    backgroundImage:`url('/circle.png'), url('/circle.png')`,
+                    backgroundSize: '300px',
+                    backgroundRepeat:"no-repeat",
+                    backgroundPosition: '170px -85px, -170px 355px',
                 }}
             ><div style={{zIndex:2, position:'absolute'}} >
-                    <IconButton onClick={handleClick}><CloseIcon color="primary" /></IconButton>
+                    <IconButton onClick={handleClick}><CloseIcon sx={{color:'red'}} /></IconButton>
                 </div>
 
-
                 <Link to={`verifiedShopsList/shopDetails/${props.id}`} style={{ textDecoration: "none" }} >
-                    <Box align="center" height="300px" width="300px" sx={{
+                    <Box sx={{display:'flex',
+                        marginY:'20px',
+                        justifyContent:'center', width:'auto', height:"200px",}}>
+                    <Box align="center"   sx={{
                         backgroundImage: `url("http://43.205.116.96:3000/images/${imgUrl}")`,backgroundSize:"contain",
                         backgroundRepeat: "no-repeat",
-                    }} >
+                        borderRadius:'50%',
+                        width:"200px",
+                        height:"auto"
+                    }} ></Box>
 
                     </Box></Link>
-                <Box textAlign='center' >
+                <Box textAlign='center' zIndex='2' >
                     <Typography
                         sx={{
-                            margin:'12px',
+                            margin:'1px',
                             paddingX:'20px',
                             fontWeight: "700",
                             fontSize: "23px",
@@ -77,14 +86,11 @@ const ShopCard = (props) => {
                     >
                         <b>Mobile: </b> {Mobile}
                     </Typography>
-                    <Box align="right" display="flex" justifyContent="space-between">
-                        <MoreVertItems id={props.id} />
-                    </Box>
+                    
                 </Box>
-
-
-
-
+                <Box display="flex" alignItems="center" paddingTop="40px">
+                    <MoreVertItems id={props.id} />
+                </Box>
 
             </Card >
 

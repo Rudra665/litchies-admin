@@ -3,6 +3,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import { TextField, Button } from "@mui/material";
 import { useState } from "react";
+import {useForm} from 'react-hook-form'
 import axios from "axios";
 
 const AddCategory = (props) => {
@@ -10,7 +11,9 @@ const AddCategory = (props) => {
         name: "",
         imageURLs: "",
     });
+    const { handleSubmit, register, setValue, setError, formState: { errors }  } = useForm();
     const [data,setData] =useState('')
+  const [submit, setSubmit] = useState(false);
     const [img, setImg] = React.useState({preview:"", raw:''})
     const onImageChange = (e) => {
         if (e.target.files.length) {
@@ -45,30 +48,34 @@ const AddCategory = (props) => {
               
           };
 
-    const handleSubmit = (e) => {
-        if(state.name && data){
-        e.preventDefault();
+    const onSubmit = async (data) => {
+        setSubmit(true);
+        try {
+        
+            const formData = new FormData();
+            formData.append("image", img.raw);
+            const response1 = await axios.post("http://43.205.116.96:3000/uploadImage", formData);
+            if(response1.status === 200) {
         const proData = {
-            name: state.name,
-            image: data,
+            name: data.name,
+            image: response1.data.name,
         };
-
-        axios
-            .post("http://43.205.116.96:3000/productCategory/create", proData)
-            .then((response) => {
-                if(response.status==200)
-                alert("Category Added Successfuly")
+   
+        const response2 = await axios.post("http://43.205.116.96:3000/productCategory/create", proData)
+                if(response2.status===200)
+                alert("Category Added Successfully")
                 window.location.reload()
-            });
-        }
-        else{
-            alert("Fill All Fields")
-        }
+            
+        }}
+    catch{
+        console.error("Error submitting form:", errors);
+      setSubmit(false);
+    }
     };
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <React.Fragment>
 
                     <h2 align="center" >Add a Category</h2>
@@ -76,9 +83,14 @@ const AddCategory = (props) => {
                         fullWidth
                         name="name"
                         label="Enter Category Name"
-                        value={state.name}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                            handleChange(e);
+                            setValue("name", e.target.value); // Setting value using setValue
+                        }}
                         sx={{ marginY: 1 }}
+                        {...register("name", { required: "Category name is required",validate: value => value.trim() === "" ? "Field cannot be empty" : undefined, })} // Registering the field
+                        error={!!errors.name} // Show error state when there's an error
+                        helperText={errors.name?.message} // Display the error message
                     />
                     <label style={{ marginBlock: "1vh" }}>Add Image(s)</label>
                     <Box >

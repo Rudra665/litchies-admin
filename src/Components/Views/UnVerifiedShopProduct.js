@@ -23,6 +23,7 @@ export default function UnVerifiedProduct() {
 
     return (
         <>
+        
             {products.length > 0 ? (
                 <Box
                     sx={{
@@ -34,13 +35,15 @@ export default function UnVerifiedProduct() {
                         flexWrap: "wrap"
                     }}
                 >
-
+                    <Box align="center">
+                            <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} ><Button variant="contained">Add Some</Button></Link>
+                        </Box>
                     {products.map((product) => (
                         <UnVerifiedProductCard Product_Name={product.name} Product_Desc={product.desc} Price={product.price} imgUrl={product.imageURLs} id={product._id} shopId={shopId} />
                     ))}
                 </Box>
             ) : (
-                <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84"}}>
+                <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" >
                     <Box >
             <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Un Verified Shops Product</Typography>
                         <Box display="flex" justifyContent="center">

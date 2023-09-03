@@ -17,21 +17,35 @@ const theme = createTheme();
 
 export default function SignIn() {
     let navigate = useNavigate();
-    const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    let email = data.get('email');
-    let password =  data.get('password');
-    if(email === "admin" && password==="admin")   
-     { 
-        navigate("/admin/*") 
-    } 
-    else{
-      alert("Wrong Credentials! Try Again")
+    const [login, setLogin] = React.useState({
+      email:'',
+      password:''
+    })
+      const handleSubmit = (event) => {
+        const data = new FormData(event.currentTarget);
+        setLogin({
+          'email': data.get('email'),
+          'password': data.get('password')
+        })
+        localStorage.setItem('login.email', login.email)
+        localStorage.setItem('login.password', login.password)
+    if(login.email === "admin" && login.password ==="admin")   
+         { 
+         
+          console.log(login.email, login.password)
+          
+            navigate('/admin/*')
+          }
+        else{
+          alert("Wrong Credentials! Try Again")
     }
     
+    
   };
-
+  React.useEffect(()=>{
+    console.log(localStorage.getItem('login'))
+    
+  },[])
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="xs">
@@ -50,7 +64,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <form onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -71,10 +85,6 @@ export default function SignIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               type="submit"
               fullWidth
@@ -83,21 +93,9 @@ export default function SignIn() {
             >
               Sign In
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </Grid>
-            </Grid>
-          </Box>
+          </form>
         </Box>
       </Container>
     </ThemeProvider>
   );
-}
+};

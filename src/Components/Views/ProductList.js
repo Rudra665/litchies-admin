@@ -23,10 +23,14 @@ export default function ProductList() {
 
   return (
     <>
+    <Box><Typography variant="h3" align="center" fontWeight="600" marginTop="5vh">Shop Products</Typography></Box>
       {products.length > 0 ? (
+        <Box>
+          <Box align="right" margin='20px'>
+        <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`}><Button  variant="contained" >Add Product</Button></Link>
+      </Box>
         <Box
           sx={{
-            bgcolor:"#4b5b84",
             display: "flex",
             width: "96%",
             marginLeft: "60px",
@@ -35,13 +39,13 @@ export default function ProductList() {
             flexWrap: "wrap"
           }}
         >
-
+             
           {products.map((product) => (
             <ProductCard Product_Name={product.name} Product_Desc={product.desc} Price={product.price} imgUrl={product.imageURLs} id={product._id} shopId={shopId} />
           ))}
-        </Box>
+        </Box></Box>
       ) : (
-        <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84",}}>
+        <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" >
           <Box >
           <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Blocked Shops</Typography>
 

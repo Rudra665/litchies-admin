@@ -51,12 +51,11 @@ export default function Reports() {
             width:"100%",
             height:"100vh",
             "& .MuiTableCell-root": { width: "1ch" },
-            bgcolor:"#94acc3"
           }}
         >
                     <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Reports</Typography>
 
-          <TableContainer component={Paper} sx={{bgcolor:"#4b5b84",ml:"5%", width:"90%" }}>
+          <TableContainer component={Paper} sx={{ml:"5%", width:"90%" }}>
             <Table size="large" >
               <TableHead>
                 <TableRow>

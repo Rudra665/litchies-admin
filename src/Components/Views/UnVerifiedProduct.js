@@ -34,20 +34,24 @@ export default function UnVerifiedProduct() {
                         flexWrap: "wrap"
                     }}
                 >
+                    <Typography variant="h3">Un-Verified Product</Typography>
 
                     {products.map((product) => (
                         <UnVerifiedProductCard Product_Name={product.name} Product_Desc={product.desc} Price={product.price} imgUrl={product.imageURLs} id={product._id} shopId={shopId} />
                     ))}
                 </Box>
             ) : (
-                <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84",}}>
+                <Box display="inlineFlex" alignItems="center"  height="100vh" justifyContent="center" >
                     <Box >
+                    <Typography align='center' marginBottom="170px" fontWeight="600" variant="h3" style={{zIndex:'3'}}>Un-Verified Product</Typography>
+                    <Box display="flex" justifyContent="right">
+                    </Box>
 
                         <Box display="flex" justifyContent="center">
                             <img src={empty} width='500px'></img>
                         </Box>
                         <Box align="center">
-                            <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} sx={{ }}><Button variant="contained" >Add Some</Button></Link>
+                            <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} ><Button variant="contained" >Add Some</Button></Link>
                         </Box>
                     </Box>
                 </Box>)

@@ -169,7 +169,6 @@ export default function AddProduct() {
             height: "94vh",
             width: "100%",
             "& .MuiTextField-root": { m: 1, },
-            bgcolor:"#bbc3cc"
           }}
         >
           <Typography align="center" mb="3vh" variant="h3">Add Product</Typography>

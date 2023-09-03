@@ -67,7 +67,6 @@ export default function ShopTemplate() {
             display: "flex",
             justifyContent: "space-between",
             marginY: 5,
-            bgcolor:"#4b5b84"
 
           }}>
             <Box overflow="hidden" border="5px solid Black" height="fitContent" borderRadius="50%">

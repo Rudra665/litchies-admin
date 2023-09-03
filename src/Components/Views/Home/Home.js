@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import ShopCard from '../Cards/ShopCard';
 import { bgcolor } from '@mui/system';
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
     <Box sx={{ display:"flex", justifyContent:"center", width:"100%" }}>
-        <h1>Store List</h1>
+        <Typography variant="h3" fontWeight="600">Store List</Typography>
       </Box>
       <Box
         sx={{

@@ -12,8 +12,8 @@ const ProductCard = (props) => {
         <>
             <Card
                 sx={{
-                    width: "300px",
-                    height: "auto",
+                    width: "320px",
+                    height: "500px",
                     m: 1,
                     p: 0,
                     boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
@@ -21,10 +21,11 @@ const ProductCard = (props) => {
                 }}
             >
                 <Box align="center" height="200px" m="1vh" class="item" sx={{
-                    display: "flex",
                 }} >
-                    <Carousel images={imgUrl} shopId={props.shopId} id={props.id} />
-                </Box>
+                    { imgUrl?
+                    <Carousel images={imgUrl} shopId={props.shopId} id={props.id} /> :
+                    <img src="/no-image.jpg" />
+                }</Box>
                 <Box align="center" p="1vh" display="grid">
                     <Typography
                         sx={{
@@ -37,7 +38,7 @@ const ProductCard = (props) => {
                     >
                         <b>Product Name: </b> {Product_Name}
                     </Typography>
-                    <Box height="5vh" overflow="hidden">
+                    <Box height="7vh" overflow="hidden">
                         <Typography
                             color="text.secondary"
                             lineHeight="20px"

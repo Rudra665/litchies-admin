@@ -30,7 +30,7 @@ export default function BlockedShops() {
   return (
     <Box>
       {verify.length > 0 ? (
-        <Box display="flex" padding="10vh" sx={{bgcolor:"#4b5b84"}}>
+        <Box display="flex" padding="10vh" >
           {verify.map((verifieduser) => (
             // <List
             //   sx={{ width: "100%", maxWidth: 800, bgcolor: "background.paper" }}
@@ -70,7 +70,7 @@ export default function BlockedShops() {
       ) :
         (
             
-          <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84",}}>
+          <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" >
             <Box >
             <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Blocked Shops</Typography>
               <Box display="flex" justifyContent="center">

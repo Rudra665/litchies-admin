@@ -22,25 +22,30 @@ export default function BannerList() {
     return (
         <>
             {banner.length > 0 ? (
+                <Box>
+                <Box align="center">
+                <Link to={`/admin/verifiedShopsList/addProduct/${shopId}`} sx={{ textDecoration: "none" }}><Button variant="contained" style={{color:"white"}}>Add Some</Button></Link>
+            </Box>
                 <Box
                     sx={{
                         display: "flex",
                         width: "95vw",
-                        margin: "50px",
                         justifyContent: "center",
                         "& .MuiTableCell-root": { width: "1ch" },
                         flexWrap: "wrap",
-                        bgcolor:"#4b5b84"
                     }}
                 >
+            <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Shop Banners</Typography>
 
                     {banner.map((product) => (
                         <ShopBannerCard Product_Name={product.offerProducts.title} Product_Desc={product.desc} discount={product.offerProducts.products.discount} imgUrl={product.offerProducts.shopBanner} id={product._id} shopId={shopId} />
                     ))}
-                </Box>
+                </Box></Box>
             ) : (
-                <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84"}}>
+                <Box display="inlineFlex" alignItems="center" height="100vh" justifyContent="center" >
                     <Box >
+                    <Typography align='center' marginBottom="170px" fontWeight="600" variant="h3" style={{zIndex:'3'}}>Shop Banners</Typography>
+
                         <Box display="flex" justifyContent="center">
                             <img src={empty} width='500px'></img>
                         </Box>

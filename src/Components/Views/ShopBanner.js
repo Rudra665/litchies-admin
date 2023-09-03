@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -62,6 +62,8 @@ export default function ShopBanner() {
     <>
       <form onSubmit={handleUpload}>
         <Container>
+        <Typography my='2' align="center" variant="h3" fontWeight="700">Add Shop Banner</Typography>
+
           <Box align="center" sx={{ marginY: 40 }}>
             <Box style={{ marginTop: "50px" }}>
               <img

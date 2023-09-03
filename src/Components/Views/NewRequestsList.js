@@ -35,7 +35,6 @@ export default function NewRequestList() {
                         justifyContent: "center",
                         "& .MuiTableCell-root": { width: "1ch" },
                         flexWrap: "wrap",
-                        bgcolor:"#4b5b84"
         }}
         >
           <Container sx={{display: "flex",}}>
@@ -46,7 +45,7 @@ export default function NewRequestList() {
           </Container>
         </Box >) :
         (
-          <Box display="flex" alignItems="center" height="100vh" justifyContent="center" sx={{backgroundColor: "#4b5b84"}}>
+          <Box display="flex" alignItems="center" height="100vh" justifyContent="center">
             <Box >
             <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>New Requests</Typography>
 

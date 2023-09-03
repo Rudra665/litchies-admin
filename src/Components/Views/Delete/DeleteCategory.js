@@ -8,6 +8,7 @@ const Delete = (props) => {
         axios
             .delete(`http://43.205.116.96:3000/productCategory/delete/${props.id}`)
             .then((response) => {
+                if(response.status===200)
                 alert("Category Deleted")
                 window.location.reload()
 

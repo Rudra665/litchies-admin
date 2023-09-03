@@ -7,7 +7,7 @@ function RoutesFunc() {
   
   return (
     <>
-    <Box>
+    <Box >
       
       <SideBar />
       <div style={{marginLeft:'100px'}}>

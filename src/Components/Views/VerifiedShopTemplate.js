@@ -128,7 +128,6 @@ export default function VerifiedShopTemplate() {
           padding="20px"
           align="center"
           sx={{
-            bgcolor:"#4b5b84",
             display: "flex",
             justifyContent: "center",
             height: "fit-content",
@@ -171,7 +170,7 @@ export default function VerifiedShopTemplate() {
                   >
                     Upload
                   </Button>
-                  <Button href={`showProducts/${user._id}`} sx={{color:"white"}}>Show All products</Button>
+                  <Button href={`/admin/verifiedShopsList/showProducts/${id}`} >Show All products</Button>
                 </Box>
               </Grid>
               <Grid item lg="6" sm="12">
@@ -292,97 +291,7 @@ export default function VerifiedShopTemplate() {
                   </Box>
                 </Box>
 
-                {/* 
-                    <TextField
-                      name="name"
-                      label="Shop Name"
-                      value={user.name}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="kartaName"
-                      label="Karta Name"
-                      value={user.kartaName}
-                      onChange={handleChange}
-                    />
-
-                    <TextField
-                      name="aadharNo"
-                      label="Aadhar Number"
-                      value={user.aadharNo}
-                      defaultValue="0"
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="email"
-                      label="E-mail"
-                      defaultValue="0"
-                      value={user.email}
-                      onChange={handleChange}
-                    />
-
-                    <TextField
-                      name="panNo"
-                      label="PAN Number"
-                      defaultValue="00"
-                      value={user.panNo}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="gstNo"
-                      defaultValue="00"
-                      label="GST Number"
-                      value={user.gstNo}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="mobile"
-                      defaultValue="00"
-                      label="Mobile Number"
-                      value={user.mobile}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="address"
-                      label="Address"
-                      value={user.address}
-                      defaultValue="No Address"
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="state"
-                      label="State"
-                      defaultValue="UP"
-                      value={user.state}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="city"
-                      label="City"
-                      defaultValue="Agra"
-                      value={user.city}
-                      onChange={handleChange}
-                    />
-                    <TextField
-                      name="pincode"
-                      label="Pin Code"
-                      defaultValue="282005"
-                      value={user.pincode}
-                      onChange={handleChange}
-                    />
-                    
-                      <Button
-                        disabled={error ? true : false}
-                        variant="contained"
-                        type="submit"
-                        startIcon={<UpdateIcon />}
-                      >
-                        Update Shop
-                      </Button>
-
-                    </Box> */}
-                {/*  */}
-                {/*  */}
+                
               </Grid>
             </Grid>
           </Container>

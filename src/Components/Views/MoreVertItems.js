@@ -29,19 +29,19 @@ const MoreVertItems = (props) => {
         <MoreVertIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} keepMounted onClose={handleClose} open={open}>
-        <Link to={`verifiedShopsList/addHighlight/${props.id}`} style={{ textDecoration: "none", color: "white" }}>
+        <Link to={`verifiedShopsList/addHighlight/${props.id}`} style={{ textDecoration: "none", color: "black" }}>
           <MenuItem onClick={handleClose}>
             Add Highlight
           </MenuItem></Link>
-        <Link to={`verifiedShopsList/addproduct/${props.id}`} style={{ textDecoration: "none", color: "white" }} >
+        <Link to={`verifiedShopsList/addproduct/${props.id}`} style={{ textDecoration: "none", color: "black" }} >
           <MenuItem onClick={handleClose}>
             Add Product
           </MenuItem></Link>
-        <Link to={`verifiedShopsList/addShopBanner/${props.id}`} style={{ textDecoration: "none", color: "white" }}>
+        <Link to={`verifiedShopsList/addShopBanner/${props.id}`} style={{ textDecoration: "none", color: "black" }}>
           <MenuItem onClick={handleClose}>
             Add Shop Banner
           </MenuItem></Link>
-        <Link to={`verifiedShopsList/showProducts/${props.id}`} style={{ textDecoration: "none", color: "white" }} >
+        <Link to={`verifiedShopsList/showProducts/${props.id}`} style={{ textDecoration: "none", color: "black" }} >
           <MenuItem onClick={handleClose}>
             Show All Products
           </MenuItem></Link>

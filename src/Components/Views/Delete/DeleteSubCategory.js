@@ -5,8 +5,9 @@ import React from 'react'
 const Delete = (props) => {
 
     const erase = () => {
-        axios.delete(`http://43.205.116.96:3000/productSubCategory/delete/${props.id}`);
-        alert(`SubCategory Deleted`)
+        axios.delete(`http://43.205.116.96:3000/productSubCategory/delete/${props.id}`).then((response)=>{
+        if(response.status===200)
+        alert(`SubCategory Deleted`)})
         window.location.reload()
     };
     return (
