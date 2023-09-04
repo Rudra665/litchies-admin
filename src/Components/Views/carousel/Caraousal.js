@@ -37,7 +37,7 @@ function SwipeableTextMobileStepper(props) {
             >
 
                 {props.images.map((step, index) => (
-                    <div>
+                    <div key={index}>
                         {Math.abs(activeStep - index) <= 2 ? (
                             <Link to={`/admin/verifiedShopsList/showProducts/${props.shopId}/${props.id}`}>
                                 <Box

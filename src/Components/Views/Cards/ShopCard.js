@@ -29,12 +29,13 @@ const ShopCard = (props) => {
                     height: "auto",
                     my: 4,
                     mx:2,
-                    boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
+                    boxShadow: "10px 10px 5px 5px #e1e1e1",
                     backgroundColor:"white",
                     backgroundImage:`url('/circle.png'), url('/circle.png')`,
                     backgroundSize: '300px',
                     backgroundRepeat:"no-repeat",
                     backgroundPosition: '170px -85px, -170px 355px',
+                    border:"2px #e1e1e1"
                 }}
             ><div style={{zIndex:2, position:'absolute'}} >
                     <IconButton onClick={handleClick}><CloseIcon sx={{color:'red'}} /></IconButton>

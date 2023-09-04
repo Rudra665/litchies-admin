@@ -40,10 +40,10 @@ const NewRequestCard = (props) => {
                     display: "grid",
                     width: "300px",
                     height: "auto",
-                    m: 1,
+                    m: 3,
                     p: 0,
-                    boxShadow: "14px 22px 52px 12px rgba(127, 127, 127, 0.13)",
-
+                    boxShadow: "10px 10px 5px 5px #e1e1e1",
+                    border:"2px #e1e1e1"
                 }}
             >
 

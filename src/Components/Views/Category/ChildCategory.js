@@ -34,7 +34,7 @@ const ChildCategoryList = (props) => {
                                     <TableCell component="th" scope="row">
                                         {cat.name}
                                     </TableCell>
-                                    <TableCell><DeleteChildCategory variant="text" /></TableCell>
+                                    <TableCell><DeleteChildCategory variant="text" id={cat._id}/></TableCell>
                                 </TableRow>
                             ))}
                         </Table>

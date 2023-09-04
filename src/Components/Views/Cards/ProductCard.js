@@ -14,13 +14,13 @@ const ProductCard = (props) => {
                 sx={{
                     width: "320px",
                     height: "500px",
-                    m: 1,
+                    m: 3,
                     p: 0,
-                    boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
-
+                    boxShadow: "10px 10px 5px 5px #e1e1e1",
+                    border:"2px #e1e1e1"
                 }}
             >
-                <Box align="center" height="200px" m="1vh" class="item" sx={{
+                <Box align="center" height="330px" m="1vh" className="item" sx={{
                 }} >
                     { imgUrl?
                     <Carousel images={imgUrl} shopId={props.shopId} id={props.id} /> :

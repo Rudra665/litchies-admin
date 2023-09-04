@@ -14,13 +14,13 @@ const ShopBanner = (props) => {
                 sx={{
                     width: "300px",
                     height:'auto',
-                    m: 1,
+                    m: 3,
                     p: 0,
-                    boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
-
+                    boxShadow: "10px 10px 5px 5px #e1e1e1",
+                    border:"2px #e1e1e1"
                 }}
             >
-                <Box align="center" height="200px" m="20px" class="item" sx={{
+                <Box align="center" height="200px" m="20px" className="item" sx={{
                     display: "flex",
                 }} >
                     <Carousel images={imgUrl} shopId={props.shopId} id={props.id} />

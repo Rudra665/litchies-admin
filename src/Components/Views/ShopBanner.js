@@ -75,6 +75,7 @@ export default function ShopBanner() {
               <input width="100%" type="file" onChange={onImageChange} />
               <Button
                 variant="contained"
+                disabled={img.raw?false:true}
                 onClick={handleUpload}
               >
                 Upload

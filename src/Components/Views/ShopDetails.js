@@ -7,10 +7,7 @@ import { Link, useParams } from "react-router-dom";
 import ProductList from "./ProductList";
 import { Button } from "@mui/material";
 import Banner from "./Banner";
-import { LocationOn } from "@mui/icons-material";
 import InventoryIcon from '@mui/icons-material/Inventory';
-import UnpublishedIcon from '@mui/icons-material/Unpublished';
-import UnVerifiedProduct from "./UnVerifiedProduct";
 import PagesIcon from '@mui/icons-material/Pages';
 
 export default function VerifiedShopTemplate(props) {
@@ -63,7 +60,8 @@ export default function VerifiedShopTemplate(props) {
                         <Box display="grid">
                             <Box sx={{ borderRadius: "50%", border: "5px solid White", height: "30vh", width: "30vh", overflow: "hidden", backgroundImage: `url("http://43.205.116.96:3000/images/${user.shopImg}")`, backgroundSize: "cover" }}>
                             </Box>
-                            <Box align="center" ><Button onClick={() => setValue('un-verifiedProducts')} variant="contained">Un-Verified Products</Button></Box></Box>
+                            {/* <Box align="center" ><Button onClick={() => setValue('un-verifiedProducts')} variant="contained">Un-Verified Products</Button></Box> */}
+                            </Box>
                         <Box my="2vh">
                             <Typography variant="h3" fontWeight="550">Details</Typography>
                             <Box align="left" maxWidth="500px">
@@ -92,11 +90,11 @@ export default function VerifiedShopTemplate(props) {
 
                 <Box width="100%" align='center'>
                 <BottomNavigation  sx={{ width: 500 }} value={value} onChange={handleChange}>
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         label="Unverified Products"
         value="un-verifiedProducts"
         icon={<UnpublishedIcon />}
-      > </BottomNavigationAction>
+      > </BottomNavigationAction> */}
       <BottomNavigationAction
         label="Product List"
         value="productList"
@@ -112,9 +110,9 @@ export default function VerifiedShopTemplate(props) {
                
                 
     </Box>       
-    <Box display={value==='un-verifiedProducts' ? "visible":"none" }  ease>
+    {/* <Box display={value==='un-verifiedProducts' ? "visible":"none" }  ease>
       <UnVerifiedProduct />
-  </Box>
+  </Box> */}
     <Box  display={value==='productList' ? "visible":"none"}>
       <ProductList />
     </Box>

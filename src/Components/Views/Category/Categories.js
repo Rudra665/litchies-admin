@@ -63,7 +63,7 @@ function Categories() {
 
                                     {category.map((cat) => (
 
-                                        <TableRow>
+                                        <TableRow key={cat._id}>
                                             <TableCell >
                                                 <TreeView
                                                     aria-label="file system navigator"

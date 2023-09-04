@@ -61,7 +61,7 @@ const Sidebar = () => {
     {
       index:2,
       name: "Blocked Shops",
-      iconName: "block",
+      iconName: "no-entry",
       type: "solid",
       link: 'blockedShops'
     },
@@ -79,17 +79,17 @@ const Sidebar = () => {
       type: "solid",
       link: 'categories'
     },
+    // {
+    //   index:5,
+    //   name: "Un-Verified Products",
+    //   iconName: "radiation",
+    //   type: "solid",
+    //   link: 'verifiedShopsList/UnVerifiedProducts'
+    // },
     {
       index:5,
-      name: "Un-Verified Products",
-      iconName: "radiation",
-      type: "solid",
-      link: 'verifiedShopsList/UnVerifiedProducts'
-    },
-    {
-      index:6,
         name: "Reports",
-        iconName: "report",
+        iconName: "receipt",
         type: "solid",
         link: 'reports'
       },

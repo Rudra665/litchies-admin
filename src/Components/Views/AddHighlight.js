@@ -1,17 +1,18 @@
-import * as React from "react";
+import React from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
 import { TextField, Button, Typography, Autocomplete } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
-import { useEffect } from "react";
-import { Stack } from "@mui/system";
+import { useParams} from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 export default function AddHighlight() {
+  const { handleSubmit, control,formState: { errors },watch, reset } = useForm(); // Initialize useForm
   const { shopId } = useParams();
-  const [products, setProduct] = useState([]);
+  const [productDetails, setProductDetails] = useState([]);
   const [img, setImg] = useState({ preview: "", raw: "" });
   const [proId, setProId] = useState('')
   const onImageChange = (e) => {
@@ -28,7 +29,7 @@ export default function AddHighlight() {
         return response.json();
       })
       .then((data) => {
-        setProduct(data);
+        setProductDetails(data);
       });
   };
 
@@ -36,58 +37,49 @@ export default function AddHighlight() {
     fetchData();
   }, []);
 
-  const [state, setState] = useState({
-    title: "",
-    desc: "",
-    proId: {},
-    discount: "",
-    shopId: shopId,
-    shopBanner: "",
-  });
-  const handleUpload = async (e) => {
-    e.preventDefault();
+
+  const onSubmit = async (data) => {
+    try {
     const formData = new FormData();
     formData.append("image", img.raw);
-    await axios
-      .post("http://43.205.116.96:3000/uploadImage", formData)
-      .then((response) => {
-        if(response.status=='200')
-        alert('Image Uploaded')
-      }
-      )
-  };
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setState({
-      ...state,
-      [e.target.name]: value,
-    });
-  };
-  const handleSubmit = (e) => {
-    if(state.title && state.discount ){
-    e.preventDefault();
-    const proData = {
-      title: state.title,
-      desc: state.desc,
-      products:[{proId: proId,
-        discount: state.discount,}],
-      shopId: shopId,
-      shopBanner: state.shopBanner,
-    };
+    const response1 = await axios.post("http://43.205.116.96:3000/uploadImage", formData);
+    if(response1.status === 200) {
+      alert('Shop Image Uploaded')
+      console.log(data.image)
+      const proData = {
+        title: data.title,
+        desc: data.desc,
+        products: [
+          {
+            proId: proId,
+            discount: data.discount,
+          },
+        ],
+        shopId: shopId,
+        shopBanner: data.shopBanner,
+      };
 
-    axios
-      .post("http://43.205.116.96:3000/productOffer/create", proData)
-      .then((response) => {
-        console.log(response.data);
-      });
+     const response2 = axios.post("http://43.205.116.96:3000/productOffer/create", proData);
+        if (response2.status=='200')
+        {
+          alert("Highlight Updated")
+          reset()
+          setImg({preview:'',raw:''})
+          setProId('')
+        } 
+    }else {
+      alert("Fill All Fields");
     }
-    else{
-      alert("Fill All Fields")
-    }
+    
+  }catch (error) {
+    console.error("Error submitting form:", error);
+  }
   };
+  
+
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Container>
           <Box
             sx={{
@@ -98,55 +90,70 @@ export default function AddHighlight() {
           >
             <Typography variant="h2" align="center">Add Highlight</Typography>
             <div align="center">
-              <TextField
-                fullWidth
+              <Controller
                 name="title"
-                label="Highlight Title"
-                value={state.title}
-                onChange={handleChange}
+                control={control}
+                defaultValue=""
+                rules={{ required: true }} // Add validation rule
+                render={({ field }) => (
+                  <TextField
+                    fullWidth
+                    label="Highlight Title"
+                    {...field}
+                    error={!!errors.title}
+                    helperText={errors.title ? 'Title is required' : ''}
+                  />
+                )}
               />
 
-              <TextField
-                fullWidth
+              <Controller
                 name="desc"
-                label="Description"
-                value={state.desc}
-                onChange={handleChange}
+                control={control}
+                defaultValue=""
+                render={({ field }) => (
+                  <TextField
+                    fullWidth
+                    label="Description"
+                    {...field}
+                  />
+                )}
               />
 
-              <Stack>
-                <Autocomplete
-                  multiple
-                  id="tags-outlined"
-                  options={products}
-                  getOptionLabel={(option) => option.name}
-                  filterSelectedOptions
-                  onChange={(event, value) => setProId(value.map((i)=>i._id))}
-                  renderInput={(params) => (
-                    <TextField
-                      {...params}
-                      label="Select Product"
-                      placeholder="Add Some"
-                    />
-                  )}
-                /></Stack>
-              <TextField
-                fullWidth
+              <Controller
                 name="discount"
-                label="Discount"
-                value={state.discount}
-                onChange={handleChange}
+                control={control}
+                defaultValue=""
+                rules={{ required: true, pattern: /^[0-9]+$/ }} // Add validation rule
+                render={({ field }) => (
+                  <TextField
+                    fullWidth
+                    label="Discount"
+                    type='number'
+                    {...field}
+                    error={!!errors.discount}
+                    helperText={errors.discount ? 'Discount is required and must be a number' : ''}
+                  />
+                )}
               />
-              <Box >
-                <input type="file" onChange={onImageChange} />
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={handleUpload}
-                >
-                  Upload
-                </Button>
-              </Box>
+
+                    <Autocomplete
+                      id="tags-outlined"
+                      options={productDetails}
+                      getOptionLabel={(option) => option.name}
+                      filterSelectedOptions
+                  onChange={(event, value) => setProId(value._id)}
+                      renderInput={(params) => (
+                        <TextField
+                          {...params}
+                          label="Select Product"
+                          placeholder="Add Some"
+                          
+                        />
+                      )}
+                    />    
+
+              
+<input type="file" onChange={onImageChange} />
               <img
                   style={{ width: "150px", marginLeft: "30px" }}
                   src={img.preview}
@@ -157,7 +164,7 @@ export default function AddHighlight() {
                   variant="contained"
                   style={{ marginTop: "20px" }}
                   startIcon={<AddIcon />}
-                  onClick={handleSubmit}
+                  type="submit"
                 >
                   Add
                 </Button>
@@ -167,7 +174,7 @@ export default function AddHighlight() {
             </div>
           </Box>
         </Container>
-      </form >
+      </form>
     </>
   );
 }

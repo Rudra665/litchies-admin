@@ -38,7 +38,7 @@ export default function Home() {
         }}
       > 
       
-      {verify.map((verified) => (<ShopCard Shop_Name={verified.name} Karta_Name={verified.kartaName} Mobile={verified.mobile} imgUrl={verified.shopImg} id={verified._id} />))
+      {verify.map((verified) => (<ShopCard key={verified._id} Shop_Name={verified.name} Karta_Name={verified.kartaName} Mobile={verified.mobile} imgUrl={verified.shopImg} id={verified._id} />))
         }
       </Box>
 

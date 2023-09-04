@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import CircularProgress from '@mui/material/CircularProgress';
 import { TextField, Button, Autocomplete, Stack } from "@mui/material";
-import * as yup from 'yup';
 import {useForm} from 'react-hook-form'
 import axios from "axios";
 
 export default function CreateShop() {
-  const { handleSubmit ,reset , control, register, formState: { errors }, setValue } = useForm();
+  const { handleSubmit ,reset , register, formState: { errors }, setValue } = useForm();
   
   const [img, setImg] = useState({ preview: "", raw: "" });
   const [category, setCategory] = useState([]);
@@ -45,8 +44,9 @@ export default function CreateShop() {
       const formData = new FormData();
       formData.append("image", img.raw);
       const response1 = await axios.post("http://43.205.116.96:3000/uploadImage", formData);
-      alert('Shop Image Uploaded')
+      
       if(response1.status === 200) {
+        alert('Shop Image Uploaded')
         const shopData = {
           name: data.name,
           kartaName: data.kartaName,

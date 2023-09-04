@@ -31,22 +31,22 @@ const AddCategory = (props) => {
         });
     };
 
-        const handleUpload = async (e) => {
-            e.preventDefault();
-            const formData = new FormData();
-            formData.append("image", img.raw);
-            await axios
-              .post("http://43.205.116.96:3000/uploadImage", formData)
-              .then((response1) => {
-                if (response1.status === 200)
-                  alert("Image Successfully Uploaded")
-                return response1;
-              })
-              .then((response) => {
-               setData(response.data.name)
-              })
+        // const handleUpload = async (e) => {
+        //     e.preventDefault();
+        //     const formData = new FormData();
+        //     formData.append("image", img.raw);
+        //     await axios
+        //       .post("http://43.205.116.96:3000/uploadImage", formData)
+        //       .then((response1) => {
+        //         if (response1.status === 200)
+        //           alert("Image Successfully Uploaded")
+        //         return response1;
+        //       })
+        //       .then((response) => {
+        //        setData(response.data.name)
+        //       })
               
-          };
+        //   };
 
     const onSubmit = async (data) => {
         setSubmit(true);
@@ -95,13 +95,13 @@ const AddCategory = (props) => {
                     <label style={{ marginBlock: "1vh" }}>Add Image(s)</label>
                     <Box >
                         <input multiple type="file" onChange={onImageChange} />
-                        <Button
+                        {/* <Button
                             variant="contained"
                             color="primary"
                             onClick={handleUpload}
                         >
                             Upload Images
-                        </Button>
+                        </Button> */}
                     </Box>
 
                     <div

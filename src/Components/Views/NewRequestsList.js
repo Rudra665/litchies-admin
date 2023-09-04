@@ -40,7 +40,7 @@ export default function NewRequestList() {
           <Container sx={{display: "flex",}}>
 
             {users.map((verifieduser) => (
-              <NewRequestCard Shop_Name={verifieduser.name} Karta_Name={verifieduser.kartaName} Mobile={verifieduser.mobile} imgUrl={verifieduser.shopImg} id={verifieduser._id} />
+              <NewRequestCard key={verifieduser._id} Shop_Name={verifieduser.name} Karta_Name={verifieduser.kartaName} Mobile={verifieduser.mobile} imgUrl={verifieduser.shopImg} id={verifieduser._id} />
             ))}
           </Container>
         </Box >) :

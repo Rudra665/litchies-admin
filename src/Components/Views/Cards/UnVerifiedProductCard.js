@@ -21,13 +21,14 @@ const UnVerifiedProductCard = (props) => {
                 sx={{
                     width: "300px",
                     height: "60vh",
-                    m: 1,
+                    m: 3,
                     p: 0,
-                    boxShadow: "14px 22px 52px -12px rgba(127, 127, 127)",
+                    boxShadow: "10px 10px 5px 5px #e1e1e1",
+                    border:"2px #e1e1e1"
                 }}
             >
 
-                <Box align="center"  height="35vh" margin={0} class="item" sx={{
+                <Box align="center"  height="35vh" margin={0} className="item" sx={{
                     display: "flex"
                 }} >
                     <Carousel images={imgUrl} shopId={props.shopId} id={props.id} />

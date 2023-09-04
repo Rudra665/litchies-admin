@@ -41,7 +41,7 @@ export default function ProductList() {
         >
              
           {products.map((product) => (
-            <ProductCard Product_Name={product.name} Product_Desc={product.desc} Price={product.price} imgUrl={product.imageURLs} id={product._id} shopId={shopId} />
+            <ProductCard key={product._id} Product_Name={product.name} Product_Desc={product.desc} Price={product.price} imgUrl={product.imageURLs} id={product._id} shopId={shopId} />
           ))}
         </Box></Box>
       ) : (

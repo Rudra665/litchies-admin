@@ -163,7 +163,7 @@ export default function Product() {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Container class="proContainer">
+        <Container className="proContainer">
           <Box
             sx={{
               height: "fit-content",

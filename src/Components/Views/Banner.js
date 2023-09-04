@@ -38,7 +38,7 @@ export default function BannerList() {
             <Typography align='center' mb="3vh" variant="h3" style={{zIndex:'3'}}>Shop Banners</Typography>
 
                     {banner.map((product) => (
-                        <ShopBannerCard Product_Name={product.offerProducts.title} Product_Desc={product.desc} discount={product.offerProducts.products.discount} imgUrl={product.offerProducts.shopBanner} id={product._id} shopId={shopId} />
+                        <ShopBannerCard key={product._id} Product_Name={product.offerProducts.title} Product_Desc={product.desc} discount={product.offerProducts.products.discount} imgUrl={product.offerProducts.shopBanner} id={product._id} shopId={shopId} />
                     ))}
                 </Box></Box>
             ) : (

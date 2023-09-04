@@ -73,7 +73,7 @@ export default function Reports() {
               </TableHead>
               <TableBody>
                 {report.map((reports) => (
-                  <TableRow>
+                  <TableRow key={reports._id}>
                     <TableCell>{reports.productId}</TableCell>
                     <TableCell>{reports.userId}</TableCell>
                     <TableCell>
